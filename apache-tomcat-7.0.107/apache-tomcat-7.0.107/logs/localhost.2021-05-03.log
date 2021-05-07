@@ -1,8 +1,0 @@
-5월 03, 2021 1:17:03 오전 org.apache.catalina.core.ApplicationContext log
-INFO: ContextListener: contextInitialized()
-5월 03, 2021 1:17:03 오전 org.apache.catalina.core.ApplicationContext log
-INFO: SessionListener: contextInitialized()
-5월 03, 2021 1:17:03 오전 org.apache.catalina.core.ApplicationContext log
-INFO: ContextListener: attributeAdded('StockTicker', 'async.Stockticker@20c19ed9')
-5월 03, 2021 1:17:03 오전 org.apache.catalina.core.ApplicationContext log
-INFO: ContextListener: attributeAdded('org.apache.jasper.compiler.TldLocationsCache', 'org.apache.jasper.compiler.TldLocationsCache@31b7338d')
