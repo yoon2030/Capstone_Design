@@ -1,4 +1,5 @@
 <%@ page session="false" pageEncoding="utf-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -19,7 +20,27 @@
   <link href="${pageContext.request.contextPath}/resources/css/modern-business.css" rel="stylesheet" type="text/css">
   <link rel="stylesheet" href="./about2.css">
   <link rel="stylesheet" href="./about3.css">
+  
+  
+ <style>
+ 
+ 	section#container { padding:20px 0; border-top:2px solid #eee; border-bottom:2px solid #eee; }
+	section#container::after { content:""; display:block; clear:both; }
+	div#container_box { float:right; width:calc(100% - 200px - 20px); }
+	
+</style>
+ 
+<style>
+.inputArea { margin:10px 0; }
+select { width:100px; }
+label { display:inline-block; width:70px; padding:5px; }
+label[for='gdsDes'] { display:block; }
+input { width:150px; }
+textarea#gdsDes { width:400px; height:180px; }
 
+.select_img img {margin:20px 0;}
+.select_img img {width:418px; height:250px;}
+</style>
 
 
 </head>
@@ -83,46 +104,82 @@
     </div>
   </nav>
 
-  <!-- Page Content -->
-  <div class="container">
+  
 
-    <!-- Page Heading/Breadcrumbs -->
-    <h1 class="mt-4 mb-3">물품
-      <small>상세</small>
-    </h1>
+    <!-- Team Members -->
+   <section id="container">
+		<div id="container_box">
+			<h2>충대 장터</h2>
+			
+<form role="form" method="post" autocomplete="off" enctype="multipart/form-data">
+
+<input type="hidden" name="gdsNum" value="${goods.gdsNum}" />
 
 
+<div class="inputArea">
+ <label for="gdsName">상품명</label>
+ <input type="text" id="gdsName" name="gdsName" value="${goods.gdsName}"/>
+</div>
+<div class="inputArea">
+	<label for="gdsCategory">상품분류</label>
+	<select id="gdsCategory" name="gdsCategory" >
+		<option value="서적" <c:if test="${goods.gdsCategory == '서적'}">selected</c:if>>서적</option>
+  		<option value="기계" <c:if test="${goods.gdsCategory == '기계'}">selected</c:if>>기계</option>
+ 	 	<option value="옷"  <c:if test="${goods.gdsCategory == '옷'}">selected</c:if>>옷</option>
+	</select>
+</div>
+<div class="inputArea">
+ <label for="gdsPrice">상품가격</label>
+ <input type="text" id="gdsPrice" name="gdsPrice" value="${goods.gdsPrice}"/>
+</div>
+<div class="inputArea">
+ <label for="gdsSta">상품상태</label>
+ <input type="text" id="gdsSta" name="gdsSta" value="${goods.gdsSta}"/>
+</div>
+<div class="inputArea">
+ <label for="gdsDes">상품소개</label>
+ <textarea rows="5" cols="50" id="gdsDes" name="gdsDes">${goods.gdsDes}</textarea>
+</div>
+<div class="inputArea">
+				<label for="gdsImg">이미지</label>
+				<input type="file" id="gdsImg" name="file" />
+				<div class="select_img">
+					<img src="${goods.gdsImg}" />
+					<input type="hidden" name="gdsImg" value="${goods.gdsImg}" />
+				</div>
+				
+				<script>
+					$("#gdsImg").change(function(){
+						if(this.files && this.files[0]) {
+							var reader = new FileReader;
+							reader.onload = function(data) {
+								$(".select_img img").attr("src", data.target.result).width(500);								
+							}
+							reader.readAsDataURL(this.files[0]);
+						}
+					});
+				</script>
+			</div>
+<div class="inputArea">
+ <button type="submit" id="update_Btn" class="btn btn-primary">완료</button>
+ <button type="submit" id="back_Btn" class="btn btn-warning">취소</button>
+  <script>
+ $("#back_Btn").click(function(){
+  //history.back();
+  location.href = "/admin/trade_view?n=" + ${goods.gdsNum};
+ });   
+</script>
+</div>   
 
-    <!-- Intro Content -->
-    <div class="row">
-      <div class="col-lg-6">
-        <img class="img-fluid rounded mb-4" src="http://placehold.it/750x450" alt="">
-      </div>
-      <div class="col-lg-6">
-        <h2>제품 이름</h2>
-        <p>제품 설명</p>
-      </div>
-    </div>
+</form>
+			
+		</div>
+	</section>
 
     <!-- /.row -->
 
 
-  </div>
-  <div id = "tradebtn">
-    <button id = "Req">거래요청</button>
-    <button id = "Canc">거래취소</button>
-  </div>
-
-  <div id = "after">
-    <h4>최근 거래 후기</h2>
-    <ul>
-      <li>정말 친절해요<h1><span id="star"></span></h1></li>
-      <li>쿨거래 감사합니다<h1><span id="star"></span></h1></li>
-      <li>후기3<h1><span id="star"></span></h1></li>
-    </ul>
-  </div>
-
-   
+  
   <!-- /.container -->
 
   <!-- Footer -->
