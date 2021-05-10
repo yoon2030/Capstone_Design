@@ -108,7 +108,7 @@ public class AdminController {
 	// 상품 수정
 	@RequestMapping(value = "/modify", method = RequestMethod.POST)
 	public String postGoodsModify(GoodsVO vo, MultipartFile file, HttpServletRequest req) throws Exception {
-		logger.info("post goods modify");
+		logger.info("post modify");
 		
 		// 새로운 파일이 등록되었는지 확인
 		if(file.getOriginalFilename() != null && file.getOriginalFilename() != "") {
