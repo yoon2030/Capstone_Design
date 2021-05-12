@@ -12,7 +12,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Modern Business - Start Bootstrap Template</title>
+  <title>충대장터</title>
 
   <!-- Bootstrap core CSS -->
   <link href="${pageContext.request.contextPath}/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
@@ -34,7 +34,7 @@
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
-            <a class="nav-link" href="about.jsp">About</a>
+            <a class="nav-link" href="/admin/trade_list">About</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="services.jsp">Services</a>
