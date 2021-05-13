@@ -1,8 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page session="false" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<html lang="en">
 
 <head>
 
@@ -11,18 +12,103 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>거래소</title>
+  <title>Modern Business - Start Bootstrap Template</title>
 
   <!-- Bootstrap core CSS -->
   <link href="${pageContext.request.contextPath}/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
 
   <!-- Custom styles for this template -->
   <link href="${pageContext.request.contextPath}/resources/css/modern-business.css" rel="stylesheet" type="text/css">
+  <style>
+  * {
+    margin: 0;
+    padding: 0;
+}
 
-<style>
-.card-img-top { width:418px; height:250px; }
 
-</style>
+
+body {
+    font: 17px 'Nanum Gothic', sans-serif;
+}
+
+
+
+a {
+    text-decoration: none;
+    color: #404040;
+}
+
+
+
+li {
+    list-style: none;
+}
+
+
+
+/*BODY*/
+
+#notice {
+    width: 100%;
+    margin: 0 auto;
+    box-sizing: border-box;
+    /*outline: 1px dashed black;*/
+}
+
+
+
+#notice h1 {
+    font-size: 25px;
+    text-align: center;
+    margin: 10px 180px;
+    padding: 10px;
+    color: #fff;
+    background: #007AAE;
+    border-radius: 30px;
+
+}
+
+
+
+#notice ul {
+    width: 100%;
+}
+
+
+
+#notice ul li {
+    line-height: 30px; /*li 세로 간격*/
+    padding-left: 20px;
+}
+
+
+
+#notice ul li:first-child {
+    border-top: 2px solid #6a6a6a;
+    border-bottom: 2px solid #6a6a6a;
+    padding-left: 150px;
+}
+
+
+
+#notice ul li:last-child {
+    border-bottom: 1px solid #000;
+}
+
+
+
+
+
+
+#notice ul li span {
+    display: inline-block;
+    float: right;
+    width: 150px;
+    text-align: center;
+}
+
+
+  </style>
 
 </head>
 
@@ -73,41 +159,54 @@
     </div>
   </nav>
 
+  <!-- Page Content -->
+  <div class="container">
+      <!-- Page Heading/Breadcrumbs -->
+    <h1 class="mt-4 mb-3">공지사항
+      <small></small>
+    </h1>
+
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <a href="index.html">공지사항</a>
+      </li>
+      <li class="breadcrumb-item active"></li>
+    </ol>
 
 
-  
+  <div id="notice">
 
-    <!-- Team Members -->
-    <div id = "title">
-    <h2>충대 장터 거래소</h2> 
-    <div id = "Product_reg">
-      <button id = "reg" onclick="location.href='/admin/register'">등록</button>
-      </div>
-  </div>
-  
+    <ul>
 
-    <div class="row">
-    	<c:forEach items="${list}" var="list">
-    	 <div class="col-lg-4 mb-4">
-        <div class="card h-100 text-center">
-         <img src="${list.gdsImg}" class="card-img-top"/>
-          <div class="card-body">
-         		 <label for="gdsName">상품명</label>
-				<h4 class="card-title">${list.gdsName}</h4>
-          </div>
-          <div class="card-footer">
-          	<span>닉네임:</span>
-            <a href="/admin/trade_view?n=${list.gdsNum}">${list.sellerId}</a>
-          </div>
-        </div>
-      </div>
-    	
-    	</c:forEach>
+        <li>제목<span>날짜</span></li>
+
+        <li><a href="#">제목</a><span>2018-10-24</span></li>
+
+         <li><a href="#">제목</a><span>2018-10-24</span></li>
+
+         <li><a href="#">제목</a><span>2018-10-24</span></li>
+
+         <li><a href="#">제목</a><span>2018-10-24</span></li>
+
+         <li><a href="#">제목</a><span>2018-10-24</span></li>
+
+         <li><a href="#">제목</a><span>2018-10-24</span></li>
+
+         <li><a href="#">제목</a><span>2018-10-24</span></li>
+
+         <li><a href="#">제목</a><span>2018-10-24</span></li>
+
+    </ul>
+
+</div>
+
+
+
+
     </div>
     <!-- /.row -->
 
-
-  
+  </div>
   <!-- /.container -->
 
   <!-- Footer -->
@@ -121,6 +220,12 @@
   <!-- Bootstrap core JavaScript -->
   <script src="<c:url value="/resources/vendor/jquery/jquery.min.js" />"></script>
   <script src="<c:url value="/resources/vendor/bootstrap/js/bootstrap.bundle.min.js" />"></script>
+
+
+  <!-- Contact form JavaScript -->
+  <!-- Do not edit these files! In order to set the email address and subject line for the contact form go to the bin/contact_me.php file. -->
+  <script src="js/jqBootstrapValidation.js"></script>
+  <script src="js/contact_me.js"></script>
 
 </body>
 

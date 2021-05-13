@@ -11,6 +11,19 @@
   <link href="${pageContext.request.contextPath}/resources/css/join.css" rel="stylesheet" type="text/css">
   <script src="vendor/jquery/jquery.min.js"></script>
 <script src="/resources/jquery/jquery-3.3.1.min.js"></script>  
+<style>
+#btnCen {
+    width: 100%;
+    padding: 21px 0 17px;
+    border: 0;
+    cursor: pointer;
+    color: #fff;
+    background-color: black;
+    font-size: 20px;
+    font-weight: 400;
+    font-family: Dotum,'돋움',Helvetica,sans-serif;
+}
+</style>
     </head>
  
     <body>
@@ -102,7 +115,7 @@
                 <div class="btn_area">
                     <button type="submit" id="btnJoin" name="signup_btn" disabled="disabled">가입하기</button>
                     
-                    <button class="cencle" type="button">취소</button>
+                    <button class="cencle" type="button" id ="btnCen">취소</button>
                 </div>
 
                 

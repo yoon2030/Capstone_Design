@@ -1,8 +1,14 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" import="java.util.*"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page session="false" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!doctype html>
 <head>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  
   <title>충대장터</title>
   <!-- Custom styles for this template -->
   <link href="${pageContext.request.contextPath}/resources/css/market.css" rel="stylesheet" type="text/css">
@@ -20,7 +26,7 @@
         </h1>
         <h1>Login</h1>
         <div class="idForm">
-         <label for="userId">아이디</label>
+         <label for="userId">아이디</label><br>
   		 <input type="text" id="userId" name="userId" required="required" />            
         </div>
         <div class="pwdForm">
@@ -28,11 +34,13 @@
   		 <input type="password" id="userPw" name="userPw" required="required" />   
         </div> 
         <button type="submit" class="btn" name="btn btn-primary">Log In</button>
-			<p style="color:#f00;">${msg}</p>
-	</form>
+		<p style="color:#f00;">${msg}</p>
+		 </form>
         <div class="join">
-           아이디가 없으신가요? <a href="/member/signup">회원 등록</a>
+        	<span>아이디가 아직 없으신가요?</span>
+          	 <a href="/member/signup">회원가입</a>
          </div>
+         </form>
   </div>
 </body>
 </html>

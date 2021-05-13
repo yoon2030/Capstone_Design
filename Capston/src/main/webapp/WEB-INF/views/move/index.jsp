@@ -1,8 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page session="false" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE jsp>
+<jsp lang="en">
 
 <head>
 
@@ -11,7 +12,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>거래소</title>
+  <title>충대장터</title>
 
   <!-- Bootstrap core CSS -->
   <link href="${pageContext.request.contextPath}/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
@@ -19,17 +20,12 @@
   <!-- Custom styles for this template -->
   <link href="${pageContext.request.contextPath}/resources/css/modern-business.css" rel="stylesheet" type="text/css">
 
-<style>
-.card-img-top { width:418px; height:250px; }
-
-</style>
-
 </head>
 
 <body>
 
   <!-- Navigation -->
-  <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
+ <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
       <a class="navbar-brand" href="/move/index">충대 장터</a>
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -73,41 +69,76 @@
     </div>
   </nav>
 
-
-
-  
-
-    <!-- Team Members -->
-    <div id = "title">
-    <h2>충대 장터 거래소</h2> 
-    <div id = "Product_reg">
-      <button id = "reg" onclick="location.href='/admin/register'">등록</button>
-      </div>
-  </div>
-  
-
-    <div class="row">
-    	<c:forEach items="${list}" var="list">
-    	 <div class="col-lg-4 mb-4">
-        <div class="card h-100 text-center">
-         <img src="${list.gdsImg}" class="card-img-top"/>
-          <div class="card-body">
-         		 <label for="gdsName">상품명</label>
-				<h4 class="card-title">${list.gdsName}</h4>
+ <header>
+    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+      <ol class="carousel-indicators">
+        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+      </ol>
+      <div class="carousel-inner" role="listbox">
+        <!-- Slide One - Set the background image for this slide in the line below -->
+        <div class="carousel-item active" style="background-image: url('http://placehold.it/1900x1080')">
+          <div class="carousel-caption d-none d-md-block">
+            <h3>슬라이드</h3>
+            <p>내용.</p>
           </div>
-          <div class="card-footer">
-          	<span>닉네임:</span>
-            <a href="/admin/trade_view?n=${list.gdsNum}">${list.sellerId}</a>
+        </div>
+        <!-- Slide Two - Set the background image for this slide in the line below -->
+        <div class="carousel-item" style="background-image: url('http://placehold.it/1900x1080')">
+          <div class="carousel-caption d-none d-md-block">
+            <h3>슬라이드</h3>
+            <p>내용.</p>
+          </div>
+        </div>
+        <!-- Slide Three - Set the background image for this slide in the line below -->
+        <div class="carousel-item" style="background-image: url('http://placehold.it/1900x1080')">
+          <div class="carousel-caption d-none d-md-block">
+            <h3>슬라이드</h3>
+            <p>내용.</p>
           </div>
         </div>
       </div>
-    	
-    	</c:forEach>
+      <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div>
+  </header>
+
+  <!-- Page Content -->
+  <div class="container">
+
+    <h1 class="my-4">충대 장터에 오신 것을 환영합니다.</h1>
+
+<div class="row">
+      <div class="col-lg-6">
+        <h2>충대 장터 소개</h2>
+        <p>충대 장터의 장점</p>
+        <ul>
+          <li>
+            <strong>신뢰성이 높습니다!!</strong>
+          </li>
+          <li>충북대 관계자들끼리 자유로운 거래 가능!</li>
+          <li>후기 시스템으로 친절한 쿨거래 유도!</li>
+        </ul>
+        <p></p>
+      </div>
+      <div class="col-lg-6">
+        <img class="img-fluid rounded" src="http://placehold.it/700x450" alt="">
+      </div>
     </div>
     <!-- /.row -->
 
+    <hr>
 
-  
+    <!-- Call to Action Section -->
+
+  </div>
   <!-- /.container -->
 
   <!-- Footer -->
@@ -124,4 +155,4 @@
 
 </body>
 
-</html>
+</jsp>

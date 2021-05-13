@@ -1,9 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page session="false" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<!DOCTYPE html>
-
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE jsp>
+<jsp lang="en">
 <head>
 
   <meta charset="utf-8">
@@ -11,25 +11,65 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>거래소</title>
+  <title>Modern Business - Start Bootstrap Template</title>
 
   <!-- Bootstrap core CSS -->
   <link href="${pageContext.request.contextPath}/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
 
   <!-- Custom styles for this template -->
   <link href="${pageContext.request.contextPath}/resources/css/modern-business.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="./about2.css">
+  <link rel="stylesheet" href="./about3.css">
+  
+  
+ <style>
+ 
+ 	section#container { padding:20px 0; border-top:2px solid #eee; border-bottom:2px solid #eee; }
+	section#container::after { content:""; display:block; clear:both; }
+	div#container_box { float:right; width:calc(100% - 200px - 20px); }
+	div#wrapper {
+    position: relative;
+    height: 100%;
+}
 
-<style>
-.card-img-top { width:418px; height:250px; }
-
+	
 </style>
+ 
+<style>
+.inputArea { margin:10px 0; }
+select { width:100px; }
+label { display:inline-block; width:90px; padding:5px; }
+label[for='gdsDes'] { display:block; }
+input { width:150px; }
+textarea#gdsDes { width:400px; height:180px; }
+.step_url {    position: absolute;    top: 16px;    right: 13px;    font-size: 15px;    color: #8e8e8e;}
+
+.select_img img {margin:20px 0;}
+#wrapper {
+    position: relative;
+    height: 100%;
+}
+#content {
+    position: relative;
+    left: 50%;
+    transform: translate(-50%);
+    width: 800px;
+}
+
+.star-rating { width:304px; }
+.star-rating,.star-rating span { display:inline-block; height:55px; overflow:hidden; background:url(${pageContext.request.contextPath}/resources/image/star.png)no-repeat; }
+.star-rating span{ background-position:left bottom; line-height:0; vertical-align:top; }
+.star{background:url(star.png)}
+</style>
+
 
 </head>
 
 <body>
 
+
   <!-- Navigation -->
-  <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
+   <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
       <a class="navbar-brand" href="/move/index">충대 장터</a>
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -74,36 +114,64 @@
   </nav>
 
 
-
   
 
     <!-- Team Members -->
-    <div id = "title">
-    <h2>충대 장터 거래소</h2> 
-    <div id = "Product_reg">
-      <button id = "reg" onclick="location.href='/admin/register'">등록</button>
-      </div>
-  </div>
-  
+   <section id="container">
+   
+		<div id="wrapper"> 
+<div id="content">
+		
+			    <h1 class="mt-4 mb-3">후기 작성
+      <small></small>
+    </h1>
+			    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <a href="index.html">마이페이지</a>
+      </li>
+      <li class="breadcrumb-item active">후기관리 / 후기작성</li>
+    </ol>
+			
+<form role="form" method="post" autocomplete="off" enctype="multipart/form-data">
 
-    <div class="row">
-    	<c:forEach items="${list}" var="list">
-    	 <div class="col-lg-4 mb-4">
-        <div class="card h-100 text-center">
-         <img src="${list.gdsImg}" class="card-img-top"/>
-          <div class="card-body">
-         		 <label for="gdsName">상품명</label>
-				<h4 class="card-title">${list.gdsName}</h4>
-          </div>
-          <div class="card-footer">
-          	<span>닉네임:</span>
-            <a href="/admin/trade_view?n=${list.gdsNum}">${list.sellerId}</a>
-          </div>
-        </div>
-      </div>
-    	
-    	</c:forEach>
-    </div>
+
+<div class="inputArea">
+	<div id = selltitle >
+	<h2>제목 : <span>판매글 제목</span></h2>
+	</div>
+	<div id= writer> 
+	<h4>판매자 : <span>판매자 이름</span></h4>
+	</div>
+	<div>
+		<span class='star-rating'>
+		<span style ="width:70%"></span>
+		</span>
+	</div>
+
+	
+
+
+<div class="inputArea">
+	<label for="gdsDes">후기 작성</label>
+	<textarea rows="5" cols="70" id="gdsDes" name="gdsDes"></textarea>
+
+ 
+ 
+
+
+</div>
+<div class="inputArea">
+	<button type="submit" id="register_Btn" class="btn btn-primary">등록</button>
+</div>
+</div>
+</div>
+
+</form>
+			
+		</div>
+	
+	</section>
+
     <!-- /.row -->
 
 
@@ -121,7 +189,6 @@
   <!-- Bootstrap core JavaScript -->
   <script src="<c:url value="/resources/vendor/jquery/jquery.min.js" />"></script>
   <script src="<c:url value="/resources/vendor/bootstrap/js/bootstrap.bundle.min.js" />"></script>
-
 </body>
 
-</html>
+</jsp>

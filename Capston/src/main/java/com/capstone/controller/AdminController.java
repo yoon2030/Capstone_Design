@@ -6,6 +6,7 @@ import java.util.List;
 import javax.annotation.Resource;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.capstone.domain.GoodsVO;
+import com.capstone.domain.MemberVO;
 import com.capstone.service.AdminService;
 import com.capstone.utils.UploadFileUtils;
 
@@ -40,12 +42,14 @@ public class AdminController {
 	
 	// 상품 등록
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
-	public String postGoodsRegister(GoodsVO vo, MultipartFile file) throws Exception {
+	public String postGoodsRegister(GoodsVO vo, MultipartFile file, HttpServletRequest req) throws Exception {
 			
 		String imgUploadPath = uploadPath + File.separator + "imgUpload";  // 이미지를 업로드할 폴더를 설정 = /uploadPath/imgUpload 
 		String ymdPath = UploadFileUtils.calcPath(imgUploadPath);  // 위의 폴더를 기준으로 연월일 폴더를 생성
 		String fileName = null;  // 기본 경로와 별개로 작성되는 경로 + 파일이름
-					
+		HttpSession session = req.getSession();
+		MemberVO seller = (MemberVO) session.getAttribute("member");
+		vo.setSellerId(seller.getUserId());			
 		if(file.getOriginalFilename() != null && file.getOriginalFilename() != "") {
 				// 파일 인풋박스에 첨부된 파일이 없다면(=첨부된 파일이 이름이 없다면)
 				
@@ -77,21 +81,24 @@ public class AdminController {
 	
 	// 거래소 화면
 	@RequestMapping(value = "/trade_list", method = RequestMethod.GET)
-	public void getGoodsList(Model model) throws Exception {
+	public void getGoodsList(Model model, HttpServletRequest req) throws Exception {
 		logger.info("get trade_list");
-			
+		HttpSession session = req.getSession();
+		MemberVO member = (MemberVO) session.getAttribute("member"); 
 		List<GoodsVO> list = adminService.goodslist();  // GoodsVO형태의 List형 변수 list 선언
-			
+		model.addAttribute("member", member);	
 		model.addAttribute("list", list);  // 변수 list의 값을 list 세션에 부여
 	}
 		
 	// 상품 조회
 	@RequestMapping(value = "/trade_view", method = RequestMethod.GET)
-	public void getGoodsview(@RequestParam("n") int gdsNum, Model model) throws Exception {
+	public void getGoodsview(@RequestParam("n") int gdsNum, Model model, HttpServletRequest req) throws Exception {
 		logger.info("get goods view");
-			
+		HttpSession session = req.getSession();
+		MemberVO member = (MemberVO) session.getAttribute("member"); 	
 		GoodsVO goods = adminService.goodsView(gdsNum);
 		model.addAttribute("goods", goods);
+		model.addAttribute("member", member);
 	}
 		
 	// 상품 수정 
@@ -145,4 +152,40 @@ public class AdminController {
 		return "redirect:/admin/trade_list";
 	}
 	
+	//후기관리 get
+	@RequestMapping(value = "/review", method = RequestMethod.GET)
+	public void getReview() throws Exception {
+		logger.info("get index");
+	}
+		
+	// 후기관리 post
+	@RequestMapping(value = "/review", method = RequestMethod.POST)
+	public String postReview(MemberVO vo) throws Exception {
+			 
+		return "admin/review";
+	}
+	//후기작성 get
+	@RequestMapping(value = "/review_reg", method = RequestMethod.GET)
+	public void getReviewReg() throws Exception {
+		logger.info("get index");
+	}
+		
+	// 후기작성 post
+	@RequestMapping(value = "/review_reg", method = RequestMethod.POST)
+	public String postReviewReg(MemberVO vo) throws Exception {
+			 
+		return "admin/review_reg";
+	}
+	//구매요청 get
+	@RequestMapping(value = "/wantbuy2", method = RequestMethod.GET)
+	public void getWantBuy() throws Exception {
+		logger.info("get wantbuy");
+	}
+		
+	// 구매요청 post
+	@RequestMapping(value = "/wantbuy2", method = RequestMethod.POST)
+	public String postWantBuy(MemberVO vo) throws Exception {
+			 
+		return "admin/wantbuy2";
+	}
 }

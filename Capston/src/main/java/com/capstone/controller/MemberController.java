@@ -61,7 +61,7 @@ private static final Logger logger = LoggerFactory.getLogger(MemberController.cl
 				return "member/signin";
 			}else{
 				session.setAttribute("member", login);
-				return "index";
+				return "move/index";
 			}
 					
 	}	

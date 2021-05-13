@@ -33,13 +33,24 @@
 <style>
 .inputArea { margin:10px 0; }
 select { width:100px; }
-label { display:inline-block; width:70px; padding:5px; }
+label { display:inline-block; width:90px; padding:5px; }
 label[for='gdsDes'] { display:block; }
 input { width:150px; }
 textarea#gdsDes { width:400px; height:180px; }
+.step_url {    position: absolute;    top: 16px;    right: 13px;    font-size: 15px;    color: #8e8e8e;}
 
 .select_img img {margin:20px 0;}
 .select_img img {width:418px; height:250px;}
+#wrapper {
+    position: relative;
+    height: 100%;
+}
+#content {
+    position: relative;
+    left: 50%;
+    transform: translate(-50%);
+    width: 800px;
+}
 </style>
 
 
@@ -48,55 +59,43 @@ textarea#gdsDes { width:400px; height:180px; }
 <body>
 
   <!-- Navigation -->
-  <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
-      <a class="navbar-brand" href="index.html">Start Bootstrap</a>
+      <a class="navbar-brand" href="/move/index">충대 장터</a>
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href="about.html">About</a>
-          </li>
           <li class="nav-item">
-            <a class="nav-link" href="services.html">Services</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="contact.html">Contact</a>
+            <a class="nav-link" href="/move/contact">공지사항</a>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPortfolio" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Portfolio
+              거래소
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPortfolio">
-              <a class="dropdown-item" href="portfolio-1-col.html">1 Column Portfolio</a>
-              <a class="dropdown-item" href="portfolio-2-col.html">2 Column Portfolio</a>
-              <a class="dropdown-item" href="portfolio-3-col.html">3 Column Portfolio</a>
-              <a class="dropdown-item" href="portfolio-4-col.html">4 Column Portfolio</a>
-              <a class="dropdown-item" href="portfolio-item.html">Single Portfolio Item</a>
+              <a class="dropdown-item" href="/admin/trade_list">판매</a>
+              <a class="dropdown-item" href="/admin/wantbuy2">구매</a>
             </div>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Blog
+              마이페이지
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
-              <a class="dropdown-item" href="blog-home-1.html">Blog Home 1</a>
-              <a class="dropdown-item" href="blog-home-2.html">Blog Home 2</a>
-              <a class="dropdown-item" href="blog-post.html">Blog Post</a>
+              <a class="dropdown-item" href="/move/uploaded">내가 등록한 물건</a>
+              <a class="dropdown-item" href="/move/wantbuy">내가 요청한 물건</a>
+              <a class="dropdown-item" href="/admin/review">후기관리</a>
             </div>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPages" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Other Pages
+              FAQ
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPages">
-              <a class="dropdown-item" href="full-width.html">Full Width Page</a>
-              <a class="dropdown-item" href="sidebar.html">Sidebar Page</a>
-              <a class="dropdown-item" href="faq.html">FAQ</a>
-              <a class="dropdown-item" href="404.html">404</a>
-              <a class="dropdown-item" href="pricing.html">Pricing Table</a>
+              <a class="dropdown-item" href="/move/faq1">자주찾는 질문</a>
+              <a class="dropdown-item" href="/move/faq2">1:1문의</a>
             </div>
           </li>
         </ul>
@@ -107,9 +106,20 @@ textarea#gdsDes { width:400px; height:180px; }
   
 
     <!-- Team Members -->
-   <section id="container">
-		<div id="container_box">
-			<h2>충대 장터</h2>
+    <section id="container">
+   
+		<div id="wrapper"> 
+<div id="content">
+		
+			    <h1 class="mt-4 mb-3">물품 수정
+      <small></small>
+    </h1>
+			    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <a href="index.html">거래소</a>
+      </li>
+      <li class="breadcrumb-item active">물품 수정</li>
+    </ol>
 			
 <form role="form" method="post" autocomplete="off" enctype="multipart/form-data">
 
@@ -134,7 +144,13 @@ textarea#gdsDes { width:400px; height:180px; }
 </div>
 <div class="inputArea">
  <label for="gdsSta">상품상태</label>
- <input type="text" id="gdsSta" name="gdsSta" value="${goods.gdsSta}"/>
+	<select id="gdsSta" name="gdsSta" >
+		<option value=1 <c:if test="${goods.gdsSta == 1}">selected</c:if>>1(최하)</option>
+  		<option value=2 <c:if test="${goods.gdsSta == 2}">selected</c:if>>2</option>
+ 	 	<option value=3  <c:if test="${goods.gdsSta == 3}">selected</c:if>>3</option>
+ 	 	<option value=4  <c:if test="${goods.gdsSta == 4}">selected</c:if>>4</option>
+ 	 	<option value=5  <c:if test="${goods.gdsSta == 5}">selected</c:if>>5(최상)</option>
+	</select>
 </div>
 <div class="inputArea">
  <label for="gdsDes">상품소개</label>
@@ -185,14 +201,14 @@ textarea#gdsDes { width:400px; height:180px; }
   <!-- Footer -->
   <footer class="py-5 bg-dark">
     <div class="container">
-      <p class="m-0 text-center text-white">Copyright &copy; Your Website 2020</p>
+      <p class="m-0 text-center text-white">충대 장터</p>
     </div>
     <!-- /.container -->
   </footer>
 
   <!-- Bootstrap core JavaScript -->
-  <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="<c:url value="/resources/vendor/jquery/jquery.min.js" />"></script>
+  <script src="<c:url value="/resources/vendor/bootstrap/js/bootstrap.bundle.min.js" />"></script>
 
 </body>
 

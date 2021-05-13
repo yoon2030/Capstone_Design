@@ -1,8 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page session="false" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE jsp>
+<jsp lang="en">
 
 <head>
 
@@ -11,18 +12,18 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>거래소</title>
+  <title>후기 관리</title>
 
   <!-- Bootstrap core CSS -->
   <link href="${pageContext.request.contextPath}/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
 
   <!-- Custom styles for this template -->
   <link href="${pageContext.request.contextPath}/resources/css/modern-business.css" rel="stylesheet" type="text/css">
+  <style>
+  div#Pro_reg {display: inline;  text-align:right; position: relative; left:1000px;}
 
-<style>
-.card-img-top { width:418px; height:250px; }
-
-</style>
+  
+  </style>
 
 </head>
 
@@ -73,41 +74,54 @@
     </div>
   </nav>
 
+  <!-- Page Content -->
+  <div class="container">
 
+    <!-- Page Heading/Breadcrumbs -->
+    <h1 class="mt-4 mb-3">거래소
+      <small></small>
+    </h1>
 
-  
-
-    <!-- Team Members -->
-    <div id = "title">
-    <h2>충대 장터 거래소</h2> 
-    <div id = "Product_reg">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <a href="index.html">구매</a>
+      </li>
+      <li class="breadcrumb-item active">구매요청리스트</li>
+    </ol>
+    <div id = "Pro_reg">
       <button id = "reg" onclick="location.href='/admin/register'">등록</button>
       </div>
-  </div>
-  
 
-    <div class="row">
-    	<c:forEach items="${list}" var="list">
-    	 <div class="col-lg-4 mb-4">
-        <div class="card h-100 text-center">
-         <img src="${list.gdsImg}" class="card-img-top"/>
-          <div class="card-body">
-         		 <label for="gdsName">상품명</label>
-				<h4 class="card-title">${list.gdsName}</h4>
-          </div>
-          <div class="card-footer">
-          	<span>닉네임:</span>
-            <a href="/admin/trade_view?n=${list.gdsNum}">${list.sellerId}</a>
+    <!-- Blog Post -->
+    <div class="card mb-4">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-lg-6">
+            <h2 class="card-title">구매글 제목</h2>
+            <p class="card-text">작성자</p>
+            <a href="#" class="btn btn-primary">상세내용 보기 &rarr;</a>
           </div>
         </div>
       </div>
-    	
-    	</c:forEach>
+      <div class="card-footer text-muted">
+        Posted on January 1, 2021 by
+        <a href="#"></a>
+      </div>
     </div>
-    <!-- /.row -->
 
 
-  
+
+    <!-- Pagination -->
+    <ul class="pagination justify-content-center mb-4">
+      <li class="page-item">
+        <a class="page-link" href="#">&larr; Older</a>
+      </li>
+      <li class="page-item disabled">
+        <a class="page-link" href="#">Newer &rarr;</a>
+      </li>
+    </ul>
+
+  </div>
   <!-- /.container -->
 
   <!-- Footer -->
@@ -121,7 +135,6 @@
   <!-- Bootstrap core JavaScript -->
   <script src="<c:url value="/resources/vendor/jquery/jquery.min.js" />"></script>
   <script src="<c:url value="/resources/vendor/bootstrap/js/bootstrap.bundle.min.js" />"></script>
-
 </body>
 
-</html>
+</jsp>
