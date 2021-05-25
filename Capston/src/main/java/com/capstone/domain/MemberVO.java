@@ -2,55 +2,59 @@ package com.capstone.domain;
 
 public class MemberVO {
 	
-	private String userId;
-	private String userPw;
-	private String userName;
-	private String userMajor;
-	private String userStuNum;
-	private String userPhon;
-	private String userEmail;
+	private String Id;
+	private String Pw;
+	private String Name;
+	private String Major;
+	private int Student_Num;
+	private String Email;
+	private String Phone_Num;
 	
-	public String getUserId() {
-		return userId;
+	public String getId() {
+		return Id;
 	}
-	public void setUserId(String userId) {
-		this.userId = userId;
+	public void setId(String id) {
+		Id = id;
 	}
-	public String getUserPw() {
-		return userPw;
+	public String getPw() {
+		return Pw;
 	}
-	public void setUserPw(String userPw) {
-		this.userPw = userPw;
+	public void setPw(String pw) {
+		Pw = pw;
 	}
-	public String getUserName() {
-		return userName;
+	public String getName() {
+		return Name;
 	}
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setName(String name) {
+		Name = name;
 	}
-	public String getUserMajor() {
-		return userMajor;
+	public String getMajor() {
+		return Major;
 	}
-	public void setUserMajor(String userMajor) {
-		this.userMajor = userMajor;
+	public void setMajor(String major) {
+		Major = major;
 	}
-	public String getUserStuNum() {
-		return userStuNum;
+	public int getStudent_Num() {
+		return Student_Num;
 	}
-	public void setUserStuNum(String userStuNum) {
-		this.userStuNum = userStuNum;
+	public void setStudent_Num(int student_Num) {
+		Student_Num = student_Num;
 	}
-	public String getUserPhon() {
-		return userPhon;
+	public String getEmail() {
+		return Email;
 	}
-	public void setUserPhon(String userPhon) {
-		this.userPhon = userPhon;
+	public void setEmail(String email) {
+		Email = email;
 	}
-	public String getUserEmail() {
-		return userEmail;
+	public String getPhone_Num() {
+		return Phone_Num;
 	}
-	public void setUserEmail(String userEmail) {
-		this.userEmail = userEmail;
+	public void setPhone_Num(String phone_Num) {
+		Phone_Num = phone_Num;
 	}
+	
+
+	
+	
 	
 }

@@ -6,22 +6,22 @@
 
 <!-- 회원 가입 -->
 <insert id="signup">
- insert into members (userName, userId, userPw, userMajor, userStuNum, userPhon, userEmail)
-  values(#{userName}, #{userId}, #{userPw}, #{userMajor}, #{userStuNum}, #{userPhon}, #{userEmail}) 
+ insert into member (Name, Id, Pw, Major, Student_Num, Email, Phone_Num)
+  values(#{Name}, #{Id}, #{Pw}, #{Major}, #{Student_Num}, #{Email}, #{Phone_Num}) 
 </insert>
 
 <!-- 로그인 -->
 <select id="signin" resultType="com.capstone.domain.MemberVO">
 	select
-	    userName, userId, userPw, userMajor, userStuNum, userPhon, userEmail
+	    Name, Id, Pw, Major, Student_Num, Email, Phone_Num
 	from
-	    members
-	where userId = #{userId} AND userPw = #{userPw}
+	    member
+	where Id = #{Id} AND Pw = #{Pw}
 </select>
 
 <select id="idChk" resultType="com.capstone.domain.MemberVO">
-	select userId from members 
-	where userId = #{userId}
+	select Id from member 
+	where Id = #{Id}
 </select>
 
 </mapper>

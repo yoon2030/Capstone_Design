@@ -41,10 +41,10 @@
                 <!-- ID -->
                 <div>
                     <h3 class="join_title">
-                        <label for="userId">아이디</label>
+                        <label for="Id">아이디</label>
                     </h3>
                     <span class="box int_id">
-                        <input type="text" id="userId" name="userId" required="required" class="int">  
+                        <input type="text" id="Id" name="Id" required="required" class="int">  
                     </span>
                     <span class="error_next_box"></span>
                      <button class="idChk" type="button">아이디 확인</button>
@@ -55,43 +55,43 @@
 
                 <!-- PW1 -->
                 <div>
-                    <h3 class="join_title"><label for="userPw">비밀번호</label></h3>
+                    <h3 class="join_title"><label for="Pw">비밀번호</label></h3>
                     <span class="box int_pass">
-                        <input type="password" id="userPw" name="userPw" required="required" class="int">
+                        <input type="password" id="Pw" name="Pw" required="required" class="int">
                     </span>
                     <span class="error_next_box"></span>
                 </div>
 
                 <!-- NAME -->
                 <div>
-                    <h3 class="join_title"><label for="userName">이름</label></h3>
+                    <h3 class="join_title"><label for="Name">이름</label></h3>
                     <span class="box int_name">
-                        <input type="text" id="userName" name="userName" placeholder="이름을 입력해주세요" class="int" required="required">
+                        <input type="text" id="Name" name="Name" placeholder="이름을 입력해주세요" class="int" required="required">
                     </span>
                     <span class="error_next_box"></span>
                 </div>
                 <!-- 전공 -->
                  <div>
-                    <h3 class="join_title"><label for="userMajor">전공</label></h3>
+                    <h3 class="join_title"><label for="Major">전공</label></h3>
                     <span class="box int_name">
-                        <input type="text" id="userMajor" name="userMajor" class="int" required="required">
+                        <input type="text" id="Major" name="Major" class="int" required="required">
                     </span>
                     <span class="error_next_box"></span>
                 </div>
                 <!-- 학번 -->
                  <div>
-                    <h3 class="join_title"><label for="userStuNum">학번</label></h3>
+                    <h3 class="join_title"><label for="Stdent_Num">학번</label></h3>
                     <span class="box int_name">
-                        <input type="text" id="userStuNum" name="userStuNum" class="int" required="required">
+                        <input type="text" id="Stdent_Num" name="Stdent_Num" class="int" required="required">
                     </span>
                     <span class="error_next_box"></span>
                 </div>
 
                 <!-- EMAIL -->
                 <div class="int_email_area">
-                    <h3 class="join_title"><label for="userEmail">본인확인 이메일<span class="optional"></span></label></h3>
+                    <h3 class="join_title"><label for="Email">본인확인 이메일<span class="optional"></span></label></h3>
                     <span class="box int_email">
-                        <input type="text" id="userEmail" name="userEmail" class="int" maxlength="100" placeholder="학교이메일을 입력해주세요" required="required">
+                        <input type="text" id="Email" name="Email" class="int" maxlength="100" placeholder="학교이메일을 입력해주세요" required="required">
                         <span class="step_url">@cbnu.ac.kr</span>
                     </span>
                     <a href="#" class="btn_verify btn_primary" id="btnSend" role="button">
@@ -102,9 +102,9 @@
 
                 <!-- MOBILE -->
                 <div>
-                    <h3 class="join_title"><label for="userPhon">휴대전화</label></h3>
+                    <h3 class="join_title"><label for="Phone_Num">휴대전화</label></h3>
                     <span class="box int_mobile">
-                        <input type="text" id="userPhon" name="userPhon" placeholder="연락처를 입력해주세요" required="required" class="int">
+                        <input type="text" id="Phone_Num" name="Phone_Num" placeholder="연락처를 입력해주세요" required="required" class="int">
                     </span>
                     <span class="error_next_box"></span>    
                 </div>
@@ -131,7 +131,7 @@
 		});
       $(".idChk").click(function(){   	  
     	  
-    	  var query = {userId : $("#userId").val()};
+    	  var query = {Id : $("#Id").val()};
     	  $.ajax({
     	   url : "/member/idChk",
     	   type : "post",
@@ -147,11 +147,10 @@
     	     $(".result .msg").attr("style", "color:#00f");
     	     $("#btnJoin").removeAttr("disabled");
     	    }
-    	    console.log("ddd");
     	   }
     	  });  // ajax 끝
     	 });
-      $("#userId").keyup(function(){
+      $("#Id").keyup(function(){
     	  $(".result .msg").text("아이디를 확인해주십시오.");
     	  $(".result .msg").attr("style", "color:#000");
     	  

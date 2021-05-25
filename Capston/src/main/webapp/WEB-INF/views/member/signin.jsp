@@ -26,12 +26,12 @@
         </h1>
         <h1>Login</h1>
         <div class="idForm">
-         <label for="userId">아이디</label><br>
-  		 <input type="text" id="userId" name="userId" required="required" />            
+         <label for="Id">아이디</label><br>
+  		 <input type="text" id="Id" name="Id" required="required" />            
         </div>
         <div class="pwdForm">
-           <label for="userPw">패스워드</label>
-  		 <input type="password" id="userPw" name="userPw" required="required" />   
+           <label for="Pw">패스워드</label>
+  		 <input type="password" id="Pw" name="Pw" required="required" />   
         </div> 
         <button type="submit" class="btn" name="btn btn-primary">Log In</button>
 		<p style="color:#f00;">${msg}</p>

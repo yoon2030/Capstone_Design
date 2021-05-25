@@ -10,5 +10,5 @@ public interface MemberDAO {
 		public MemberVO signin(MemberVO vo) throws Exception;
 		
 		//아이디 중복체크
-		public MemberVO idChk(String userId) throws Exception;
+		public MemberVO idChk(String Id) throws Exception;
 }

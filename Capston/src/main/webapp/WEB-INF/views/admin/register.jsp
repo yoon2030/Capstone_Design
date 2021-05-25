@@ -127,12 +127,12 @@ textarea#gdsDes { width:400px; height:180px; }
 
 
 <div class="inputArea">
-	<label for="gdsName">상품명</label>
-	<input type="text" id="gdsName" name="gdsName"/>
+	<label for="goods_Name">상품명</label>
+	<input type="text" id="goods_Name" name="goods_Name"/>
 </div>
 <div class="inputArea">
-	<label for="gdsCategory">상품분류</label>
-	<select id="gdsCategory" name="gdsCategory" >
+	<label for="goods_Cate">상품분류</label>
+	<select id="goods_Cate" name="goods_Cate" >
 		<option value="서적" selected="selected">서적</option>
   		<option value="기계">기계</option>
  	 	<option value="옷" >옷</option>
@@ -140,12 +140,12 @@ textarea#gdsDes { width:400px; height:180px; }
 </div>
 
 <div class="inputArea">
-	<label for="gdsPrice">상품가격</label>
-	<input type="text" id="gdsPrice" name="gdsPrice" />
+	<label for="goods_Price">상품가격</label>
+	<input type="text" id="goods_Price" name="goods_Price" />
 </div>
 <div class="inputArea">
-	<label for="gdsSta">상품상태</label>
-	<select id="gdsSta" name="gdsSta" >
+	<label for="goods_Sta">상품상태</label>
+	<select id="goods_Sta" name="goods_Sta" >
 		<option value=1 selected="selected">1(최하)</option>
   		<option value=2>2</option>
  	 	<option value=3>3</option>
@@ -155,16 +155,16 @@ textarea#gdsDes { width:400px; height:180px; }
 </div>
 
 <div class="inputArea">
-	<label for="gdsDes">상품소개</label>
-	<textarea rows="5" cols="50" id="gdsDes" name="gdsDes"></textarea>
+	<label for="goods_Des">상품소개</label>
+	<textarea rows="5" cols="50" id="goods_Des" name="goods_Des"></textarea>
 </div>
 <div class="inputArea">
- <label for="gdsImg">이미지</label>
- <input type="file" id="gdsImg" name="file" />
+ <label for="goods_Pic">이미지</label>
+ <input type="file" id="goods_Pic" name="file" />
  <div class="select_img"><img src="" /></div>
  
  <script>
-  $("#gdsImg").change(function(){
+  $("#goods_Pic").change(function(){
    if(this.files && this.files[0]) {
     var reader = new FileReader;
     reader.onload = function(data) {

@@ -30,8 +30,8 @@ public class MemberDAOImpl implements MemberDAO {
 	
 	//아이디 중복 체크
 	@Override
-	public MemberVO idChk(String userId) throws Exception{
-		return sql.selectOne(namespace + ".idChk",userId);
+	public MemberVO idChk(String Id) throws Exception{
+		return sql.selectOne(namespace + ".idChk",Id);
 	}
 
 }

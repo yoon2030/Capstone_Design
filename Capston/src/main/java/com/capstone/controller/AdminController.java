@@ -8,6 +8,7 @@ import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -19,6 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.capstone.domain.GoodsVO;
 import com.capstone.domain.MemberVO;
+import com.capstone.domain.TradeVO;
 import com.capstone.service.AdminService;
 import com.capstone.utils.UploadFileUtils;
 
@@ -42,36 +44,36 @@ public class AdminController {
 	
 	// 상품 등록
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
-	public String postGoodsRegister(GoodsVO vo, MultipartFile file, HttpServletRequest req) throws Exception {
+	public String postGoodsRegister(GoodsVO vo, TradeVO tv, MultipartFile file, HttpServletRequest req) throws Exception {
 			
 		String imgUploadPath = uploadPath + File.separator + "imgUpload";  // 이미지를 업로드할 폴더를 설정 = /uploadPath/imgUpload 
 		String ymdPath = UploadFileUtils.calcPath(imgUploadPath);  // 위의 폴더를 기준으로 연월일 폴더를 생성
 		String fileName = null;  // 기본 경로와 별개로 작성되는 경로 + 파일이름
 		HttpSession session = req.getSession();
 		MemberVO seller = (MemberVO) session.getAttribute("member");
-		vo.setSellerId(seller.getUserId());			
+		vo.setSeller_Id(seller.getId());			
 		if(file.getOriginalFilename() != null && file.getOriginalFilename() != "") {
 				// 파일 인풋박스에 첨부된 파일이 없다면(=첨부된 파일이 이름이 없다면)
 				
 			fileName =  UploadFileUtils.fileUpload(imgUploadPath, file.getOriginalFilename(), file.getBytes(), ymdPath);
 		
 			// gdsImg에 원본 파일 경로 + 파일명 저장
-			vo.setGdsImg(File.separator + "imgUpload" + ymdPath + File.separator + fileName);
+			vo.setGoods_Pic(File.separator + "imgUpload" + ymdPath + File.separator + fileName);
 				
 		} else {  // 첨부된 파일이 없으면
 			fileName = File.separator + "images" + File.separator + "none.png";
 			// 미리 준비된 none.png파일을 대신 출력함
 				
-			vo.setGdsImg(fileName);
+			vo.setGoods_Pic(fileName);
 		}
 			
 			
 			System.out.println("=================");
 			
-			System.out.println("1 = " + vo.getGdsName());
-			System.out.println("1 = " + vo.getGdsPrice());
-			System.out.println("1 = " + vo.getGdsDes());
-			System.out.println("1 = " + vo.getGdsImg());
+			System.out.println("1 = " + vo.getGoods_Name());
+			System.out.println("1 = " + vo.getGoods_Price());
+			System.out.println("1 = " + vo.getGoods_Des());
+			System.out.println("1 = " + vo.getGoods_Pic());
 			System.out.println("=================");
 								
 			adminService.register(vo);
@@ -92,23 +94,31 @@ public class AdminController {
 		
 	// 상품 조회
 	@RequestMapping(value = "/trade_view", method = RequestMethod.GET)
-	public void getGoodsview(@RequestParam("n") int gdsNum, Model model, HttpServletRequest req) throws Exception {
+	public void getGoodsview(@RequestParam("n") int goods_Code, Model model, HttpServletRequest req) throws Exception {
 		logger.info("get goods view");
 		HttpSession session = req.getSession();
 		MemberVO member = (MemberVO) session.getAttribute("member"); 	
-		GoodsVO goods = adminService.goodsView(gdsNum);
+		GoodsVO goods = adminService.goodsView(goods_Code);
+		TradeVO trade = adminService.trade_view(goods_Code);
+		if(trade==null) {
+		adminService.trade_register(goods);//거래 테이블 값 넣기 시작
 		model.addAttribute("goods", goods);
 		model.addAttribute("member", member);
+		}
+		else {
+		model.addAttribute("goods", goods);
+		model.addAttribute("member", member);
+		}
 	}
 		
 	// 상품 수정 
 	@RequestMapping(value = "/modify", method = RequestMethod.GET)
-	public void getGoodsModify(@RequestParam("n") int gdsNum, Model model) throws Exception {
+	public void getGoodsModify(@RequestParam("n") int goods_Code, Model model) throws Exception {
 	// @RequestParam("n")으로 인해, URL주소에 있는 n의 값을 가져와 gdsNum에 저장
 			
 		logger.info("get goods modify");
 			
-		GoodsVO goods = adminService.goodsView(gdsNum);  // GoodsVO형태 변수 goods에 상품 정보 저장
+		GoodsVO goods = adminService.goodsView(goods_Code);  // GoodsVO형태 변수 goods에 상품 정보 저장
 		model.addAttribute("goods", goods);
 	}
 		
@@ -127,11 +137,11 @@ public class AdminController {
 			String ymdPath = UploadFileUtils.calcPath(imgUploadPath);
 			String fileName = UploadFileUtils.fileUpload(imgUploadPath, file.getOriginalFilename(), file.getBytes(), ymdPath);
 			
-			vo.setGdsImg(File.separator + "imgUpload" + ymdPath + File.separator + fileName);
+			vo.setGoods_Pic(File.separator + "imgUpload" + ymdPath + File.separator + fileName);
 				
 		} else {  // 새로운 파일이 등록되지 않았다면
 			// 기존 이미지를 그대로 사용
-			vo.setGdsImg(req.getParameter("gdsImg"));
+			vo.setGoods_Pic(req.getParameter("gdsImg"));
 				
 		}
 		
@@ -139,18 +149,77 @@ public class AdminController {
 			
 		return "redirect:/admin/trade_list";
 	}
+	
+	//거래 요청
+	@RequestMapping(value = "/req", method = RequestMethod.POST)
+	public String postTradeReq(@RequestParam("n") int goods_Code, Model model, HttpServletRequest req) throws Exception {
+		logger.info("post trade request");
+		HttpSession session = req.getSession();
+		MemberVO member = (MemberVO) session.getAttribute("member"); 
+		TradeVO trade = adminService.trade_view(goods_Code);
+		if(trade.getTrade_State()==1) {
+		trade.setBuyer_Id(member.getId());
+		trade.setTrade_State(2);
+		adminService.trade_req(trade);
+		}
+		else {
+			
+		}
 		
+		return "redirect:/admin/trade_list";
+		
+	}
+	//거래 요청 취소
+	@RequestMapping(value = "/cancel", method = RequestMethod.POST)
+	public String postTradeCancel(@RequestParam("n") int goods_Code, Model model, HttpServletRequest req) throws Exception {
+		logger.info("post trade cancel");
+		HttpSession session = req.getSession();
+		MemberVO member = (MemberVO) session.getAttribute("member"); 
+		TradeVO trade = adminService.trade_view(goods_Code);
+		if(member.getId().equals(trade.getBuyer_Id()) && trade.getTrade_State()==2) {
+			trade.setTrade_State(1);
+			adminService.trade_cancel(trade);
+		}	
+		return "redirect:/admin/trade_list";
+		
+	}
+	//거래 완료
+	@RequestMapping(value = "/complete", method = RequestMethod.POST)
+	public String postTradeComplete(@RequestParam("n") int goods_Code, Model model, HttpServletRequest req) throws Exception {
+		logger.info("post trade complete");
+		TradeVO trade = adminService.trade_view(goods_Code);
+		if(trade.getTrade_State()==2) {
+			trade.setTrade_State(3);
+			adminService.trade_complete(trade);
+		}	
+		return "redirect:/admin/trade_list";//후기작성으로 넘어가게 하면 됨.
+		
+	}
+	//거래 거부
+	@RequestMapping(value = "/reject", method = RequestMethod.POST)
+	public String postTradeReject(@RequestParam("n") int goods_Code, Model model) throws Exception {
+		logger.info("post trade reject");
+		TradeVO trade = adminService.trade_view(goods_Code);
+		if(trade.getTrade_State()==2) {
+			trade.setTrade_State(1);
+			adminService.trade_cancel(trade);
+		}	
+		return "redirect:/admin/trade_list";
+		
+	}
 	// 상품 삭제
 	@RequestMapping(value = "/delete", method = RequestMethod.POST)
-	public String postGoodsDelete(@RequestParam("n") int gdsNum) throws Exception {
+	public String postGoodsDelete(@RequestParam("n") int goods_Code) throws Exception {
 	// @RequestParam("n")으로 인해, URL주소에 있는 n의 값을 가져와 gdsNum에 저장
 		
 		logger.info("post goods delete");
-		
-		adminService.goodsDelete(gdsNum);
+		adminService.tradeDelete(goods_Code);
+		adminService.goodsDelete(goods_Code);
 			
 		return "redirect:/admin/trade_list";
 	}
+	
+	
 	
 	//후기관리 get
 	@RequestMapping(value = "/review", method = RequestMethod.GET)

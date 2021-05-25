@@ -70,7 +70,7 @@ private static final Logger logger = LoggerFactory.getLogger(MemberController.cl
 	@ResponseBody
 	@RequestMapping(value="/idChk", method = RequestMethod.POST)
 	public int postIdChk(HttpServletRequest req, MemberVO vo) throws Exception{
-		String user = req.getParameter("userId");
+		String user = req.getParameter("Id");
 		MemberVO result = service.idChk(user);
 		if(result ==null) {
 			return 2;

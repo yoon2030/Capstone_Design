@@ -90,41 +90,41 @@ input { width:150px; }
 
 	<form role="form" method="post" autocomplete="off">
 			
-	<input type="hidden" name="n" value="${goods.gdsNum}"/>
+	<input type="hidden" name="n" value="${goods.goods_Code}"/>
 
     <!-- Intro Content -->
     <div class="row">
       <div class="col-lg-6">
-        <img class="card-img-top" src="${goods.gdsImg}">
+        <img class="card-img-top" src="${goods.goods_Pic}">
       </div>
       <div class="col-lg-6">
         <div class="inputArea">
 				<label for="gdsName">상품명</label>
-				<span>${goods.gdsName}</span>
+				<span>${goods.goods_Name}</span>
 		</div>
 		<div class="inputArea">
 				<label for="gdsCategory">상품분류</label>
-				<span>${goods.gdsCategory}</span>
+				<span>${goods.goods_Cate}</span>
 		</div>
 		<div class="inputArea">
 				<label for="gdsPrice">상품가격</label>
-				<span><fmt:formatNumber value="${goods.gdsPrice}" pattern="###,###,###"/></span>
+				<span><fmt:formatNumber value="${goods.goods_Price}" pattern="###,###,###"/></span>
 			</div>
 		<div class="inputArea">
 				<label for="gdsSta">상품상태</label>
-				<span>${goods.gdsSta}</span>
+				<span>${goods.goods_Sta}</span>
 			</div>	
         <div class="inputArea">
 				<label for="gdsDes">상품소개</label>	
-				<div class="gdsDes">${goods.gdsDes}</div>
+				<div class="gdsDes">${goods.goods_Des}</div>
 			</div>
       </div>
     </div>
 
     <!-- /.row -->
-
-
   </div>
+  <c:choose>
+  <c:when test = "${member.id eq goods.seller_Id}">
   <div id = "tradebtn">
     <button type="button" id="modify_Btn" class="btn btn-warning">수정</button>
 	<button type="button" id="delete_Btn" class="btn btn-danger">삭제</button>
@@ -149,9 +149,44 @@ input { width:150px; }
 				</script>	
   </div>
   <div id = "tradebtn">
-  <button type="button" id="modify_Btn" class="btn btn-warning">거래완료</button>
-	<button type="button" id="delete_Btn" class="btn btn-danger">거래거부</button>
-	</div>
+  <button type="button" id="com_Btn" class="btn btn-warning">거래완료</button>
+  <button type="button" id="rej_Btn" class="btn btn-danger">거래거부</button>
+  	<script>
+					var formObj = $("form[role='form']");
+					
+					$("#com_Btn").click(function(){
+							formObj.attr("action", "/admin/complete");
+							formObj.submit();
+					});
+					
+					$("#rej_Btn").click(function(){	
+							formObj.attr("action", "/admin/reject");
+							formObj.submit();
+					});
+			</script>	
+</div>
+</c:when>
+<c:otherwise>
+  <div id = "tradebtn">
+    <button type="button" id="req_Btn" class="btn btn-warning">거래요청</button>
+	<button type="button" id="cancel_Btn" class="btn btn-danger">거래취소</button>
+			<script>
+					var formObj = $("form[role='form']");
+					
+					$("#req_Btn").click(function(){
+							formObj.attr("action", "/admin/req");
+							formObj.submit();
+					});
+					
+					$("#cancel_Btn").click(function(){	
+							formObj.attr("action", "/admin/cancel");
+							formObj.submit();
+					});
+			</script>	
+  </div>
+</c:otherwise>
+
+</c:choose>
   <div id = "after">
     <h4>최근 거래 후기</h2>
     <ul>

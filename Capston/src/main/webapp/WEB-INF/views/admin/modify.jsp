@@ -123,49 +123,49 @@ textarea#gdsDes { width:400px; height:180px; }
 			
 <form role="form" method="post" autocomplete="off" enctype="multipart/form-data">
 
-<input type="hidden" name="gdsNum" value="${goods.gdsNum}" />
+<input type="hidden" name="goods_Code" value="${goods.goods_Code}" />
 
 
 <div class="inputArea">
- <label for="gdsName">상품명</label>
- <input type="text" id="gdsName" name="gdsName" value="${goods.gdsName}"/>
+ <label for="goods_Name">상품명</label>
+ <input type="text" id="goods_Name" name="goods_Name" value="${goods.goods_Name}"/>
 </div>
 <div class="inputArea">
-	<label for="gdsCategory">상품분류</label>
-	<select id="gdsCategory" name="gdsCategory" >
-		<option value="서적" <c:if test="${goods.gdsCategory == '서적'}">selected</c:if>>서적</option>
-  		<option value="기계" <c:if test="${goods.gdsCategory == '기계'}">selected</c:if>>기계</option>
- 	 	<option value="옷"  <c:if test="${goods.gdsCategory == '옷'}">selected</c:if>>옷</option>
+	<label for="goods_Cate">상품분류</label>
+	<select id="goods_Cate" name="goods_Cate" >
+		<option value="서적" <c:if test="${goods_Cate == '서적'}">selected</c:if>>서적</option>
+  		<option value="기계" <c:if test="${goods_Cate == '기계'}">selected</c:if>>기계</option>
+ 	 	<option value="옷"  <c:if test="${goods_Cate == '옷'}">selected</c:if>>옷</option>
 	</select>
 </div>
 <div class="inputArea">
- <label for="gdsPrice">상품가격</label>
- <input type="text" id="gdsPrice" name="gdsPrice" value="${goods.gdsPrice}"/>
+ <label for="goods_Price">상품가격</label>
+ <input type="text" id="goods_Price" name="goods_Price" value="${goods.goods_Price}"/>
 </div>
 <div class="inputArea">
- <label for="gdsSta">상품상태</label>
-	<select id="gdsSta" name="gdsSta" >
-		<option value=1 <c:if test="${goods.gdsSta == 1}">selected</c:if>>1(최하)</option>
-  		<option value=2 <c:if test="${goods.gdsSta == 2}">selected</c:if>>2</option>
- 	 	<option value=3  <c:if test="${goods.gdsSta == 3}">selected</c:if>>3</option>
- 	 	<option value=4  <c:if test="${goods.gdsSta == 4}">selected</c:if>>4</option>
- 	 	<option value=5  <c:if test="${goods.gdsSta == 5}">selected</c:if>>5(최상)</option>
+ <label for="goods_Sta">상품상태</label>
+	<select id="goods_Sta" name="goods_Sta" >
+		<option value=1 <c:if test="${goods.goods_Sta == 1}">selected</c:if>>1(최하)</option>
+  		<option value=2 <c:if test="${goods.goods_Sta == 2}">selected</c:if>>2</option>
+ 	 	<option value=3  <c:if test="${goods.goods_Sta == 3}">selected</c:if>>3</option>
+ 	 	<option value=4  <c:if test="${goods.goods_Sta == 4}">selected</c:if>>4</option>
+ 	 	<option value=5  <c:if test="${goods.goods_Sta == 5}">selected</c:if>>5(최상)</option>
 	</select>
 </div>
 <div class="inputArea">
- <label for="gdsDes">상품소개</label>
- <textarea rows="5" cols="50" id="gdsDes" name="gdsDes">${goods.gdsDes}</textarea>
+ <label for="goods_Des">상품소개</label>
+ <textarea rows="5" cols="50" id="goods_Des" name="goods_Des">${goods.goods_Des}</textarea>
 </div>
 <div class="inputArea">
-				<label for="gdsImg">이미지</label>
-				<input type="file" id="gdsImg" name="file" />
+				<label for="goods_Pic">이미지</label>
+				<input type="file" id="goods_Pic" name="file" />
 				<div class="select_img">
-					<img src="${goods.gdsImg}" />
-					<input type="hidden" name="gdsImg" value="${goods.gdsImg}" />
+					<img src="${goods.goods_Pic}" />
+					<input type="hidden" name="goods_Pic" value="${goods.goods_Pic}" />
 				</div>
 				
 				<script>
-					$("#gdsImg").change(function(){
+					$("#goods_Pic").change(function(){
 						if(this.files && this.files[0]) {
 							var reader = new FileReader;
 							reader.onload = function(data) {
@@ -182,7 +182,7 @@ textarea#gdsDes { width:400px; height:180px; }
   <script>
  $("#back_Btn").click(function(){
   //history.back();
-  location.href = "/admin/trade_view?n=" + ${goods.gdsNum};
+  location.href = "/admin/trade_view?n=" + ${goods.goods_Code};
  });   
 </script>
 </div>   

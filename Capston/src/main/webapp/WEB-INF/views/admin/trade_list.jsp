@@ -90,14 +90,14 @@
     	<c:forEach items="${list}" var="list">
     	 <div class="col-lg-4 mb-4">
         <div class="card h-100 text-center">
-         <img src="${list.gdsImg}" class="card-img-top"/>
+         <img src="${list.goods_Pic}" class="card-img-top"/>
           <div class="card-body">
          		 <label for="gdsName">상품명</label>
-				<h4 class="card-title">${list.gdsName}</h4>
+				<h4 class="card-title">${list.goods_Name}</h4>
           </div>
           <div class="card-footer">
           	<span>닉네임:</span>
-            <a href="/admin/trade_view?n=${list.gdsNum}">${list.sellerId}</a>
+            <a href="/admin/trade_view?n=${list.goods_Code}">${list.seller_Id}</a>
           </div>
         </div>
       </div>

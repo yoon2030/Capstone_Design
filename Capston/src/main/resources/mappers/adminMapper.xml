@@ -6,43 +6,86 @@
 
 <!-- 상품 등록 -->
 	<insert id="register">
-		insert into goods (gdsNum, sellerId, gdsName, gdsCategory, gdsPrice,gdsSta, gdsDes, 
-								gdsImg)
-	   		values (goods_seq.nextval, #{sellerId},#{gdsName}, #{gdsCategory}, #{gdsPrice}, #{gdsSta} ,#{gdsDes},
-	   		 		#{gdsImg})
+		insert into goods (goods_Code, seller_Id, goods_Name, goods_Cate, goods_Price,goods_Sta, goods_Des, 
+								goods_Pic)
+	   		values (goods_seq.nextval, #{seller_Id},#{goods_Name}, #{goods_Cate}, #{goods_Price}, #{goods_Sta} ,#{goods_Des},
+	   		 		#{goods_Pic})  	
 	</insert>
+	
+<!-- 거래 등록 -->
+	<insert id="trade_register">
+		insert into trade (trade_Code, goods_Code, seller_Id, trade_State)
+		values (tbl_goods_seq.nextval, #{goods_Code}, #{seller_Id}, 1)
+	</insert>
+<!-- 거래 조회 -->
+	<select id="trade_view" resultType="com.capstone.domain.TradeVO">
+		select
+			trade_Code, goods_Code, seller_Id, buyer_Id, trade_State
+			from trade
+				where goods_Code = #{goods_Code}
+	</select>
+<!-- 거래 요청 -->
+	<update id="trade_req">
+		update trade
+			set
+				buyer_Id = #{buyer_Id},
+				trade_State = #{trade_State}
+			where goods_Code = #{goods_Code}
+	</update>
+	
+<!-- 거래 요청 취소 및 거부 -->
+	<update id="trade_cancel">
+		update trade
+			set
+				trade_State = #{trade_State}
+			where trade_Code = #{trade_Code}
+	</update>
+	
+<!-- 거래 완료 -->
+	<update id="trade_complete">
+		update trade
+			set
+				trade_State = #{trade_State}
+			where trade_Code = #{trade_Code}
+	</update>
 <!-- 상품 목록 -->	
 	<select id="goodslist" resultType="com.capstone.domain.GoodsVO">
 		select
-			gdsNum, sellerId, gdsName, gdsCategory, gdsSta,gdsPrice, gdsDes, gdsImg, gdsDate
+			goods_Code, seller_Id, goods_Name, goods_Cate, goods_Sta,goods_Price, goods_Des, goods_Pic, goods_Date
 	    from goods
-	        order by gdsNum desc
+	        order by goods_Code desc
 	</select>
 <!-- 상품 조회 -->
 	<select id="goodsView" resultType="com.capstone.domain.GoodsVO">
-		select gdsNum, sellerId, gdsName, gdsCategory, gdsSta, gdsPrice, gdsDes, gdsImg, gdsDate
+		select goods_Code, seller_Id, goods_Name, goods_Cate, goods_Sta, goods_Price, goods_Des, goods_Pic, goods_Date
     		from goods
-        		where gdsNum = #{gdsNum}
+        		where goods_Code = #{goods_Code}
 	</select>
 <!-- 상품 수정 -->
 	<update id="goodsModify">
 		update goods
 		    set
-		        gdsName = #{gdsName},
-		        gdsCategory = #{gdsCategory},
-		        gdsPrice = #{gdsPrice}, 
-		        gdsSta = #{gdsSta},
-		        gdsDes = #{gdsDes},
-		        gdsImg = #{gdsImg}
+		        goods_Name = #{goods_Name},
+		        goods_Cate = #{goods_Cate},
+		        goods_Price = #{goods_Price}, 
+		        goods_Sta = #{goods_Sta},
+		        goods_Des = #{goods_Des},
+		        goods_Pic = #{goods_Pic}
 		        
-		    where gdsNum = ${gdsNum}
+		    where goods_Code = ${goods_Code}
 	</update>
 	
 	<!-- 상품 삭제 -->
 	<delete id="goodsDelete">
 		delete
 	   		goods
-		where gdsNum = #{gdsNum}
+		where goods_Code = #{goods_Code}
+	</delete>
+	<!-- 거래 삭제 -->
+	<delete id="tradeDelete">
+		delete 
+			trade
+		where goods_Code = #{goods_Code}
 	</delete>
 	
 </mapper>

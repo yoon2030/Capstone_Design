@@ -15,5 +15,5 @@ public interface MemberService {
 	public void signout(HttpSession session) throws Exception;
 	
 	//아디디 중복체크
-	public MemberVO idChk(String userId) throws Exception;
+	public MemberVO idChk(String Id) throws Exception;
 }

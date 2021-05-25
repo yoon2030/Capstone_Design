@@ -4,68 +4,69 @@ import java.util.Date;
 
 public class GoodsVO {
 
-	private int gdsNum;
-	private String sellerId;
-	private String gdsName;
-	private String gdsCategory;
-	private int gdsPrice;
-	private int gdsSta;
-	private String gdsDes;
-	private String gdsImg;
-	private Date gdsDate;
-	public int getGdsNum() {
-		return gdsNum;
+	private int goods_Code;
+	private String seller_Id;
+	private String goods_Name;
+	private String goods_Cate;
+	private int goods_Price;
+	private int goods_Sta;
+	private String goods_Des;
+	private String goods_Pic;
+	private Date goods_Date;
+	public int getGoods_Code() {
+		return goods_Code;
 	}
-	public void setGdsNum(int gdsNum) {
-		this.gdsNum = gdsNum;
+	public void setGoods_Code(int goods_Code) {
+		this.goods_Code = goods_Code;
 	}
-	public String getSellerId() {
-		return sellerId;
+	public String getSeller_Id() {
+		return seller_Id;
 	}
-	public void setSellerId(String sellerId) {
-		this.sellerId = sellerId;
+	public void setSeller_Id(String seller_Id) {
+		this.seller_Id = seller_Id;
 	}
-	public String getGdsName() {
-		return gdsName;
+	public String getGoods_Name() {
+		return goods_Name;
 	}
-	public void setGdsName(String gdsName) {
-		this.gdsName = gdsName;
+	public void setGoods_Name(String goods_Name) {
+		this.goods_Name = goods_Name;
 	}
-	public String getGdsCategory() {
-		return gdsCategory;
+	public String getGoods_Cate() {
+		return goods_Cate;
 	}
-	public void setGdsCategory(String gdsCategory) {
-		this.gdsCategory = gdsCategory;
+	public void setGoods_Cate(String goods_Cate) {
+		this.goods_Cate = goods_Cate;
 	}
-	public int getGdsPrice() {
-		return gdsPrice;
+	public int getGoods_Price() {
+		return goods_Price;
 	}
-	public void setGdsPrice(int gdsPrice) {
-		this.gdsPrice = gdsPrice;
+	public void setGoods_Price(int goods_Price) {
+		this.goods_Price = goods_Price;
 	}
-	public int getGdsSta() {
-		return gdsSta;
+	public int getGoods_Sta() {
+		return goods_Sta;
 	}
-	public void setGdsSta(int gdsSta) {
-		this.gdsSta = gdsSta;
+	public void setGoods_Sta(int goods_Sta) {
+		this.goods_Sta = goods_Sta;
 	}
-	public String getGdsDes() {
-		return gdsDes;
+	public String getGoods_Des() {
+		return goods_Des;
 	}
-	public void setGdsDes(String gdsDes) {
-		this.gdsDes = gdsDes;
+	public void setGoods_Des(String goods_Des) {
+		this.goods_Des = goods_Des;
 	}
-	public String getGdsImg() {
-		return gdsImg;
+	public String getGoods_Pic() {
+		return goods_Pic;
 	}
-	public void setGdsImg(String gdsImg) {
-		this.gdsImg = gdsImg;
+	public void setGoods_Pic(String goods_Pic) {
+		this.goods_Pic = goods_Pic;
 	}
-	public Date getGdsDate() {
-		return gdsDate;
+	public Date getGoods_Date() {
+		return goods_Date;
 	}
-	public void setGdsDate(Date gdsDate) {
-		this.gdsDate = gdsDate;
+	public void setGoods_Date(Date goods_Date) {
+		this.goods_Date = goods_Date;
 	}
+	
 	
 }
