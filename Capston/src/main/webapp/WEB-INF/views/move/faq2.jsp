@@ -86,7 +86,7 @@ textarea#faqDes { width:600px; height:300px; }
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPortfolio">
               <a class="dropdown-item" href="/admin/trade_list">판매</a>
-              <a class="dropdown-item" href="/admin/wantbuy2">구매</a>
+              <a class="dropdown-item" href="/admin/goodsb_list">구매</a>
             </div>
           </li>
           <li class="nav-item dropdown">
@@ -136,8 +136,8 @@ textarea#faqDes { width:600px; height:300px; }
 
 
 <div class="inputArea">
-	<label for="faqCategory">상품분류</label>
-	<select id="faqCategory" name="faqCategory" >
+	<label for="faq_Kinds">상품분류</label>
+	<select id="faq_Kinds" name="faq_Kinds">
 		<option value="구매" selected="selected">구매</option>
   		<option value="판매">판매</option>
  	 	<option value="기타" >기타</option>
@@ -146,15 +146,15 @@ textarea#faqDes { width:600px; height:300px; }
 
 
 <div class="inputArea">
-	<label for="faqtitle">글제목</label>
-	<input type="text" id="faqtitle" name="faqtitle" />
+	<label for="faq_Title">글제목</label>
+	<input type="text" id="faq_Title" name="faq_Title" />
 </div>
 
 <div class="inputArea">
-	<label id = "faqDes" for="faqDes">
+	<label id = "faq_Content" for="faq_Content">
 	문의내용
 	</label>
-	<textarea rows="5" cols="100" id="faqDes" name="faqDes"></textarea>
+	<textarea rows="5" cols="100" id="faq_Content" name="faq_Content"></textarea>
 </div>
 <br></br><br></br>
 <div class="inputArea">

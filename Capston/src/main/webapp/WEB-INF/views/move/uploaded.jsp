@@ -42,7 +42,7 @@
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPortfolio">
               <a class="dropdown-item" href="/admin/trade_list">판매</a>
-              <a class="dropdown-item" href="/admin/wantbuy2">구매</a>
+              <a class="dropdown-item" href="/admin/goodsb_list">구매</a>
             </div>
           </li>
           <li class="nav-item dropdown">
@@ -85,83 +85,30 @@
       </li>
       <li class="breadcrumb-item active">내가 등록한 물건</li>
     </ol>
-
-    <!-- Blog Post -->
+	<c:forEach items="${list}" var="list">
     <div class="card mb-4">
       <div class="card-body">
         <div class="row">
           <div class="col-lg-6">
-            <a href="#">
-              <img class="img-fluid rounded" src="http://placehold.it/750x450" alt="">
+            <a href="/admin/goodsb_view?n=${list.goods_Code}">
+              <img src="${list.goods_Pic}" class="card-img-top"/>
             </a>
           </div>
           <div class="col-lg-6">
-            <h2 class="card-title">물건이름</h2>
-            <p class="card-text">내용</p>
-            <a href="#" class="btn btn-primary">상세한 정보 확인하기 &rarr;</a>
+            <h2 class="card-title">${list.goods_Name}</h2>
+            <p class="card-text">${list.goods_Des}</p>
+            <a href="/admin/trade_view?n=${list.goods_Code}" class="btn btn-primary">상세한 정보 확인하기 &rarr;</a>
           </div>
         </div>
       </div>
       <div class="card-footer text-muted">
-        Posted on January 1, 2021 by
+       <p> ${list.goods_Date}</p>
         <a href="#"></a>
       </div>
     </div>
-
-    <!-- Blog Post -->
-    <div class="card mb-4">
-      <div class="card-body">
-        <div class="row">
-          <div class="col-lg-6">
-            <a href="#">
-              <img class="img-fluid rounded" src="http://placehold.it/750x450" alt="">
-            </a>
-          </div>
-          <div class="col-lg-6">
-            <h2 class="card-title">물건이름</h2>
-            <p class="card-text">내용</p>
-            <a href="#" class="btn btn-primary">상세한 정보 확인하기 &rarr;</a>
-          </div>
-        </div>
-      </div>
-      <div class="card-footer text-muted">
-        Posted on January 1, 2021 by
-        <a href="#"></a>
-      </div>
-    </div>
-
-    <!-- Blog Post -->
-    <div class="card mb-4">
-      <div class="card-body">
-        <div class="row">
-          <div class="col-lg-6">
-            <a href="#">
-              <img class="img-fluid rounded" src="http://placehold.it/750x450" alt="">
-            </a>
-          </div>
-          <div class="col-lg-6">
-            <h2 class="card-title">물건이름</h2>
-            <p class="card-text">내용</p>
-            <a href="#" class="btn btn-primary">상세한 정보 확인하기 &rarr;</a>
-          </div>
-        </div>
-      </div>
-      <div class="card-footer text-muted">
-        Posted on January 1, 2021 by
-        <a href="#"></a>
-      </div>
-    </div>
+	</c:forEach>
 
 
-    <!-- Pagination -->
-    <ul class="pagination justify-content-center mb-4">
-      <li class="page-item">
-        <a class="page-link" href="#">&larr; Older</a>
-      </li>
-      <li class="page-item disabled">
-        <a class="page-link" href="#">Newer &rarr;</a>
-      </li>
-    </ul>
 
   </div>
   <!-- /.container -->
@@ -169,7 +116,7 @@
   <!-- Footer -->
   <footer class="py-5 bg-dark">
     <div class="container">
-      <p class="m-0 text-center text-white">Copyright &copy; Your Website 2020</p>
+      <p class="m-0 text-center text-white">충대장터</p>
     </div>
     <!-- /.container -->
   </footer>

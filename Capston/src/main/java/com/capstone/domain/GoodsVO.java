@@ -13,6 +13,14 @@ public class GoodsVO {
 	private String goods_Des;
 	private String goods_Pic;
 	private Date goods_Date;
+	private String phone_Num;
+	
+	public String getPhone_Num() {
+		return phone_Num;
+	}
+	public void setPhone_Num(String phone_Num) {
+		this.phone_Num = phone_Num;
+	}
 	public int getGoods_Code() {
 		return goods_Code;
 	}

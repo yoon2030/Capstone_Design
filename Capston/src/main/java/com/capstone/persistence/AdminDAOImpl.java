@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.capstone.domain.GoodsVO;
+import com.capstone.domain.Goods_B_VO;
 import com.capstone.domain.MemberVO;
 import com.capstone.domain.TradeVO;
 
@@ -20,12 +21,60 @@ public class AdminDAOImpl implements AdminDAO {
 	private static String namespace = "com.capstone.mappers.adminMapper";
 
 	
-	// 상품등록
+	//판매상품등록
 	@Override
 	public void register(GoodsVO vo) throws Exception {
 		sql.insert(namespace + ".register", vo);
 	}
+	//판매상품목록(화면)출력
+	@Override
+	public List<GoodsVO> goodslist() throws Exception {
+		return sql.selectList(namespace + ".goodslist");
 	
+	}
+	//판매상품상세조회
+	@Override
+	public GoodsVO goodsView(int goods_Code) throws Exception {
+		return sql.selectOne(namespace + ".goodsView", goods_Code);
+	}
+
+	//판매 상품 수정
+	@Override
+	public void goodsModify(GoodsVO vo) throws Exception {
+		sql.update(namespace + ".goodsModify", vo);
+	}
+
+	//판매상품 삭제
+	@Override
+	public void goodsDelete(int goods_Code) throws Exception {
+		sql.delete(namespace + ".goodsDelete", goods_Code);
+	}
+	
+	//구매상품등록
+	@Override
+	public void goods_B_Register(Goods_B_VO vo) throws Exception{
+		sql.insert(namespace + ".goods_B_Register", vo);
+	}
+	//구매상품수정
+	@Override
+	public void goods_B_Modify(Goods_B_VO vo) throws Exception{
+		sql.update(namespace + ".goods_B_Modify", vo);
+	}
+	//구매상품삭제
+	@Override
+	public void goods_B_Delete(int goods_B_Code) throws Exception{
+		sql.delete(namespace + ".goods_B_Delete", goods_B_Code);
+	}
+	//구매상품목록(화면)출력
+	@Override
+	public List<Goods_B_VO> goods_B_list() throws Exception{
+		return sql.selectList(namespace + ".goods_B_list");
+	}
+	//구매상품상세조회
+	@Override
+	public Goods_B_VO goods_B_View(int goods_B_Code) throws Exception{
+		return sql.selectOne(namespace + ".goods_B_View", goods_B_Code);
+	}
 	//거래등록
 	@Override
 	public void trade_register(GoodsVO vo)throws Exception{
@@ -53,30 +102,6 @@ public class AdminDAOImpl implements AdminDAO {
 	@Override
 	public void trade_complete(TradeVO tv)throws Exception{
 		sql.update(namespace + ".trade_complete",tv);
-	}
-	// 상품목록
-	@Override
-	public List<GoodsVO> goodslist() throws Exception {
-		return sql.selectList(namespace + ".goodslist");
-	
-	}
-	
-	// 상품조회
-	@Override
-	public GoodsVO goodsView(int goods_Code) throws Exception {
-		return sql.selectOne(namespace + ".goodsView", goods_Code);
-	}
-
-	// 상품 수정
-	@Override
-	public void goodsModify(GoodsVO vo) throws Exception {
-		sql.update(namespace + ".goodsModify", vo);
-	}
-
-	// 상품 삭제
-	@Override
-	public void goodsDelete(int goods_Code) throws Exception {
-		sql.delete(namespace + ".goodsDelete", goods_Code);
 	}
 	
 	//거래 삭제

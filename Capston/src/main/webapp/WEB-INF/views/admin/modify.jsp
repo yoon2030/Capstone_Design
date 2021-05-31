@@ -76,7 +76,7 @@ textarea#gdsDes { width:400px; height:180px; }
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPortfolio">
               <a class="dropdown-item" href="/admin/trade_list">판매</a>
-              <a class="dropdown-item" href="/admin/wantbuy2">구매</a>
+              <a class="dropdown-item" href="/admin/goodsb_list">구매</a>
             </div>
           </li>
           <li class="nav-item dropdown">

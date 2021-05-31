@@ -8,6 +8,7 @@ public class TradeVO {
 	private int trade_State;
 	private int trade_Re_Star;
 	private String trade_Re_Line;
+	
 	public String getTrade_Code() {
 		return trade_Code;
 	}

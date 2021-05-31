@@ -132,7 +132,7 @@ li {
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPortfolio">
               <a class="dropdown-item" href="/admin/trade_list">판매</a>
-              <a class="dropdown-item" href="/admin/wantbuy2">구매</a>
+              <a class="dropdown-item" href="/admin/goodsb_list">구매</a>
             </div>
           </li>
           <li class="nav-item dropdown">
@@ -177,25 +177,11 @@ li {
   <div id="notice">
 
     <ul>
-
-        <li>제목<span>날짜</span></li>
-
-        <li><a href="#">제목</a><span>2018-10-24</span></li>
-
-         <li><a href="#">제목</a><span>2018-10-24</span></li>
-
-         <li><a href="#">제목</a><span>2018-10-24</span></li>
-
-         <li><a href="#">제목</a><span>2018-10-24</span></li>
-
-         <li><a href="#">제목</a><span>2018-10-24</span></li>
-
-         <li><a href="#">제목</a><span>2018-10-24</span></li>
-
-         <li><a href="#">제목</a><span>2018-10-24</span></li>
-
-         <li><a href="#">제목</a><span>2018-10-24</span></li>
-
+    <li>제목<span>날짜</span></li>
+    <c:forEach items="${list}" var="list">
+    <li><sapn>${list.notice_Num}</sapn><a href="#">${list.notice_Title}</a><span>${list.notice_Date}</span></li>
+      	
+    </c:forEach>
     </ul>
 
 </div>

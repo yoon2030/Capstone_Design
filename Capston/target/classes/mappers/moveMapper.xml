@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.capstone.mappers.moveMapper">
+<!-- 1:1문의 -->
+<select id="noticelist" resultType="com.capstone.domain.NoticeVO">
+	select
+		notice_Num, notice_Title, notice_Content, notice_Date
+	from notice
+		order by notice_Num desc
+</select>
+
+<!-- 1:1문의 -->
+	<insert id="faq">
+		insert into faq (faq_Title, faq_Kinds, faq_Content, faq_Id)
+		values (#{faq_Title}, #{faq_Kinds}, #{faq_Content}, #{faq_Id})
+	</insert>
+
+<!-- 내가 등록한 판매 물품 -->
+<select id="goodslist" resultType="com.capstone.domain.GoodsVO">
+	select
+		goods_Code, goods_Name, goods_Des, goods_Pic, goods_Date
+	from goods
+		where seller_Id = #{seller_Id} 
+		order by goods_Code desc
+</select>
+
+<!-- 내가 등록한 구매 희망 물품 -->
+<select id="goods_B_list" resultType="com.capstone.domain.Goods_B_VO">
+	select
+		goodsb_Code, goodsb_Title, goodsb_Des, goodsb_Date
+	from goods_b
+		where goodsb_Id = #{goodsb_Id}
+		order by goodsb_Code desc
+</select>
+
+</mapper>

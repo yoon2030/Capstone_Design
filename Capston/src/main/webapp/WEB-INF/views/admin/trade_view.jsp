@@ -30,6 +30,10 @@ input { width:150px; }
 .card-img-top{width:418px; height:250px; }
 .star{background-image:url(/resources/image/star.jpg);}
 .thumbImg {}
+#com_Btn {border : 0; width:100px; height:30px;;  position: relative; left:70%;}
+#rej_Btn {border : 0; width:100px; height:30px;;  position: relative; left:70%;}
+#cancel_Btn {border : 0; width:100px; height:30px;;  position: relative; left:70%;}
+#req_Btn {border : 0; width:100px; height:30px;;  position: relative; left:70%;}
 </style>
 
 </head>
@@ -54,7 +58,7 @@ input { width:150px; }
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPortfolio">
               <a class="dropdown-item" href="/admin/trade_list">판매</a>
-              <a class="dropdown-item" href="/admin/wantbuy2">구매</a>
+              <a class="dropdown-item" href="/admin/goodsb_list">구매</a>
             </div>
           </li>
           <li class="nav-item dropdown">
@@ -105,6 +109,10 @@ input { width:150px; }
 		<div class="inputArea">
 				<label for="gdsCategory">상품분류</label>
 				<span>${goods.goods_Cate}</span>
+		</div>
+		<div class="inputArea">
+				<label for="gdsCategory">연락처</label>
+				<span>${goods.phone_Num}</span>
 		</div>
 		<div class="inputArea">
 				<label for="gdsPrice">상품가격</label>
