@@ -54,6 +54,9 @@ public interface AdminService {
 	//거래 완료
 	public void trade_complete(TradeVO tv)throws Exception;
 	
+	//거래 완료후 상품 상태 2번으로 승격
+	public void goods_set(int goods_Code)throws Exception;
+	
 	//거래 삭제
 	public void tradeDelete(int goods_Code) throws Exception;
 }

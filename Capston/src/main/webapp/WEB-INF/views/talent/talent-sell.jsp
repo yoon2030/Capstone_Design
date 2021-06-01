@@ -1,9 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page session="false" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-
-<!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE jsp>
+<jsp lang="en">
 
 <head>
 
@@ -12,29 +12,21 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Modern Business - Start Bootstrap Template</title>
-<script src="/resources/jquery/jquery-3.3.1.min.js"></script>
+  <title>충대장터 - 재능판매</title>
+
   <!-- Bootstrap core CSS -->
   <link href="${pageContext.request.contextPath}/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
 
   <!-- Custom styles for this template -->
   <link href="${pageContext.request.contextPath}/resources/css/modern-business.css" rel="stylesheet" type="text/css">
+  
+  
+  <style>
+  
+  #btn-place{display:inline-block; position:relative; left:800px;}
 
-<style>
-.inputArea { margin:10px 0; }
-select { width:100px; }
-label { display:inline-block; width:90px; padding:5px; }
-label[for='gdsDes'] { display:block; }
-input { width:150px; }
-.gdsDes { marigin:10px 0;width:400px; height:180px; }
-.card-img-top{width:418px; height:250px; }
-.star{background-image:url(/resources/image/star.jpg);}
-.thumbImg {}
-#com_Btn {border : 0; width:100px; height:30px;;  position: relative; left:70%;}
-#rej_Btn {border : 0; width:100px; height:30px;;  position: relative; left:70%;}
-#cancel_Btn {border : 0; width:100px; height:30px;;  position: relative; left:70%;}
-#req_Btn {border : 0; width:100px; height:30px;;  position: relative; left:70%;}
-</style>
+ #buy-reg-btn{ position:ablsolute; left:700px;}
+  </style>
 
 </head>
 
@@ -103,121 +95,44 @@ input { width:150px; }
   <div class="container">
 
     <!-- Page Heading/Breadcrumbs -->
-    <h1 class="mt-4 mb-3">물품상세</h1>
+    <h1 class="mt-4 mb-3">재능거래소 <a href="#" id= "buy-reg-btn" class="btn btn-primary">글쓰기</a>
+      <small></small>
+    </h1>
 
-	<form role="form" method="post" autocomplete="off">
-			
-	<input type="hidden" name="n" value="${goods.goods_Code}"/>
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <a href="index.html">재능 판매</a>
+      </li>
+      <li class="breadcrumb-item active"></li>
+    </ol>
 
-    <!-- Intro Content -->
-    <div class="row">
-      <div class="col-lg-6">
-        <img class="card-img-top" src="${goods.goods_Pic}">
-      </div>
-      <div class="col-lg-6">
-        <div class="inputArea">
-				<label for="gdsName">상품명</label>
-				<span>${goods.goods_Name}</span>
-		</div>
-		<div class="inputArea">
-				<label for="gdsCategory">상품분류</label>
-				<span>${goods.goods_Cate}</span>
-		</div>
-		<div class="inputArea">
-				<label for="gdsCategory">연락처</label>
-				<span>${goods.phone_Num}</span>
-		</div>
-		<div class="inputArea">
-				<label for="gdsPrice">상품가격</label>
-				<span><fmt:formatNumber value="${goods.goods_Price}" pattern="###,###,###"/></span>
-			</div>
-		<div class="inputArea">
-				<label for="gdsSta">상품상태</label>
-				<span>${goods.goods_Sta}</span>
-			</div>	
-        <div class="inputArea">
-				<label for="gdsDes">상품소개</label>	
-				<div class="gdsDes">${goods.goods_Des}</div>
-			</div>
+    <!-- Blog Post -->
+    <div class="card mb-4">
+      <div class="card-body">
+          <div class="col-lg-6">
+            <h2 class="card-title">판매글 제목</h2>
+
+
+            <span>가격 : </span>
+            <p class="card-text"><div id="btn-place"><a href="#"  class="btn btn-primary">상세보기 &rarr;</a></div> </p>  
+          </div>
+        </div>
       </div>
     </div>
 
-    <!-- /.row -->
-  </div>
-  <c:choose>
-  <c:when test = "${member.id eq goods.seller_Id}">
-  <div id = "tradebtn">
-    <button type="button" id="modify_Btn" class="btn btn-warning">수정</button>
-	<button type="button" id="delete_Btn" class="btn btn-danger">삭제</button>
-			<script>
-					var formObj = $("form[role='form']");
-					
-					$("#modify_Btn").click(function(){
-						formObj.attr("action", "/admin/modify");
-						formObj.attr("method", "get");
-						formObj.submit();
-					});
-					
-					$("#delete_Btn").click(function(){
-						
-						var con = confirm("정말로 삭제하시겠습니까?");
-						
-						if(con) {						
-							formObj.attr("action", "/admin/delete");
-							formObj.submit();
-						}
-					});
-				</script>	
-  </div>
-  <div id = "tradebtn">
-  <button type="button" id="com_Btn" class="btn btn-warning">거래완료</button>
-  <button type="button" id="rej_Btn" class="btn btn-danger">거래거부</button>
-  	<script>
-					var formObj = $("form[role='form']");
-					
-					$("#com_Btn").click(function(){
-							formObj.attr("action", "/admin/complete");
-							formObj.submit();
-					});
-					
-					$("#rej_Btn").click(function(){	
-							formObj.attr("action", "/admin/reject");
-							formObj.submit();
-					});
-			</script>	
-</div>
-</c:when>
-<c:otherwise>
-  <div id = "tradebtn">
-    <button type="button" id="req_Btn" class="btn btn-warning">거래요청</button>
-	<button type="button" id="cancel_Btn" class="btn btn-danger">거래취소</button>
-			<script>
-					var formObj = $("form[role='form']");
-					
-					$("#req_Btn").click(function(){
-							formObj.attr("action", "/admin/req");
-							formObj.submit();
-					});
-					
-					$("#cancel_Btn").click(function(){	
-							formObj.attr("action", "/admin/cancel");
-							formObj.submit();
-					});
-			</script>	
-  </div>
-</c:otherwise>
 
-</c:choose>
-  <div id = "after">
-    <h4>최근 거래 후기</h2>
-    <ul>
-      <li><span>정말 친절해요</span><h1><span id="star"></span></h1></li>
-      <li><span>쿨거래 감사합니다</span><h1><span id="star"></span></h1></li>
-      <li><span>후기3</span><h1><span id="star"></span></h1></li>
+
+    <!-- Pagination -->
+    <ul class="pagination justify-content-center mb-4">
+      <li class="page-item">
+        <a class="page-link" href="#">&larr; Older</a>
+      </li>
+      <li class="page-item disabled">
+        <a class="page-link" href="#">Newer &rarr;</a>
+      </li>
     </ul>
-  </div>
 
-   
+  </div>
   <!-- /.container -->
 
   <!-- Footer -->
@@ -231,7 +146,6 @@ input { width:150px; }
   <!-- Bootstrap core JavaScript -->
   <script src="<c:url value="/resources/vendor/jquery/jquery.min.js" />"></script>
   <script src="<c:url value="/resources/vendor/bootstrap/js/bootstrap.bundle.min.js" />"></script>
-
 </body>
 
-</html>
+</jsp>

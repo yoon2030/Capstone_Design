@@ -93,6 +93,12 @@ public class AdminServiceImpl implements AdminService {
 	public void trade_complete(TradeVO tv)throws Exception{
 		dao.trade_complete(tv);
 	}
+	
+	//거래 완료후 상품 상태 2번으로 승격
+	public void goods_set(int goods_Code)throws Exception{
+		dao.goods_set(goods_Code);
+	}
+	
 	//거래 삭제
 	@Override
 	public void tradeDelete(int goods_Code) throws Exception {

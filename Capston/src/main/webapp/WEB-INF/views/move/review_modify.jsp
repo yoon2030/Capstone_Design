@@ -1,10 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page session="false" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-
-<!DOCTYPE html>
-
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE jsp>
+<jsp lang="en">
 <head>
 
   <meta charset="utf-8">
@@ -13,35 +12,99 @@
   <meta name="author" content="">
 
   <title>Modern Business - Start Bootstrap Template</title>
-<script src="/resources/jquery/jquery-3.3.1.min.js"></script>
+
   <!-- Bootstrap core CSS -->
   <link href="${pageContext.request.contextPath}/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
 
   <!-- Custom styles for this template -->
   <link href="${pageContext.request.contextPath}/resources/css/modern-business.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="./about2.css">
+  <link rel="stylesheet" href="./about3.css">
+  
+      <!--  add CSS -->
+  <link href="${pageContext.request.contextPath}/resources/vendor/bootstrap/css/web.css" rel="stylesheet" type="text/css">
+  
+  
+ <style>
+ 
+ 	section#container { padding:20px 0; border-top:2px solid #eee; border-bottom:2px solid #eee; }
+	section#container::after { content:""; display:block; clear:both; }
+	div#container_box { float:right; width:calc(100% - 200px - 20px); }
+	div#wrapper {
+    position: relative;
+    height: 100%;
+    
+}
 
+.rate {
+    float: left;
+    height: 46px;
+    padding: 0 10px;
+}
+.rate:not(:checked) > input {
+    position:absolute;
+    top:-9999px;
+}
+.rate:not(:checked) > label {
+    float:right;
+    width:1em;
+    overflow:hidden;
+    white-space:nowrap;
+    cursor:pointer;
+    font-size:30px;
+    color:#ccc;
+}
+.rate:not(:checked) > label:before {
+    content: '★ ';
+}
+.rate > input:checked ~ label {
+    color: #ffc700;    
+}
+.rate:not(:checked) > label:hover,
+.rate:not(:checked) > label:hover ~ label {
+    color: #deb217;  
+}
+.rate > input:checked + label:hover,
+.rate > input:checked + label:hover ~ label,
+.rate > input:checked ~ label:hover,
+.rate > input:checked ~ label:hover ~ label,
+.rate > label:hover ~ input:checked ~ label {
+    color: #c59b08;
+}
+	
+</style>
+ 
 <style>
 .inputArea { margin:10px 0; }
 select { width:100px; }
 label { display:inline-block; width:90px; padding:5px; }
 label[for='gdsDes'] { display:block; }
 input { width:150px; }
-.gdsDes { marigin:10px 0;width:400px; height:180px; }
-.card-img-top{width:418px; height:250px; }
-.star{background-image:url(/resources/image/star.jpg);}
-.thumbImg {}
-#com_Btn {border : 0; width:100px; height:30px;;  position: relative; left:70%;}
-#rej_Btn {border : 0; width:100px; height:30px;;  position: relative; left:70%;}
-#cancel_Btn {border : 0; width:100px; height:30px;;  position: relative; left:70%;}
-#req_Btn {border : 0; width:100px; height:30px;;  position: relative; left:70%;}
+textarea#gdsDes { width:400px; height:180px; }
+.step_url {    position: absolute;    top: 16px;    right: 13px;    font-size: 15px;    color: #8e8e8e;}
+
+.select_img img {margin:20px 0;}
+#wrapper {
+    position: relative;
+    height: 100%;
+}
+#content {
+    position: relative;
+    left: 50%;
+    transform: translate(-50%);
+    width: 800px;
+}
+
 </style>
+
 
 </head>
 
 <body>
 
+
   <!-- Navigation -->
-   <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
       <a class="navbar-brand" href="/move/index">충대 장터</a>
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -99,131 +162,73 @@ input { width:150px; }
   </nav>
 
 
-  <!-- Page Content -->
-  <div class="container">
+  
 
-    <!-- Page Heading/Breadcrumbs -->
-    <h1 class="mt-4 mb-3">물품상세</h1>
-
-	<form role="form" method="post" autocomplete="off">
+    <!-- Team Members -->
+   <section id="container">
+   
+		<div id="wrapper"> 
+<div id="content">
+		
+			    <h1 class="mt-4 mb-3">후기 작성
+      <small></small>
+    </h1>
+			    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <a href="index.html">마이페이지</a>
+      </li>
+      <li class="breadcrumb-item active">후기관리 / 후기작성</li>
+    </ol>
 			
-	<input type="hidden" name="n" value="${goods.goods_Code}"/>
+<form role="form" method="post" autocomplete="off" enctype="multipart/form-data">
 
-    <!-- Intro Content -->
-    <div class="row">
-      <div class="col-lg-6">
-        <img class="card-img-top" src="${goods.goods_Pic}">
-      </div>
-      <div class="col-lg-6">
-        <div class="inputArea">
-				<label for="gdsName">상품명</label>
-				<span>${goods.goods_Name}</span>
+<input type="hidden" name="review_Code" value="${review.review_Code}" />
+
+<div class="inputArea">
+	<label for="review_Sta">별점</label>
+	<select id="review_Sta" name="review_Sta" >
+		<option value=1 <c:if test="${review_Sta == '1'}">selected</c:if>>1</option>
+  		<option value=2 <c:if test="${review_Sta == '2'}">selected</c:if>>2</option>
+ 	 	<option value=3 <c:if test="${review_Sta == '3'}">selected</c:if>>3</option>
+ 	 	<option value=4 <c:if test="${review_Sta == '4'}">selected</c:if>>4</option>
+ 	 	<option value=5 <c:if test="${review_Sta == '5'}">selected</c:if>>5</option>
+	</select>
+</div>
+
+<div class="inputArea">
+	<label for="gdsDes">후기 작성</label>
+	<textarea rows="5" cols="70" id="review_Content" name="review_Content"></textarea>
+</div>
+
+
+<div class="inputArea">
+ <button type="submit" id="update_Btn" class="btn btn-primary">완료</button>
+ <button type="submit" id="back_Btn" class="btn btn-warning">취소</button>
+  <script>
+ $("#back_Btn").click(function(){
+  //history.back();
+  location.href = "/move/review";
+ });   
+</script>
+</div>
+
+
+</form>
+			
 		</div>
-		<div class="inputArea">
-				<label for="gdsCategory">상품분류</label>
-				<span>${goods.goods_Cate}</span>
-		</div>
-		<div class="inputArea">
-				<label for="gdsCategory">연락처</label>
-				<span>${goods.phone_Num}</span>
-		</div>
-		<div class="inputArea">
-				<label for="gdsPrice">상품가격</label>
-				<span><fmt:formatNumber value="${goods.goods_Price}" pattern="###,###,###"/></span>
-			</div>
-		<div class="inputArea">
-				<label for="gdsSta">상품상태</label>
-				<span>${goods.goods_Sta}</span>
-			</div>	
-        <div class="inputArea">
-				<label for="gdsDes">상품소개</label>	
-				<div class="gdsDes">${goods.goods_Des}</div>
-			</div>
-      </div>
-    </div>
+	
+	</section>
 
     <!-- /.row -->
-  </div>
-  <c:choose>
-  <c:when test = "${member.id eq goods.seller_Id}">
-  <div id = "tradebtn">
-    <button type="button" id="modify_Btn" class="btn btn-warning">수정</button>
-	<button type="button" id="delete_Btn" class="btn btn-danger">삭제</button>
-			<script>
-					var formObj = $("form[role='form']");
-					
-					$("#modify_Btn").click(function(){
-						formObj.attr("action", "/admin/modify");
-						formObj.attr("method", "get");
-						formObj.submit();
-					});
-					
-					$("#delete_Btn").click(function(){
-						
-						var con = confirm("정말로 삭제하시겠습니까?");
-						
-						if(con) {						
-							formObj.attr("action", "/admin/delete");
-							formObj.submit();
-						}
-					});
-				</script>	
-  </div>
-  <div id = "tradebtn">
-  <button type="button" id="com_Btn" class="btn btn-warning">거래완료</button>
-  <button type="button" id="rej_Btn" class="btn btn-danger">거래거부</button>
-  	<script>
-					var formObj = $("form[role='form']");
-					
-					$("#com_Btn").click(function(){
-							formObj.attr("action", "/admin/complete");
-							formObj.submit();
-					});
-					
-					$("#rej_Btn").click(function(){	
-							formObj.attr("action", "/admin/reject");
-							formObj.submit();
-					});
-			</script>	
-</div>
-</c:when>
-<c:otherwise>
-  <div id = "tradebtn">
-    <button type="button" id="req_Btn" class="btn btn-warning">거래요청</button>
-	<button type="button" id="cancel_Btn" class="btn btn-danger">거래취소</button>
-			<script>
-					var formObj = $("form[role='form']");
-					
-					$("#req_Btn").click(function(){
-							formObj.attr("action", "/admin/req");
-							formObj.submit();
-					});
-					
-					$("#cancel_Btn").click(function(){	
-							formObj.attr("action", "/admin/cancel");
-							formObj.submit();
-					});
-			</script>	
-  </div>
-</c:otherwise>
 
-</c:choose>
-  <div id = "after">
-    <h4>최근 거래 후기</h2>
-    <ul>
-      <li><span>정말 친절해요</span><h1><span id="star"></span></h1></li>
-      <li><span>쿨거래 감사합니다</span><h1><span id="star"></span></h1></li>
-      <li><span>후기3</span><h1><span id="star"></span></h1></li>
-    </ul>
-  </div>
 
-   
+  
   <!-- /.container -->
 
   <!-- Footer -->
   <footer class="py-5 bg-dark">
     <div class="container">
-      <p class="m-0 text-center text-white">Copyright &copy; Your Website 2020</p>
+      <p class="m-0 text-center text-white">충대장터</p>
     </div>
     <!-- /.container -->
   </footer>
@@ -231,7 +236,6 @@ input { width:150px; }
   <!-- Bootstrap core JavaScript -->
   <script src="<c:url value="/resources/vendor/jquery/jquery.min.js" />"></script>
   <script src="<c:url value="/resources/vendor/bootstrap/js/bootstrap.bundle.min.js" />"></script>
-
 </body>
 
-</html>
+</jsp>

@@ -1,8 +1,11 @@
 package com.capstone.service;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import com.capstone.domain.MemberVO;
+import com.capstone.domain.TradeVO;
 
 public interface MemberService {
 	
@@ -16,4 +19,7 @@ public interface MemberService {
 	
 	//아디디 중복체크
 	public MemberVO idChk(String Id) throws Exception;
+	
+	//거래 조회
+	public List<TradeVO> tradeView(String Id) throws Exception;
 }

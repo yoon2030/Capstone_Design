@@ -7,15 +7,16 @@
 <!--판매 상품 등록 -->
 	<insert id="register">
 		insert into goods (goods_Code, seller_Id, goods_Name, goods_Cate, goods_Price,goods_Sta, goods_Des, 
-								goods_Pic, phone_Num)
+								goods_Pic, phone_Num, goods_State)
 	   		values (goods_seq.nextval, #{seller_Id},#{goods_Name}, #{goods_Cate}, #{goods_Price}, #{goods_Sta} ,#{goods_Des},
-	   		 		#{goods_Pic}, #{phone_Num})  	
+	   		 		#{goods_Pic}, #{phone_Num}, 1)  	
 	</insert>
 <!--판매 상품 목록(화면) 출력-->	
 	<select id="goodslist" resultType="com.capstone.domain.GoodsVO">
 		select
 			goods_Code, seller_Id, goods_Name, goods_Cate, goods_Sta,goods_Price, goods_Des, goods_Pic, goods_Date, phone_Num
 	    from goods
+	    where goods_State = 1
 	        order by goods_Code desc
 	</select>
 <!--판매 상품 조회 -->
@@ -119,6 +120,13 @@
 			set
 				trade_State = #{trade_State}
 			where trade_Code = #{trade_Code}
+	</update>
+<!-- 거래 완료 후 상품 상태 승격 -->
+	<update id="goods_set">
+		update goods
+			set
+				goods_State = 2
+			where goods_Code = #{goods_Code}
 	</update>
 <!-- 거래 삭제 -->
 	<delete id="tradeDelete">

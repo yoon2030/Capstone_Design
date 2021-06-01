@@ -1,11 +1,14 @@
 package com.capstone.persistence;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.capstone.domain.MemberVO;
+import com.capstone.domain.TradeVO;
 
 @Repository
 public class MemberDAOImpl implements MemberDAO {
@@ -34,4 +37,8 @@ public class MemberDAOImpl implements MemberDAO {
 		return sql.selectOne(namespace + ".idChk",Id);
 	}
 
+	//거래 조회
+	public List<TradeVO> tradeView(String Id) throws Exception{
+		return sql.selectList(namespace + ".tradeView", Id);
+	}
 }

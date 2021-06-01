@@ -1,8 +1,12 @@
 package com.capstone.controller;
 
+import java.io.PrintWriter;
+import java.util.List;
+
 import javax.inject.Inject;
 import javax.management.RuntimeErrorException;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -17,7 +21,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.capstone.domain.GoodsVO;
 import com.capstone.domain.MemberVO;
+import com.capstone.domain.TradeVO;
 import com.capstone.service.MemberService;
 
 @Controller
@@ -51,7 +57,7 @@ private static final Logger logger = LoggerFactory.getLogger(MemberController.cl
 	}
 	// 로그인 post
 	@RequestMapping(value = "/signin", method = RequestMethod.POST)
-		public String postSignin(MemberVO vo, Model model, HttpServletRequest req, RedirectAttributes rttr) throws Exception {
+		public String postSignin(MemberVO vo, Model model, HttpServletRequest req, RedirectAttributes rttr, HttpServletResponse response) throws Exception {
 			logger.info("post signin");
 			
 			MemberVO login = service.signin(vo);  // MemverVO형 변수 login에 로그인 정보를 저장
@@ -61,10 +67,38 @@ private static final Logger logger = LoggerFactory.getLogger(MemberController.cl
 				return "member/signin";
 			}else{
 				session.setAttribute("member", login);
-				return "move/index";
+				
+				List<TradeVO> list = service.tradeView(login.getId());
+				response.setContentType("text/html; charset=UTF-8");
+				 
+				PrintWriter out = response.getWriter();
+				if(list.size()==0) {
+					out.println("<script language='javascript'>");
+					out.println("alert('충대 장터에 오신것을 환영합니다.');");
+					out.println("</script>");
+					 
+					out.flush();
+				}
+				else {					 
+					out.println("<script language='javascript'>");
+					out.println("alert('완료된 거래 중 작성하지 않은 후기가 있습니다.');");
+					out.println("</script>");
+					 
+					out.flush();
+				}
 			}
+			return "/move/index";
 					
 	}	
+	//로그아웃
+	@RequestMapping(value = "/logout", method = RequestMethod.GET)
+	public String logout(HttpSession session) throws Exception {
+		 logger.info("get logout");
+		 
+		 session.invalidate();
+		   
+		 return "redirect:/";
+	}
 	
 	//아이디 중복 체크
 	@ResponseBody

@@ -1,8 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page session="false" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE jsp>
+<jsp lang="en">
 
 <head>
 
@@ -11,18 +12,13 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>거래소</title>
+  <title>후기 관리</title>
 
   <!-- Bootstrap core CSS -->
   <link href="${pageContext.request.contextPath}/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
 
   <!-- Custom styles for this template -->
   <link href="${pageContext.request.contextPath}/resources/css/modern-business.css" rel="stylesheet" type="text/css">
-
-<style>
-.card-img-top { width:418px; height:250px; }
-
-</style>
 
 </head>
 
@@ -87,48 +83,60 @@
   </nav>
 
 
+  <!-- Page Content -->
+  <div class="container">
 
-  
+    <!-- Page Heading/Breadcrumbs -->
+    <h1 class="mt-4 mb-3">마이 페이지
+      <small></small>
+    </h1>
 
-    <!-- Team Members -->
-    <div id = "title">
-    <h2>충대 장터 거래소</h2> 
-    <div id = "Product_reg">
-      <button id = "reg" onclick="location.href='/admin/register'">등록</button>
-      </div>
-  </div>
-  
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <a href="index.html">후기관리</a>
+      </li>
+      <li class="breadcrumb-item active">후기관리</li>
+    </ol>
+	<c:forEach items="${list}" var="list">
+    <div class="card mb-4">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-lg-6">
+            <p class="card-text"><span>거래한 상품 :</span>${list.review_Goods}</p>
+            <p class="card-text"><span>거래자 :</span>${list.review_Trader}</p>
+            <p class="card-text"><span>별점 :</span>${list.review_Sta}</p>
+            <p class="card-text"><span>후기내용 :</span>${list.review_Content}</p>
 
-    <div class="row">
-    	<c:forEach items="${list}" var="list">
-    	 <div class="col-lg-100">
-        <div class="card h-100 text-center">
-        <div id="trade_list_margin">
-         <img src="${list.goods_Pic}" class="card-img-top"/>
-         </div>
-          <div class="card-body">
-         		 <label for="gdsName">상품명</label>
-				<h4 class="card-title">${list.goods_Name}</h4>
-          </div>
-          <div class="card-footer">
-          	<span>닉네임:</span>
-            <a href="/admin/trade_view?n=${list.goods_Code}">${list.seller_Id}</a>
+			<a href="/move/review_modify?n=${list.review_Code}" class="btn btn-primary">수정 &rarr;</a>
+			<a href="/move/review_delete?n=${list.review_Code}" class="btn btn-primary">삭제 &rarr;</a>
+
           </div>
         </div>
       </div>
-    	
-    	</c:forEach>
+      <div class="card-footer text-muted">
+       <p> ${list.review_Date}</p>
+        <a href="#"></a>
+      </div>
     </div>
-    <!-- /.row -->
+	</c:forEach>
 
+    <!-- Pagination -->
+    <ul class="pagination justify-content-center mb-4">
+      <li class="page-item">
+        <a class="page-link" href="#">&larr; Older</a>
+      </li>
+      <li class="page-item disabled">
+        <a class="page-link" href="#">Newer &rarr;</a>
+      </li>
+    </ul>
 
-  
+  </div>
   <!-- /.container -->
 
   <!-- Footer -->
   <footer class="py-5 bg-dark">
     <div class="container">
-      <p class="m-0 text-center text-white">충대장터</p>
+      <p class="m-0 text-center text-white">Copyright &copy; Your Website 2020</p>
     </div>
     <!-- /.container -->
   </footer>
@@ -136,7 +144,6 @@
   <!-- Bootstrap core JavaScript -->
   <script src="<c:url value="/resources/vendor/jquery/jquery.min.js" />"></script>
   <script src="<c:url value="/resources/vendor/bootstrap/js/bootstrap.bundle.min.js" />"></script>
-
 </body>
 
-</html>
+</jsp>

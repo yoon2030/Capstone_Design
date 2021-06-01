@@ -104,6 +104,12 @@ public class AdminDAOImpl implements AdminDAO {
 		sql.update(namespace + ".trade_complete",tv);
 	}
 	
+	//거래 완료후 상품 상태 2번으로 승격
+	@Override
+	public void goods_set(int goods_Code)throws Exception{
+		sql.update(namespace + ".goods_set", goods_Code);
+	}
+	
 	//거래 삭제
 	@Override
 	public void tradeDelete(int goods_Code) throws Exception {

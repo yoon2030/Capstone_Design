@@ -80,9 +80,9 @@
                 </div>
                 <!-- 학번 -->
                  <div>
-                    <h3 class="join_title"><label for="Stdent_Num">학번</label></h3>
+                    <h3 class="join_title"><label for="Student_Num">학번</label></h3>
                     <span class="box int_name">
-                        <input type="text" id="Stdent_Num" name="Stdent_Num" class="int" required="required">
+                        <input type="text" id="Student_Num" name="Student_Num" class="int" required="required">
                     </span>
                     <span class="error_next_box"></span>
                 </div>

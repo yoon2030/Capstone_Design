@@ -2,7 +2,7 @@ package com.capstone.domain;
 
 public class TradeVO {
 	private String trade_Code;
-	private String goods_Code;
+	private int goods_Code;
 	private String seller_Id;
 	private String buyer_Id;
 	private int trade_State;
@@ -15,10 +15,11 @@ public class TradeVO {
 	public void setTrade_Code(String trade_Code) {
 		this.trade_Code = trade_Code;
 	}
-	public String getGoods_Code() {
+	
+	public int getGoods_Code() {
 		return goods_Code;
 	}
-	public void setGoods_Code(String goods_Code) {
+	public void setGoods_Code(int goods_Code) {
 		this.goods_Code = goods_Code;
 	}
 	public String getSeller_Id() {

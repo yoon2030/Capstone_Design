@@ -115,7 +115,7 @@ li {
 <body>
 
   <!-- Navigation -->
-  <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
+   <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
       <a class="navbar-brand" href="/move/index">충대 장터</a>
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -136,13 +136,23 @@ li {
             </div>
           </li>
           <li class="nav-item dropdown">
+                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              재능거래소
+            </a>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
+              <a class="dropdown-item" href="/move/uploaded">재능 판매</a>
+              <a class="dropdown-item" href="/move/wantbuy">재능 구매</a>
+            </div>
+          </li>
+          <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               마이페이지
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
               <a class="dropdown-item" href="/move/uploaded">내가 등록한 물건</a>
               <a class="dropdown-item" href="/move/wantbuy">내가 요청한 물건</a>
-              <a class="dropdown-item" href="/admin/review">후기관리</a>
+              <a class="dropdown-item" href="/move/review">후기관리</a>
+              <a class="dropdown-item" href="/move/trade_complete">거래완료(후기작성)</a>
             </div>
           </li>
           <li class="nav-item dropdown">
@@ -153,6 +163,9 @@ li {
               <a class="dropdown-item" href="/move/faq1">자주찾는 질문</a>
               <a class="dropdown-item" href="/move/faq2">1:1문의</a>
             </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/member/logout">로그아웃</a>
           </li>
         </ul>
       </div>

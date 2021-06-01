@@ -102,7 +102,7 @@ public class AdminController {
 		// 새로운 파일이 등록되었는지 확인
 		if(file.getOriginalFilename() != null && file.getOriginalFilename() != "") {
 			// 기존 파일을 삭제
-			new File(uploadPath + req.getParameter("gdsImg")).delete();
+			new File(uploadPath + req.getParameter("goods_Pic")).delete();
 				
 			// 새로 첨부한 파일을 등록
 			String imgUploadPath = uploadPath + File.separator + "imgUpload";
@@ -113,7 +113,7 @@ public class AdminController {
 				
 		} else {  // 새로운 파일이 등록되지 않았다면
 			// 기존 이미지를 그대로 사용
-			vo.setGoods_Pic(req.getParameter("gdsImg"));
+			vo.setGoods_Pic(req.getParameter("goods_Pic"));
 				
 		}
 		
@@ -276,6 +276,7 @@ public class AdminController {
 		if(trade.getTrade_State()==2) {
 			trade.setTrade_State(3);
 			adminService.trade_complete(trade);
+			adminService.goods_set(goods_Code);
 		}	
 		return "redirect:/admin/trade_list";//후기작성으로 넘어가게 하면 됨.
 		

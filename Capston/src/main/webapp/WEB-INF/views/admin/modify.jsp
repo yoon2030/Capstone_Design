@@ -80,13 +80,23 @@ textarea#gdsDes { width:400px; height:180px; }
             </div>
           </li>
           <li class="nav-item dropdown">
+                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              재능거래소
+            </a>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
+              <a class="dropdown-item" href="/move/uploaded">재능 판매</a>
+              <a class="dropdown-item" href="/move/wantbuy">재능 구매</a>
+            </div>
+          </li>
+          <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               마이페이지
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
               <a class="dropdown-item" href="/move/uploaded">내가 등록한 물건</a>
               <a class="dropdown-item" href="/move/wantbuy">내가 요청한 물건</a>
-              <a class="dropdown-item" href="/admin/review">후기관리</a>
+              <a class="dropdown-item" href="/move/review">후기관리</a>
+              <a class="dropdown-item" href="/move/trade_complete">거래완료(후기작성)</a>
             </div>
           </li>
           <li class="nav-item dropdown">
@@ -97,6 +107,9 @@ textarea#gdsDes { width:400px; height:180px; }
               <a class="dropdown-item" href="/move/faq1">자주찾는 질문</a>
               <a class="dropdown-item" href="/move/faq2">1:1문의</a>
             </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/member/logout">로그아웃</a>
           </li>
         </ul>
       </div>
@@ -133,9 +146,9 @@ textarea#gdsDes { width:400px; height:180px; }
 <div class="inputArea">
 	<label for="goods_Cate">상품분류</label>
 	<select id="goods_Cate" name="goods_Cate" >
-		<option value="서적" <c:if test="${goods_Cate == '서적'}">selected</c:if>>서적</option>
-  		<option value="기계" <c:if test="${goods_Cate == '기계'}">selected</c:if>>기계</option>
- 	 	<option value="옷"  <c:if test="${goods_Cate == '옷'}">selected</c:if>>옷</option>
+		<option value="서적" <c:if test='${goods.goods_Cate == "서적"}'>selected</c:if>>서적</option>
+  		<option value="기계" <c:if test='${goods.goods_Cate == "기계"}'>selected</c:if>>기계</option>
+ 	 	<option value="옷"  <c:if test='${goods.goods_Cate == "옷"}'>selected</c:if>>옷</option>
 	</select>
 </div>
 <div class="inputArea">

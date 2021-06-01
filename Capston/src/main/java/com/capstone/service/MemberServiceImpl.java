@@ -1,11 +1,14 @@
 package com.capstone.service;
 
+import java.util.List;
+
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Service;
 
 import com.capstone.domain.MemberVO;
+import com.capstone.domain.TradeVO;
 import com.capstone.persistence.MemberDAO;
 
 @Service
@@ -36,5 +39,10 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public MemberVO idChk(String Id) throws Exception{
 		return dao.idChk(Id);
+	}
+	
+	//거래 조회
+	public List<TradeVO> tradeView(String Id) throws Exception{
+		return dao.tradeView(Id);
 	}
 }

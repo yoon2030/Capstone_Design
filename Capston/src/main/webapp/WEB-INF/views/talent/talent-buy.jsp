@@ -12,20 +12,29 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>후기 관리</title>
+  <title>충대장터 - 재능구매</title>
 
   <!-- Bootstrap core CSS -->
   <link href="${pageContext.request.contextPath}/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
 
   <!-- Custom styles for this template -->
   <link href="${pageContext.request.contextPath}/resources/css/modern-business.css" rel="stylesheet" type="text/css">
+  
+  
+  <style>
+  
+  #btn-place{display:inline-block; position:relative; left:800px;}
+  
+ #sell-reg-btn{ position:ablsolute; left:700px;}
+  
+  </style>
 
 </head>
 
 <body>
 
   <!-- Navigation -->
- <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
+  <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
       <a class="navbar-brand" href="/move/index">충대 장터</a>
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -46,13 +55,23 @@
             </div>
           </li>
           <li class="nav-item dropdown">
+                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              재능거래소
+            </a>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
+              <a class="dropdown-item" href="/move/uploaded">재능 판매</a>
+              <a class="dropdown-item" href="/move/wantbuy">재능 구매</a>
+            </div>
+          </li>
+          <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               마이페이지
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
               <a class="dropdown-item" href="/move/uploaded">내가 등록한 물건</a>
               <a class="dropdown-item" href="/move/wantbuy">내가 요청한 물건</a>
-              <a class="dropdown-item" href="/admin/review">후기관리</a>
+              <a class="dropdown-item" href="/move/review">후기관리</a>
+              <a class="dropdown-item" href="/move/trade_complete">거래완료(후기작성)</a>
             </div>
           </li>
           <li class="nav-item dropdown">
@@ -64,6 +83,9 @@
               <a class="dropdown-item" href="/move/faq2">1:1문의</a>
             </div>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/member/logout">로그아웃</a>
+          </li>
         </ul>
       </div>
     </div>
@@ -74,31 +96,28 @@
   <div class="container">
 
     <!-- Page Heading/Breadcrumbs -->
-    <h1 class="mt-4 mb-3">마이 페이지
+    <h1 class="mt-4 mb-3">재능거래소 <a href="#" id= "sell-reg-btn" class="btn btn-primary">글쓰기</a>
       <small></small>
     </h1>
 
     <ol class="breadcrumb">
       <li class="breadcrumb-item">
-        <a href="index.html">후기관리</a>
+        <a href="index.html">재능 구매</a>
       </li>
-      <li class="breadcrumb-item active">후기관리</li>
+      <li class="breadcrumb-item active"></li>
     </ol>
 
     <!-- Blog Post -->
     <div class="card mb-4">
       <div class="card-body">
-        <div class="row">
           <div class="col-lg-6">
-            <h2 class="card-title">판매글 제목</h2>
-            <p class="card-text">내용</p>
-            <a href="#" class="btn btn-primary">수정하기 &rarr;</a>
+            <h2 class="card-title">구매글 제목</h2>
+
+
+            <span>희망 가격 : </span>
+            <p class="card-text"><div id="btn-place"><a href="#"  class="btn btn-primary">상세보기 &rarr;</a></div> </p>  
           </div>
         </div>
-      </div>
-      <div class="card-footer text-muted">
-        Posted on January 1, 2021 by
-        <a href="#"></a>
       </div>
     </div>
 
