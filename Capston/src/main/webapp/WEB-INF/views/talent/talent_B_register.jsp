@@ -2,8 +2,8 @@
 <%@ page session="false" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE jsp>
-<jsp lang="en">
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
 
@@ -12,13 +12,49 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>충대장터</title>
+  <title>상품 등록</title>
 
   <!-- Bootstrap core CSS -->
   <link href="${pageContext.request.contextPath}/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
 
   <!-- Custom styles for this template -->
   <link href="${pageContext.request.contextPath}/resources/css/modern-business.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="./about2.css">
+  <link rel="stylesheet" href="./about3.css">
+  
+  
+ <style>
+ 
+ 	section#container { padding:20px 0; border-top:2px solid #eee; border-bottom:2px solid #eee; }
+	section#container::after { content:""; display:block; clear:both; }
+	div#container_box { float:right; width:calc(100% - 200px - 20px); }
+	div#wrapper {
+    position: relative;
+    height: 100%;
+    }
+</style>
+ 
+<style>
+.inputArea { margin:10px 0; }
+select { width:100px; }
+label { display:inline-block; width:90px; padding:5px; }
+label[for='gdsDes'] { display:block; }
+input { width:150px; }
+textarea#gdsDes { width:400px; height:180px; }
+.step_url {    position: absolute;    top: 16px;    right: 13px;    font-size: 15px;    color: #8e8e8e;}
+.select_img img {margin:20px 0;}
+#wrapper {
+    position: relative;
+    height: 100%;
+}
+#content {
+    position: relative;
+    left: 50%;
+    transform: translate(-50%);
+    width: 800px;
+}
+</style>
+
 
 </head>
 
@@ -51,7 +87,7 @@
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
               <a class="dropdown-item" href="/move/uploaded">재능 판매</a>
-              <a class="dropdown-item" href="/talent/talent_B_list">재능 구매</a>
+              <a class="dropdown-item" href="/move/wantbuy">재능 구매</a>
             </div>
           </li>
           <li class="nav-item dropdown">
@@ -81,83 +117,65 @@
       </div>
     </div>
   </nav>
+  
 
- <header>
-    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-      <ol class="carousel-indicators">
-        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-      </ol>
-      <div class="carousel-inner" role="listbox">
-        <!-- Slide One - Set the background image for this slide in the line below -->
-        <div class="carousel-item active" style="background-image: url('http://placehold.it/1900x1080')">
-          <div class="carousel-caption d-none d-md-block">
-            <h3>슬라이드</h3>
-            <p>내용.</p>
-          </div>
-        </div>
-        <!-- Slide Two - Set the background image for this slide in the line below -->
-        <div class="carousel-item" style="background-image: url('http://placehold.it/1900x1080')">
-          <div class="carousel-caption d-none d-md-block">
-            <h3>슬라이드</h3>
-            <p>내용.</p>
-          </div>
-        </div>
-        <!-- Slide Three - Set the background image for this slide in the line below -->
-        <div class="carousel-item" style="background-image: url('http://placehold.it/1900x1080')">
-          <div class="carousel-caption d-none d-md-block">
-            <h3>슬라이드</h3>
-            <p>내용.</p>
-          </div>
-        </div>
-      </div>
-      <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-      </a>
-      <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-      </a>
-    </div>
-  </header>
+    <!-- Team Members -->
+   <section id="container">
+   
+		<div id="wrapper"> 
+<div id="content">
+		
+			    <h1 class="mt-4 mb-3">재능구매
+      <small></small>
+    </h1>
+			    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <a href="talent_B_list.html">재능구매 거래소</a>
+      </li>
+      <li class="breadcrumb-item active">재능구매 등록</li>
+    </ol>
+				
+<form role="form" method="post" autocomplete="off" enctype="multipart/form-data">
 
-  <!-- Page Content -->
-  <div class="container">
 
-    <h1 class="my-4">충대 장터에 오신 것을 환영합니다.</h1>
+<div class="inputArea">
+	<label for="talb_Title">제목</label>
+	<input type="text" id="talb_Title" name="talb_Title"/>
+</div>
+<div class="inputArea">
+	<label for="talb_Kinds">재능분류</label>
+	<select id="talb_Kinds" name="talb_Kinds" >
+		<option value="디자인" selected="selected">디자인</option>
+  		<option value="코딩">코딩</option>
+ 	 	<option value="과제" >과제</option>
+	</select>
+</div>
 
-<div class="row">
-      <div class="col-lg-6">
-        <h2>충대 장터 소개</h2>
-        <p>충대 장터의 장점</p>
-        <ul>
-          <li>
-            <strong>신뢰성이 높습니다!!</strong>
-          </li>
-          <li>충북대 관계자들끼리 자유로운 거래 가능!</li>
-          <li>후기 시스템으로 친절한 쿨거래 유도!</li>
-        </ul>
-        <p></p>
-      </div>
-      <div class="col-lg-6">
-        <img class="img-fluid rounded" src="http://placehold.it/700x450" alt="">
-      </div>
-    </div>
+<div class="inputArea">
+	<label for="talb_Content">재능구매 내용</label>
+	<textarea rows="5" cols="50" id="talb_Content" name="talb_Content"></textarea>
+</div>
+
+<div class="inputArea">
+	<button type="submit" id="register_Btn" class="btn btn-primary">등록</button>
+</div>
+</div>
+</div>
+</form>
+			
+		</div>
+	</section>
+
     <!-- /.row -->
 
-    <hr>
 
-    <!-- Call to Action Section -->
-
-  </div>
+  
   <!-- /.container -->
 
   <!-- Footer -->
   <footer class="py-5 bg-dark">
     <div class="container">
-      <p class="m-0 text-center text-white">Copyright &copy; Your Website 2020</p>
+      <p class="m-0 text-center text-white">충대 장터</p>
     </div>
     <!-- /.container -->
   </footer>
@@ -168,4 +186,4 @@
 
 </body>
 
-</jsp>
+</html>
