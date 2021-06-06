@@ -1,9 +1,9 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page session="false" %>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE jsp>
-<jsp lang="en">
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
+<!DOCTYPE html>
 
 <head>
 
@@ -12,21 +12,29 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>충대장터 - 재능판매</title>
-
+  <title>Modern Business - Start Bootstrap Template</title>
+<script src="/resources/jquery/jquery-3.3.1.min.js"></script>
   <!-- Bootstrap core CSS -->
   <link href="${pageContext.request.contextPath}/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
 
   <!-- Custom styles for this template -->
   <link href="${pageContext.request.contextPath}/resources/css/modern-business.css" rel="stylesheet" type="text/css">
-  
-  
-  <style>
-  
-  #btn-place{display:inline-block; position:relative; left:800px;}
 
- #buy-reg-btn{ position:ablsolute; left:700px;}
-  </style>
+<style>
+.inputArea { margin:10px 0; }
+select { width:100px; }
+label { display:inline-block; width:90px; padding:5px; }
+label[for='gdsDes'] { display:block; }
+input { width:150px; }
+.gdsDes { marigin:10px 0;width:400px; height:180px; }
+.card-img-top{width:418px; height:250px; }
+.star{background-image:url(/resources/image/star.jpg);}
+.thumbImg {}
+#com_Btn {border : 0; width:100px; height:30px;;  position: relative; left:70%;}
+#rej_Btn {border : 0; width:100px; height:30px;;  position: relative; left:70%;}
+#cancel_Btn {border : 0; width:100px; height:30px;;  position: relative; left:70%;}
+#req_Btn {border : 0; width:100px; height:30px;;  position: relative; left:70%;}
+</style>
 
 </head>
 
@@ -90,51 +98,55 @@
     </div>
   </nav>
 
-
   <!-- Page Content -->
   <div class="container">
 
     <!-- Page Heading/Breadcrumbs -->
-    <h1 class="mt-4 mb-3">재능거래소 <a href="#" id= "buy-reg-btn" class="btn btn-primary">글쓰기</a>
-      <small></small>
-    </h1>
+    <h1 class="mt-4 mb-3">재능판매물품_상세</h1>
 
-    <ol class="breadcrumb">
-      <li class="breadcrumb-item">
-        <a href="index.html">재능 판매</a>
-      </li>
-      <li class="breadcrumb-item active"></li>
-    </ol>
+	<form role="form" method="post" autocomplete="off">
+			
+	<input type="hidden" name="n" value="${talent.tals_Code}"/>
 
-    <!-- Blog Post -->
-    <div class="card mb-4">
-      <div class="card-body">
-          <div class="col-lg-6">
-            <h2 class="card-title">판매글 제목</h2>
-
-
-            <span>가격 : </span>
-            <p class="card-text"><div id="btn-place"><a href="#"  class="btn btn-primary">상세보기 &rarr;</a></div> </p>  
-          </div>
-        </div>
+    <!-- Intro Content -->
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="inputArea">
+				<label for="tals_Title">제목</label>
+				<span>${talent.tals_Title}</span>
+		</div>
+		 <div class="inputArea">
+				<label for="tals_Kinds">판매희망분류</label>
+				<span>${talent.tals_Kinds}</span>
+		</div>
+		<div class="inputArea">
+				<label for="tals_Content">내용</label>
+				<span>${talent.tals_Content}</span>
+		</div>
+		<div class="inputArea">
+				<label for="tals_Price">가격</label>
+				<span>${talent.tals_Price}</span>
+		</div>
+		<div class="inputArea">
+				<label for="tals_Term">작업기간</label>
+				<span>${talent.tals_Term}</span>
+		</div>
+		<div class="inputArea">
+				<label for="phone_Num">연락처</label>
+				<span>${talent.phone_Num}</span>
+		</div>
       </div>
     </div>
+    
+      </div>
+  <c:choose>
+  <c:when test = "${member.id eq talent.tals_Id}">
+<a href="/talent/talent_S_modify?n=${talent.tals_Code}">게시물 수정</a><hr/>
+<a href="/talent/talent_S_delete?n=${talent.tals_Code}">게시물  삭제</a>
+</c:when>
 
-
-
-    <!-- Pagination -->
-    <ul class="pagination justify-content-center mb-4">
-      <li class="page-item">
-        <a class="page-link" href="#">&larr; Older</a>
-      </li>
-      <li class="page-item disabled">
-        <a class="page-link" href="#">Newer &rarr;</a>
-      </li>
-    </ul>
-
-  </div>
-  <!-- /.container -->
-
+</c:choose>
+<a href="/talent/talent_S_list">게시물  리스트</a>
   <!-- Footer -->
   <footer class="py-5 bg-dark">
     <div class="container">
@@ -146,6 +158,7 @@
   <!-- Bootstrap core JavaScript -->
   <script src="<c:url value="/resources/vendor/jquery/jquery.min.js" />"></script>
   <script src="<c:url value="/resources/vendor/bootstrap/js/bootstrap.bundle.min.js" />"></script>
+
 </body>
 
-</jsp>
+</html>

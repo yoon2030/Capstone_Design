@@ -2,8 +2,8 @@
 <%@ page session="false" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE jsp>
-<jsp lang="en">
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
 
@@ -12,17 +12,49 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>충대장터 -거래완료(후기작성)</title>
+  <title>재능판매 등록</title>
 
   <!-- Bootstrap core CSS -->
   <link href="${pageContext.request.contextPath}/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
 
   <!-- Custom styles for this template -->
   <link href="${pageContext.request.contextPath}/resources/css/modern-business.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="./about2.css">
+  <link rel="stylesheet" href="./about3.css">
   
-  <!--  add CSS -->
-  <link href="${pageContext.request.contextPath}/resources/vendor/bootstrap/css/web.css" rel="stylesheet" type="text/css">
   
+ <style>
+ 
+ 	section#container { padding:20px 0; border-top:2px solid #eee; border-bottom:2px solid #eee; }
+	section#container::after { content:""; display:block; clear:both; }
+	div#container_box { float:right; width:calc(100% - 200px - 20px); }
+	div#wrapper {
+    position: relative;
+    height: 100%;
+    }
+</style>
+ 
+<style>
+.inputArea { margin:10px 0; }
+select { width:100px; }
+label { display:inline-block; width:90px; padding:5px; }
+label[for='gdsDes'] { display:block; }
+input { width:150px; }
+textarea#gdsDes { width:400px; height:180px; }
+.step_url {    position: absolute;    top: 16px;    right: 13px;    font-size: 15px;    color: #8e8e8e;}
+.select_img img {margin:20px 0;}
+#wrapper {
+    position: relative;
+    height: 100%;
+}
+#content {
+    position: relative;
+    left: 50%;
+    transform: translate(-50%);
+    width: 800px;
+}
+</style>
+
 
 </head>
 
@@ -86,59 +118,41 @@
     </div>
   </nav>
 
-  <!-- Page Content -->
-  <div class="container">
+<div id="root">
+ <header>
+  <h1>재능기부 판매 게시판 글쓰기</h1>
+ </header>
 
-    <!-- Page Heading/Breadcrumbs -->
-    <h1 class="mt-4 mb-3">마이 페이지
-      <small></small>
-    </h1>
+<hr />
 
-    <ol class="breadcrumb">
-      <li class="breadcrumb-item">
-        <a href="index.html">거래완료(후기작성)</a>
-      </li>
-      <li class="breadcrumb-item active">거래 완료된 물건</li>
-    </ol>
+ <section id="container">
+ 
+  <form role="form" method="post" autocomplete="off">
+   <p>
+    <label for="Tals_Title">글 제목</label><input type="text" id="Tals_Title" name="Tals_Title" />
+   </p>
+   <p>
+    <label for="Tals_Kinds">글 종류</label><input type="text" id="Tals_Kinds" name="Tals_Kinds" />
+   </p>
+   <p>
+    <label for="Tals_Content">글 내용</label><textarea id="Tals_Content" name="Tals_Content"></textarea>
+   </p>
+   <p>
+    <label for="Tals_Price">가격</label><input type="text" id="Tals_Price" name="Tals_Price" />
+   </p>
+   <p>
+    <label for="Tals_Term">텀</label><input type="text" id="Tals_Term" name="Tals_Term" />
+   </p>
+   <p>
+    <button type="submit">작성</button>
+   </p>  
+  </form>
 
-    <!-- Blog Post -->
-    <c:forEach items="${list}" var="list">
-    <div class="card mb-4">
-      <div class="card-body">
-        <div class="row">
-           <div class="col-lg-6">
-            <a href="#">
-              <img class="img-fluid rounded" src="${list.goods_Pic}" alt="">
-            </a>
-          </div>
-          <div class="col-lg-6">
-            <h2 class="card-title"><span>제목</span>${list.goods_Name}</h2>
-            <p class="card-text"><span>판매자</span>${list.seller_Id}</p>
-            <p class="card-text"><span>내용</span>${list.goods_Des}</p>                     
-            <a href="/move/review_reg?n=${list.goods_Code}" class="btn btn-primary">후기 작성 &rarr;</a>
-          </div>
-        </div>
-      </div>
-      <div class="card-footer text-muted">
-        <p>${list.phone_Num}</p>
-        <a href="#"></a>
-      </div>
-    </div>
-    </c:forEach>
+ </section>
 
+<hr />
 
-
-    <!-- Pagination -->
-    <ul class="pagination justify-content-center mb-4">
-      <li class="page-item">
-        <a class="page-link" href="#">&larr; Older</a>
-      </li>
-      <li class="page-item disabled">
-        <a class="page-link" href="#">Newer &rarr;</a>
-      </li>
-    </ul>
-
-  </div>
+</div>
   <!-- /.container -->
 
   <!-- Footer -->
@@ -152,6 +166,7 @@
   <!-- Bootstrap core JavaScript -->
   <script src="<c:url value="/resources/vendor/jquery/jquery.min.js" />"></script>
   <script src="<c:url value="/resources/vendor/bootstrap/js/bootstrap.bundle.min.js" />"></script>
+
 </body>
 
-</jsp>
+</html>

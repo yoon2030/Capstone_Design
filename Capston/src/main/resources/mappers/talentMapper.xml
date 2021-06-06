@@ -5,18 +5,44 @@
 <mapper namespace="com.capstone.mappers.talentMapper">
 
 <!--재능 판매 등록 -->	
-
+<insert id="register">
+	insert into Talent_S (tals_Code, tals_Title, tals_Kinds, tals_Content, tals_Price, tals_Term, phone_Num, tals_Id, tals_Date)
+	values (talent_S_Seq.nextval, #{tals_Title}, #{tals_Kinds}, #{tals_Content},
+		#{tals_Price}, #{tals_Term}, #{phone_Num}, #{tals_Id}, SYSDATE )
+</insert>
 
 <!--재능 판매 수정 -->
+<update id="talentModify">
+	update Talent_S
+		set
+			tals_Title = #{tals_Title},
+			tals_Kinds = #{tals_Kinds},
+			tals_Content = #{tals_Content},
+			tals_Price = #{tals_Price}
+			
+		where tals_Code = ${tals_Code}
+</update>
 
 
 <!--재능 판매 삭제 -->
+<delete id="talentDelete">
+	delete Talent_S where tals_Code = #{tals_Code}
+</delete>
 
 
 <!--재능 판매 목록(화면) 출력 -->
+<select id="talentSlist" resultType="com.capstone.domain.Talent_S_VO">
+	select tals_Code, tals_Title, tals_Kinds, tals_Content, 
+	tals_Price, phone_Num, tals_Date, tals_Id
+	from Talent_S order by tals_Code desc
+</select>
 
 
 <!--재능 판매 상세 조회 -->
+<select id="talentSview" resultType="com.capstone.domain.Talent_S_VO">
+	select tals_Code, tals_Title, tals_Kinds, tals_Content, tals_Price, phone_Num, tals_Date, tals_Id, tals_Term
+	from Talent_S where Tals_Code = #{Tals_Code}
+</select>
 
 
 <!--재능 구매 등록 -->

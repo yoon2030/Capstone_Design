@@ -18,6 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.capstone.domain.Goods_B_VO;
 import com.capstone.domain.MemberVO;
 import com.capstone.domain.Talent_B_VO;
+import com.capstone.domain.Talent_S_VO;
 import com.capstone.domain.TradeVO;
 import com.capstone.service.AdminService;
 import com.capstone.service.TalentService;
@@ -32,24 +33,75 @@ public class TalentController {
 	TalentService talentService;
 	
 	//재능 판매 등록 get
-	
+	@RequestMapping(value="/talent_S_reg", method=RequestMethod.GET)
+	public void getTalent_S_Register(Model model) throws Exception{
+		logger.info("get Tals_S_Register");
+	}
 	
 	//재능 판매 등록 post
+	@RequestMapping(value="/talent_S_reg", method=RequestMethod.POST)
+	public String postTalent_S_Register(Talent_S_VO vo, HttpServletRequest req) throws Exception {
+		HttpSession session = req.getSession();
+		MemberVO seller = (MemberVO) session.getAttribute("member");
+		vo.setTals_Id(seller.getId());	
+		vo.setPhone_Num(seller.getPhone_Num());
+		
+		talentService.register(vo);
+		
+		return "redirect:/talent/talent_S_list";
+	}
 	
 	
 	//재능 판매 수정 get
-	
+	@RequestMapping(value="/talent_S_modify", method=RequestMethod.GET)
+	public void getTalentModify(@RequestParam("n") int Tals_Code, Model model) throws Exception{
+		logger.info("get talent modify");
+		
+		Talent_S_VO talent=talentService.talentSview(Tals_Code);
+		model.addAttribute("talent",talent);
+	}
 	
 	//재능 판매 수정 post
+	@RequestMapping(value="/talent_S_modify", method=RequestMethod.POST)
+	public String postTalentModify(Talent_S_VO vo, HttpServletRequest req) throws Exception{
+		logger.info("post modify");
+		
+		talentService.talentSModify(vo);
+		return "redirect:/talent/talent_S_list";
+	}
 	
 	
 	//재능 판매 삭제
-	
+	@RequestMapping(value="/talent_S_delete",method=RequestMethod.GET)
+	public String getTalentDelete(@RequestParam("n") int tals_Code) throws Exception{
+		logger.info("post talent delete");
+		talentService.talentDelete(tals_Code);
+		
+		return "redirect:/talent/talent_S_list";
+	}
 	
 	//재능 판매 화면 출력
+	@RequestMapping(value="/talent_S_list",method=RequestMethod.GET)
+	public void getTalentList(Model model, HttpServletRequest req) throws Exception{
+		logger.info("get talent_S_list");
+		HttpSession session = req.getSession();
+		MemberVO member = (MemberVO) session.getAttribute("member"); 
+		List<Talent_S_VO>list=talentService.talentSlist();
+		model.addAttribute("member",member);
+		model.addAttribute("list",list);
+	}
 	
 	
 	//재능 판매 상세 조회
+	@RequestMapping(value="/talent_S_view", method=RequestMethod.GET)
+	public void getTalentView(@RequestParam("n") int Tals_Code, Model model, HttpServletRequest req) throws Exception{
+		logger.info("get talent view");
+		HttpSession session = req.getSession();
+		MemberVO member = (MemberVO) session.getAttribute("member");
+		Talent_S_VO talent = talentService.talentSview(Tals_Code);
+		model.addAttribute("talent", talent);
+		model.addAttribute("member", member);
+	}
 	
 	
 //////////////여기까지 재능 판매 관련

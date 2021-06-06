@@ -1,9 +1,8 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page session="false" %>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE jsp>
-<jsp lang="en">
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<!DOCTYPE html>
 
 <head>
 
@@ -12,17 +11,18 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>충대장터 -거래완료(후기작성)</title>
+  <title>재능판매 리스트</title>
 
   <!-- Bootstrap core CSS -->
   <link href="${pageContext.request.contextPath}/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
 
   <!-- Custom styles for this template -->
   <link href="${pageContext.request.contextPath}/resources/css/modern-business.css" rel="stylesheet" type="text/css">
-  
-  <!--  add CSS -->
-  <link href="${pageContext.request.contextPath}/resources/vendor/bootstrap/css/web.css" rel="stylesheet" type="text/css">
-  
+
+<style>
+.card-img-top { width:418px; height:250px; }
+
+</style>
 
 </head>
 
@@ -86,65 +86,49 @@
     </div>
   </nav>
 
-  <!-- Page Content -->
-  <div class="container">
+<div id="root">
+ <header>
+  <h1>재능기부 판매 게시판 리스트</h1>
+ </header>
+<hr /> 
+   <a href="/talent/talent_S_reg">글쓰기</a>
+  <table>
+   <tr>
+   <th>글 번호</th>
+   <th>글 제목</th>
+   <th>글종류</th>
+   <th>텀</th>
+   <th>폰번호</th>
+   <th>작성일자</th>
+   <th>글쓴이</th>
+   </tr>
+   
+   <!-- 목록 시작 -->
+   <c:forEach items="${list}" var="list">
+   <tr>
+    <td><a href="/talent/talent_S_view?n=${list.tals_Code}">${list.tals_Code}</a></td>
+    <td>${list.tals_Title}</td>
+    <td>${list.tals_Kinds}</td>
+    <td>${list.tals_Term}</td>
+    <td>${list.phone_Num}</td>
+    <td><fmt:formatDate value="${list.tals_Date}" pattern="yyyy-MM-dd" /></td>
+    <td>${list.tals_Id}</td>
+   </tr>
+   </c:forEach>
+   <!-- 목록 끝 -->
+   
+  </table>
 
-    <!-- Page Heading/Breadcrumbs -->
-    <h1 class="mt-4 mb-3">마이 페이지
-      <small></small>
-    </h1>
+ </section>
 
-    <ol class="breadcrumb">
-      <li class="breadcrumb-item">
-        <a href="index.html">거래완료(후기작성)</a>
-      </li>
-      <li class="breadcrumb-item active">거래 완료된 물건</li>
-    </ol>
+<hr />
 
-    <!-- Blog Post -->
-    <c:forEach items="${list}" var="list">
-    <div class="card mb-4">
-      <div class="card-body">
-        <div class="row">
-           <div class="col-lg-6">
-            <a href="#">
-              <img class="img-fluid rounded" src="${list.goods_Pic}" alt="">
-            </a>
-          </div>
-          <div class="col-lg-6">
-            <h2 class="card-title"><span>제목</span>${list.goods_Name}</h2>
-            <p class="card-text"><span>판매자</span>${list.seller_Id}</p>
-            <p class="card-text"><span>내용</span>${list.goods_Des}</p>                     
-            <a href="/move/review_reg?n=${list.goods_Code}" class="btn btn-primary">후기 작성 &rarr;</a>
-          </div>
-        </div>
-      </div>
-      <div class="card-footer text-muted">
-        <p>${list.phone_Num}</p>
-        <a href="#"></a>
-      </div>
-    </div>
-    </c:forEach>
-
-
-
-    <!-- Pagination -->
-    <ul class="pagination justify-content-center mb-4">
-      <li class="page-item">
-        <a class="page-link" href="#">&larr; Older</a>
-      </li>
-      <li class="page-item disabled">
-        <a class="page-link" href="#">Newer &rarr;</a>
-      </li>
-    </ul>
-
-  </div>
-  <!-- /.container -->
+</div>
 
   <!-- Footer -->
   <footer class="py-5 bg-dark">
     <div class="container">
-      <p class="m-0 text-center text-white">충대 장터</p>
+      <p class="m-0 text-center text-white">충대장터</p>
     </div>
     <!-- /.container -->
   </footer>
@@ -152,6 +136,7 @@
   <!-- Bootstrap core JavaScript -->
   <script src="<c:url value="/resources/vendor/jquery/jquery.min.js" />"></script>
   <script src="<c:url value="/resources/vendor/bootstrap/js/bootstrap.bundle.min.js" />"></script>
+
 </body>
 
-</jsp>
+</html>

@@ -1,9 +1,8 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE jsp>
-<jsp lang="en">
+<%@ page session="false" pageEncoding="utf-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
 
@@ -12,22 +11,48 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>충대장터 - 재능구매</title>
+  <title>Modern Business - Start Bootstrap Template</title>
 
   <!-- Bootstrap core CSS -->
   <link href="${pageContext.request.contextPath}/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
 
   <!-- Custom styles for this template -->
   <link href="${pageContext.request.contextPath}/resources/css/modern-business.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="./about2.css">
+  <link rel="stylesheet" href="./about3.css">
   
   
-  <style>
-  
-  #btn-place{display:inline-block; position:relative; left:800px;}
-  
- #sell-reg-btn{ position:ablsolute; left:700px;}
-  
-  </style>
+ <style>
+ 
+ 	section#container { padding:20px 0; border-top:2px solid #eee; border-bottom:2px solid #eee; }
+	section#container::after { content:""; display:block; clear:both; }
+	div#container_box { float:right; width:calc(100% - 200px - 20px); }
+	
+</style>
+ 
+<style>
+.inputArea { margin:10px 0; }
+select { width:100px; }
+label { display:inline-block; width:90px; padding:5px; }
+label[for='gdsDes'] { display:block; }
+input { width:150px; }
+textarea#gdsDes { width:400px; height:180px; }
+.step_url {    position: absolute;    top: 16px;    right: 13px;    font-size: 15px;    color: #8e8e8e;}
+
+.select_img img {margin:20px 0;}
+.select_img img {width:418px; height:250px;}
+#wrapper {
+    position: relative;
+    height: 100%;
+}
+#content {
+    position: relative;
+    left: 50%;
+    transform: translate(-50%);
+    width: 800px;
+}
+</style>
+
 
 </head>
 
@@ -59,8 +84,8 @@
               재능거래소
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
-              <a class="dropdown-item" href="/move/uploaded">재능 판매</a>
-              <a class="dropdown-item" href="/move/wantbuy">재능 구매</a>
+              <a class="dropdown-item" href="/talent/talent_S_list">재능 판매</a>
+              <a class="dropdown-item" href="/talent/talent_B_list">재능 구매</a>
             </div>
           </li>
           <li class="nav-item dropdown">
@@ -90,56 +115,49 @@
       </div>
     </div>
   </nav>
+  
+    <!-- Talent_S Members -->
+    <section id="container">
+   
+		<div id="wrapper"> 
+<div id="content">
+		
+			    <h1 class="mt-4 mb-3">재능기부물품판매 수정
+			
+<form role="form" method="post" autocomplete="off" enctype="multipart/form-data">
+
+<input type="hidden" name="tals_Code" value="${talent.tals_Code}" />
 
 
-  <!-- Page Content -->
-  <div class="container">
+<div class="inputArea">
+ <label for="tals_Title">제목</label>
+ <input type="text" id="tals_Title" name="tals_Title" value="${talent.tals_Title}"/>
+</div>
+<div class="inputArea">
+ <label for="tals_Kinds">종류</label>
+ <input type="text" id="tals_Kinds" name="tals_Kinds" value="${talent.tals_Kinds}"/>
+</div>
+<div class="inputArea">
+ <label for="tals_Content">내용</label>
+ <input type="text" id="tals_Content" name="tals_Content" value="${talent.tals_Content}"/>
+</div>
+<div class="inputArea">
+ <label for="tals_Price">가격</label>
+ <input type="text" id="tals_Price" name="tals_Price" value="${talent.tals_Price}"/>
+</div>
+<div class="inputArea">
+ <button type="submit" id="update_Btn" class="btn btn-primary">완료</button>
+ <input type="button" value="취소" onclick="history.back(-1)">
+</div>   
 
-    <!-- Page Heading/Breadcrumbs -->
-    <h1 class="mt-4 mb-3">재능거래소 <a href="#" id= "sell-reg-btn" class="btn btn-primary">글쓰기</a>
-      <small></small>
-    </h1>
-
-    <ol class="breadcrumb">
-      <li class="breadcrumb-item">
-        <a href="index.html">재능 구매</a>
-      </li>
-      <li class="breadcrumb-item active"></li>
-    </ol>
-
-    <!-- Blog Post -->
-    <div class="card mb-4">
-      <div class="card-body">
-          <div class="col-lg-6">
-            <h2 class="card-title">구매글 제목</h2>
-
-
-            <span>희망 가격 : </span>
-            <p class="card-text"><div id="btn-place"><a href="#"  class="btn btn-primary">상세보기 &rarr;</a></div> </p>  
-          </div>
-        </div>
-      </div>
-    </div>
-
-
-
-    <!-- Pagination -->
-    <ul class="pagination justify-content-center mb-4">
-      <li class="page-item">
-        <a class="page-link" href="#">&larr; Older</a>
-      </li>
-      <li class="page-item disabled">
-        <a class="page-link" href="#">Newer &rarr;</a>
-      </li>
-    </ul>
-
-  </div>
-  <!-- /.container -->
-
+</form>
+			
+		</div>
+	</section>
   <!-- Footer -->
   <footer class="py-5 bg-dark">
     <div class="container">
-      <p class="m-0 text-center text-white">Copyright &copy; Your Website 2020</p>
+      <p class="m-0 text-center text-white">충대 장터</p>
     </div>
     <!-- /.container -->
   </footer>
@@ -147,6 +165,7 @@
   <!-- Bootstrap core JavaScript -->
   <script src="<c:url value="/resources/vendor/jquery/jquery.min.js" />"></script>
   <script src="<c:url value="/resources/vendor/bootstrap/js/bootstrap.bundle.min.js" />"></script>
+
 </body>
 
-</jsp>
+</html>
