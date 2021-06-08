@@ -18,12 +18,12 @@
 
   <!-- Custom styles for this template -->
   <link href="${pageContext.request.contextPath}/resources/css/modern-business.css" rel="stylesheet" type="text/css">
-   <!--  add CSS -->
+    <!--  add CSS -->
   <link href="${pageContext.request.contextPath}/resources/vendor/bootstrap/css/web.css" rel="stylesheet" type="text/css">
 
 <style>
 .card-img-top { width:418px; height:250px; }
-#reg {width : 49px; height:29px; border: none; padding: 0;font-size:20px; position:absolute; left:1100px; background: }
+
 </style>
 
 </head>
@@ -93,8 +93,9 @@
   <div class="container">
 
     <!-- Page Heading/Breadcrumbs -->
-    <h1 class="mt-4 mb-3">구매 희망
-    <button id = "reg" onclick="location.href='/admin/goodsb_register'">등록</button>
+    
+    <h1 id ="talb_list_title" class="mt-4 mb-3">구매 희망
+    <button id ="reg" onclick="location.href='/admin/goodsb_register'">등록</button>
     
       <small></small>
     </h1>

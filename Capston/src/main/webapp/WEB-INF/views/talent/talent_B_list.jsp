@@ -23,7 +23,7 @@
 
 <style>
 .card-img-top { width:418px; height:250px; }
-#reg {width : 49px; height:29px; border: none; padding: 0;font-size:20px; position:absolute; left:1100px; background: }
+
 </style>
 
 </head>
@@ -93,7 +93,7 @@
   <div class="container">
 
     <!-- Page Heading/Breadcrumbs -->
-    <h1 class="mt-4 mb-3">재능구매 거래소
+    <h1 id ="talb_list_title" class="mt-4 mb-3">재능구매 거래소
     <button id = "reg" onclick="location.href='/talent/talent_B_register'">등록</button>
     
       <small></small>

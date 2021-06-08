@@ -96,7 +96,7 @@
     <div id = "Product_reg">
       <button id = "reg" onclick="location.href='/admin/register'">등록</button>
       </div>
-  </div>
+  	</div>
   
 
     <div class="row">

@@ -103,7 +103,7 @@ input { width:150px; }
   <div class="container">
 
     <!-- Page Heading/Breadcrumbs -->
-    <h1 class="mt-4 mb-3">구매 희망 상세</h1>
+    <h1 class="mt-4 mb-3">재능 구매 상세</h1>
 
 	<form role="form" method="post" autocomplete="off">
 			

@@ -166,8 +166,8 @@ textarea#faqDes { width:600px; height:300px; }
 <div class="inputArea">
 	<label id = "faq_Content" for="faq_Content">
 	문의내용
-	</label>
-	<textarea rows="5" cols="100" id="faq_Content" name="faq_Content"></textarea>
+	</label><br>
+	<textarea rows="5" cols="80" id="faq_Content" name="faq_Content"></textarea>
 </div>
 <br></br><br></br>
 <div class="inputArea">

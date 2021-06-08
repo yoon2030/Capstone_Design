@@ -138,7 +138,7 @@ input { width:150px; }
         <div class="inputArea">
 				<label for="gdsDes">상품소개</label>	
 				<div class="gdsDes">${goods.goods_Des}</div>
-			</div>
+		</div>
       </div>
     </div>
 

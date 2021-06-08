@@ -187,7 +187,7 @@ textarea#gdsDes { width:400px; height:180px; }
    }
   });
  </script>
- <%=request.getRealPath("/") %> 
+ <!-- <%=request.getRealPath("/") %>  -->
 </div>
 <div class="inputArea">
 	<button type="submit" id="register_Btn" class="btn btn-primary">등록</button>

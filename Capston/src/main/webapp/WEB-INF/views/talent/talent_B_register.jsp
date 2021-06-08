@@ -125,14 +125,14 @@ textarea#gdsDes { width:400px; height:180px; }
 		<div id="wrapper"> 
 <div id="content">
 		
-			    <h1 class="mt-4 mb-3">재능구매
+			    <h1 class="mt-4 mb-3">재능 구매
       <small></small>
     </h1>
 			    <ol class="breadcrumb">
       <li class="breadcrumb-item">
         <a href="talent_B_list.html">재능구매 거래소</a>
       </li>
-      <li class="breadcrumb-item active">재능구매 등록</li>
+      <li class="breadcrumb-item active">재능 구매 등록</li>
     </ol>
 				
 <form role="form" method="post" autocomplete="off" enctype="multipart/form-data">

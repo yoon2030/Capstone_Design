@@ -41,7 +41,7 @@ input { width:150px; }
 <body>
 
   <!-- Navigation -->
-   <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
+  <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
       <a class="navbar-brand" href="/move/index">충대 장터</a>
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -66,8 +66,8 @@ input { width:150px; }
               재능거래소
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
-              <a class="dropdown-item" href="/move/uploaded">재능 판매</a>
-              <a class="dropdown-item" href="/move/wantbuy">재능 구매</a>
+              <a class="dropdown-item" href="/talent/talent_S_list">재능 판매</a>
+              <a class="dropdown-item" href="/talent/talent_B_list">재능 구매</a>
             </div>
           </li>
           <li class="nav-item dropdown">
@@ -102,7 +102,7 @@ input { width:150px; }
   <div class="container">
 
     <!-- Page Heading/Breadcrumbs -->
-    <h1 class="mt-4 mb-3">재능판매물품_상세</h1>
+    <h1 class="mt-4 mb-3">재능 판매 상세</h1>
 
 	<form role="form" method="post" autocomplete="off">
 			
@@ -141,16 +141,37 @@ input { width:150px; }
       </div>
   <c:choose>
   <c:when test = "${member.id eq talent.tals_Id}">
-<a href="/talent/talent_S_modify?n=${talent.tals_Code}">게시물 수정</a><hr/>
-<a href="/talent/talent_S_delete?n=${talent.tals_Code}">게시물  삭제</a>
+  <div id = "tradebtn">
+    <button type="button" id="modify_Btn" class="btn btn-warning">수정</button>
+	<button type="button" id="delete_Btn" class="btn btn-danger">삭제</button>
+			<script>
+					var formObj = $("form[role='form']");
+					
+					$("#modify_Btn").click(function(){
+						formObj.attr("action", "/talent/talent_S_modify");
+						formObj.attr("method", "get")
+						formObj.submit();
+					});
+					
+					$("#delete_Btn").click(function(){
+						
+						var con = confirm("정말로 삭제하시겠습니까?");
+						
+						if(con) {						
+							formObj.attr("action", "/talent/talent_S_delete");
+							formObj.submit();
+						}
+					});
+				</script>	
+  </div>
 </c:when>
 
 </c:choose>
-<a href="/talent/talent_S_list">게시물  리스트</a>
+
   <!-- Footer -->
   <footer class="py-5 bg-dark">
     <div class="container">
-      <p class="m-0 text-center text-white">Copyright &copy; Your Website 2020</p>
+      <p class="m-0 text-center text-white">충대 장터</p>
     </div>
     <!-- /.container -->
   </footer>

@@ -123,14 +123,14 @@ textarea#gdsDes { width:400px; height:180px; }
 		<div id="wrapper"> 
 <div id="content">
 		
-			    <h1 class="mt-4 mb-3">재능구매내용 수정
+			    <h1 class="mt-4 mb-3">재능 구매 수정
       <small></small>
     </h1>
 			    <ol class="breadcrumb">
       <li class="breadcrumb-item">
         <a href="index.html">재능 구매</a>
       </li>
-      <li class="breadcrumb-item active">재능구매내용 수정</li>
+      <li class="breadcrumb-item active">재능 구매 수정</li>
     </ol>
 			
 <form role="form" method="post" autocomplete="off" enctype="multipart/form-data">
