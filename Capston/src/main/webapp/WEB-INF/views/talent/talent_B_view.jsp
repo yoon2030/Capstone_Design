@@ -120,12 +120,16 @@ input { width:150px; }
 				<label for="gdsCategory">구매희망분류</label>
 				<span>${talent.talb_Kinds}</span>
 		</div>
+		 <div class="inputArea">
+				<label>작성자</label>
+				<span>${talent.talb_Id}</span>
+		</div>
 		<div class="inputArea">
 				<label for="gdsCategory">연락처</label>
 				<span>${talent.phone_Num}</span>
 		</div>
         <div class="inputArea">
-				<label for="gdsDes">구매내용</label>	
+				<label for="gdsDes">내용</label>	
 				<div class="gdsDes">${talent.talb_Content}</div>
 			</div>
       </div>

@@ -111,10 +111,9 @@
     <div class="card mb-4">
       <div class="card-body">
           <div class="col-lg-6">
-            <h2 class="card-title">${list.talb_Title}</h2>
-            
-            <span>작성자 : </span>
-            <p class="card-text">${list.talb_Id}</p>
+            <h2 class="card-title"><label>제목 : </label>${list.talb_Title}</h2>
+            <p class="card-text"><label>작성자 : </label>${list.talb_Id}</p>
+            <p class="card-text"><label>구매희망분류 : </label>${list.talb_Kinds}</p>
             <p class="card-text"><div id="btn-place"><a href="/talent/talent_B_view?n=${list.talb_Code}"  class="btn btn-primary">상세보기 &rarr;</a></div> </p> 
           </div>
       </div>

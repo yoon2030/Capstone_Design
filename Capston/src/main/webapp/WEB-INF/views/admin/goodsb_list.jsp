@@ -112,8 +112,9 @@
     <div class="card mb-4">
       <div class="card-body">
           <div class="col-lg-6">
-            <h2 class="card-title">${list.goodsb_Title}</h2>
-            <p class="card-text">${list.goodsb_Id}</p>
+            <h2 class="card-title"><label>제목 : </label>${list.goodsb_Title}</h2>
+            <p class="card-text"> <label>작성자 : </label>${list.goodsb_Id}</p>
+            <p class="card-text"> <label>구매희망가격 : </label><fmt:formatNumber value="${list.goodsb_Price}" pattern="###,###,###원"/></p>
             <a href="/admin/goodsb_view?n=${list.goodsb_Code}" class="btn btn-primary">상세내용 보기 &rarr;</a>
           </div>
 

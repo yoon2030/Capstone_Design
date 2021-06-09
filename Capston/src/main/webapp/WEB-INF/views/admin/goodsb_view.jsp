@@ -120,13 +120,17 @@ input { width:150px; }
 				<label for="gdsCategory">구매희망분류</label>
 				<span>${goods.goodsb_Cate}</span>
 		</div>
+		 <div class="inputArea">
+				<label>작성자</label>
+				<span>${goods.goodsb_Id}</span>
+		</div>
 		<div class="inputArea">
 				<label for="gdsCategory">연락처</label>
 				<span>${goods.phone_Num}</span>
 		</div>
 		<div class="inputArea">
 				<label for="gdsPrice">구매희망가격</label>
-				<span>${goods.goodsb_Price}</span>
+				<span><fmt:formatNumber value="${goods.goodsb_Price}" pattern="###,###,###원"/></span>
 			</div>
         <div class="inputArea">
 				<label for="gdsDes">구매내용</label>	
@@ -169,14 +173,7 @@ input { width:150px; }
 </c:otherwise>
 
 </c:choose>
-  <div id = "after">
-    <h4>최근 거래 후기</h2>
-    <ul>
-      <li><span>정말 친절해요</span><h1><span id="star"></span></h1></li>
-      <li><span>쿨거래 감사합니다</span><h1><span id="star"></span></h1></li>
-      <li><span>후기3</span><h1><span id="star"></span></h1></li>
-    </ul>
-  </div>
+ 
 
    
   <!-- /.container -->

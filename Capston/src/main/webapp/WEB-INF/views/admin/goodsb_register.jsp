@@ -37,7 +37,7 @@
 <style>
 .inputArea { margin:10px 0; }
 select { width:100px; }
-label { display:inline-block; width:90px; padding:5px; }
+label { display:inline-block; width:120px; padding:5px; }
 label[for='gdsDes'] { display:block; }
 input { width:150px; }
 textarea#gdsDes { width:400px; height:180px; }

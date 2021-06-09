@@ -185,10 +185,10 @@ textarea#gdsDes { width:400px; height:180px; }
 
 <div class="inputArea">
 	<div id = selltitle >
-	<h2>제목 : <span>판매글 제목</span></h2>
+	<h2>제목 : <span>${goods.goods_Name}</span></h2>
 	</div>
 	<div id= writer> 
-	<h4>판매자 : <span>판매자 이름</span></h4>
+	<h4>판매자 : <span>${goods.seller_Id}</span></h4>
 	</div>
 	<div class="inputArea">
 	<label for="review_Sta">별점</label>

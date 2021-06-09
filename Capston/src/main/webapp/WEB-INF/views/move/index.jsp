@@ -118,9 +118,9 @@
 
 <div class="row">
       <div class="col-lg-6">
+        <ul>
         <h2>충대 장터 소개</h2>
         <p>충대 장터의 장점</p>
-        <ul>
           <li>
             <strong>신뢰성이 높습니다!!</strong>
           </li>

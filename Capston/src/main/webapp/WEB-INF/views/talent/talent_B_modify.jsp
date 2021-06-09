@@ -151,7 +151,7 @@ textarea#gdsDes { width:400px; height:180px; }
 	</select>
 </div>
 <div class="inputArea">
- <label for="talb_Content">재능구매내용</label>
+ <label for="talb_Content">내용</label>
  <textarea rows="5" cols="50" id="talb_Content" name="talb_Content">${talent.talb_Content}</textarea>
 </div>
 

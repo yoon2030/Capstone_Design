@@ -2,6 +2,7 @@
 <%@ page session="false" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -192,8 +193,7 @@ li {
     <ul>
     <li>제목<span>날짜</span></li>
     <c:forEach items="${list}" var="list">
-    <li><sapn>${list.notice_Num}</sapn> <a href="/move/contact_view?n=${list.notice_Num}">${list.notice_Title}</a><span>${list.notice_Date}</span></li>
-      	
+    <li><sapn>${list.notice_Num}</sapn> <a href="/move/contact_view?n=${list.notice_Num}">${list.notice_Title}</a><span><fmt:formatDate pattern="yyyy/MM/dd" value="${list.notice_Date}"/></span></li>
     </c:forEach>
     </ul>
 

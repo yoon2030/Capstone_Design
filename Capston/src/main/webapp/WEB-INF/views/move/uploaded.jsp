@@ -2,6 +2,7 @@
 <%@ page session="false" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE jsp>
 <jsp lang="en">
 
@@ -106,8 +107,10 @@
       <div class="card-body">
         <div class="row">
           <div class="col-lg-6">
-            <a href="/admin/goodsb_view?n=${list.goods_Code}">
+            <a href="/admin/trade_view?n=${list.goods_Code}">
+            <div class="col-lg-6">
               <img src="${list.goods_Pic}" class="card-img-top"/>
+              </div>
             </a>
           </div>
           <div class="col-lg-6">
@@ -118,8 +121,7 @@
         </div>
       </div>
       <div class="card-footer text-muted">
-       <p> ${list.goods_Date}</p>
-        <a href="#"></a>
+      <fmt:formatDate pattern="yyyy/MM/dd" value="${list.goods_Date}"/>
       </div>
     </div>
 	</c:forEach>
@@ -141,8 +143,7 @@
         </div>
       </div>
       <div class="card-footer text-muted">
-       	<p>${list2.goodsb_Date}</p>
-        <a href="#"></a>
+     	 <fmt:formatDate pattern="yyyy/MM/dd" value="${list2.goodsb_Date}"/>
       </div>
     </div>
 	</c:forEach>

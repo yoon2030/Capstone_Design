@@ -123,13 +123,17 @@ input { width:150px; }
 				<label for="gdsCategory">상품분류</label>
 				<span>${goods.goods_Cate}</span>
 		</div>
+				<div class="inputArea">
+				<label >작성자</label>
+				<span>${goods.seller_Id}</span>
+		</div>
 		<div class="inputArea">
 				<label for="gdsCategory">연락처</label>
 				<span>${goods.phone_Num}</span>
 		</div>
 		<div class="inputArea">
 				<label for="gdsPrice">상품가격</label>
-				<span><fmt:formatNumber value="${goods.goods_Price}" pattern="###,###,###"/></span>
+				<span><fmt:formatNumber value="${goods.goods_Price}" pattern="###,###,###원"/></span>
 			</div>
 		<div class="inputArea">
 				<label for="gdsSta">상품상태</label>
@@ -211,9 +215,10 @@ input { width:150px; }
   <div id = "after">
     <h4>최근 거래 후기</h2>
     <ul>
-      <li><span>정말 친절해요</span><h1><span id="star"></span></h1></li>
-      <li><span>쿨거래 감사합니다</span><h1><span id="star"></span></h1></li>
-      <li><span>후기3</span><h1><span id="star"></span></h1></li>
+   	 <li><label>별점</label><label>후기내용</label></li>
+    	<c:forEach items="${list}" var="list">
+      		<li><label>${list.review_Sta}</label>${list.review_Content}</li>
+     	</c:forEach>
     </ul>
   </div>
 

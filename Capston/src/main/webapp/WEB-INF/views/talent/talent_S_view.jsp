@@ -23,7 +23,7 @@
 <style>
 .inputArea { margin:10px 0; }
 select { width:100px; }
-label { display:inline-block; width:90px; padding:5px; }
+label { display:inline-block; width:110px; padding:5px; }
 label[for='gdsDes'] { display:block; }
 input { width:150px; }
 .gdsDes { marigin:10px 0;width:400px; height:180px; }
@@ -119,13 +119,13 @@ input { width:150px; }
 				<label for="tals_Kinds">판매희망분류</label>
 				<span>${talent.tals_Kinds}</span>
 		</div>
-		<div class="inputArea">
-				<label for="tals_Content">내용</label>
-				<span>${talent.tals_Content}</span>
+		        <div class="inputArea">
+				<label>작성자</label>
+				<span>${talent.tals_Id}</span>
 		</div>
 		<div class="inputArea">
 				<label for="tals_Price">가격</label>
-				<span>${talent.tals_Price}</span>
+				<span><fmt:formatNumber value="${talent.tals_Price}" pattern="###,###,###원"/></span>
 		</div>
 		<div class="inputArea">
 				<label for="tals_Term">작업기간</label>
@@ -134,6 +134,10 @@ input { width:150px; }
 		<div class="inputArea">
 				<label for="phone_Num">연락처</label>
 				<span>${talent.phone_Num}</span>
+		</div>
+				<div class="inputArea">
+				<label for="tals_Content">내용</label>
+				<div class="gdsDes">${talent.tals_Content}</div>
 		</div>
       </div>
     </div>

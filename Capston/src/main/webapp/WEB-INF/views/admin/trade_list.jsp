@@ -2,6 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page session="false" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
 <!DOCTYPE html>
 
 <head>
@@ -27,7 +28,6 @@
 </head>
 
 <body>
-
   <!-- Navigation -->
    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
@@ -104,14 +104,14 @@
     	 <div class="col-lg-100">
         <div class="card h-100 text-center">
         <div id="trade_list_margin">
-         <img src="${list.goods_Pic}" class="card-img-top"/>
+         <a href="/admin/trade_view?n=${list.goods_Code}"><img src="${list.goods_Pic}" class="card-img-top"/></a>
          </div>
           <div class="card-body">
-         		 <label for="gdsName">상품명</label>
-				<h4 class="card-title">${list.goods_Name}</h4>
+				<h4 class="card-title"><label>제목 : </label>${list.goods_Name}</h4>
+				 <p class="card-text"><label>가격 : </label><fmt:formatNumber value="${list.goods_Price}" pattern="###,###,###원"/></p>
           </div>
           <div class="card-footer">
-          	<span>닉네임:</span>
+          	<span>작성자:</span>
             <a href="/admin/trade_view?n=${list.goods_Code}">${list.seller_Id}</a>
           </div>
         </div>
