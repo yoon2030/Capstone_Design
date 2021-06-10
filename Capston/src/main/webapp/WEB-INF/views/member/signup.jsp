@@ -104,7 +104,7 @@
                 <div>
                     <h3 class="join_title"><label for="Phone_Num">휴대전화</label></h3>
                     <span class="box int_mobile">
-                        <input type="text" id="Phone_Num" name="Phone_Num" placeholder="ex)01012345678 (-생략)" required="required" class="int">
+                        <input type="text" id="Phone_Num" name="Phone_Num" placeholder="ex)010-1234-5678 (-포함)" required="required" class="int">
                     </span>
                     <span class="error_next_box"></span>    
                 </div>
