@@ -173,23 +173,6 @@ input { width:150px; }
 					});
 				</script>	
   </div>
-  <div id = "tradebtn">
-  <button type="button" id="com_Btn" class="btn btn-warning">거래완료</button>
-  <button type="button" id="rej_Btn" class="btn btn-danger">거래거부</button>
-  	<script>
-					var formObj = $("form[role='form']");
-					
-					$("#com_Btn").click(function(){
-							formObj.attr("action", "/admin/complete");
-							formObj.submit();
-					});
-					
-					$("#rej_Btn").click(function(){	
-							formObj.attr("action", "/admin/reject");
-							formObj.submit();
-					});
-			</script>	
-</div>
 </c:when>
 <c:otherwise>
   <div id = "tradebtn">

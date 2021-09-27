@@ -170,14 +170,14 @@ textarea#gdsDes { width:400px; height:180px; }
 		<div id="wrapper"> 
 <div id="content">
 		
-			    <h1 class="mt-4 mb-3">후기 작성
+			    <h1 class="mt-4 mb-3">후기 수정
       <small></small>
     </h1>
 			    <ol class="breadcrumb">
       <li class="breadcrumb-item">
         <a href="index.html">마이페이지</a>
       </li>
-      <li class="breadcrumb-item active">후기관리 / 후기작성</li>
+      <li class="breadcrumb-item active">후기관리 / 중고 거래 후기 수정</li>
     </ol>
 			
 <form role="form" method="post" autocomplete="off" enctype="multipart/form-data">
@@ -187,16 +187,16 @@ textarea#gdsDes { width:400px; height:180px; }
 <div class="inputArea">
 	<label for="review_Sta">별점</label>
 	<select id="review_Sta" name="review_Sta" >
-		<option value=1 <c:if test="${review_Sta == '1'}">selected</c:if>>1</option>
-  		<option value=2 <c:if test="${review_Sta == '2'}">selected</c:if>>2</option>
- 	 	<option value=3 <c:if test="${review_Sta == '3'}">selected</c:if>>3</option>
- 	 	<option value=4 <c:if test="${review_Sta == '4'}">selected</c:if>>4</option>
- 	 	<option value=5 <c:if test="${review_Sta == '5'}">selected</c:if>>5</option>
+		<option value=1 <c:if test="${review.review_Sta == '1'}">selected</c:if>>1</option>
+  		<option value=2 <c:if test="${review.review_Sta == '2'}">selected</c:if>>2</option>
+ 	 	<option value=3 <c:if test="${review.review_Sta == '3'}">selected</c:if>>3</option>
+ 	 	<option value=4 <c:if test="${review.review_Sta == '4'}">selected</c:if>>4</option>
+ 	 	<option value=5 <c:if test="${review.review_Sta == '5'}">selected</c:if>>5</option>
 	</select>
 </div>
 
 <div class="inputArea">
-	<label for="gdsDes">후기 작성</label>
+	<label for="gdsDes">후기 내용</label>
 	<textarea rows="5" cols="70" id="review_Content" name="review_Content"></textarea>
 </div>
 

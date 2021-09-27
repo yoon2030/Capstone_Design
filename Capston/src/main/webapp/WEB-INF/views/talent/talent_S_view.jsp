@@ -116,10 +116,14 @@ input { width:150px; }
 				<span>${talent.tals_Title}</span>
 		</div>
 		 <div class="inputArea">
-				<label for="tals_Kinds">판매희망분류</label>
+				<label for="tals_Kinds">재능1차분류</label>
 				<span>${talent.tals_Kinds}</span>
 		</div>
-		        <div class="inputArea">
+		 <div class="inputArea">
+				<label for="tals_Kinds_2">재능2차분류</label>
+				<span>${talent.tals_Kinds_2}</span>
+		</div>
+		<div class="inputArea">
 				<label>작성자</label>
 				<span>${talent.tals_Id}</span>
 		</div>
@@ -169,7 +173,19 @@ input { width:150px; }
 				</script>	
   </div>
 </c:when>
-
+<c:otherwise>
+	 <div id = "tradebtn">
+    <button type="button" id="req_Btn" class="btn btn-warning">거래요청</button>
+			<script>
+					var formObj = $("form[role='form']");
+					
+					$("#req_Btn").click(function(){
+							formObj.attr("action", "/talent/trade_req");
+							formObj.submit();
+					});
+			</script>	
+  </div>
+</c:otherwise>
 </c:choose>
 
   <!-- Footer -->

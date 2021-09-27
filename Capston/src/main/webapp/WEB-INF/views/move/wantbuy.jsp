@@ -1,4 +1,4 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+e<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page session="false" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -12,7 +12,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>마이페이지 - 구매 요청 상품 목록</title>
+  <title>마이페이지 - 구매 요청 목록</title>
 
   <!-- Bootstrap core CSS -->
   <link href="${pageContext.request.contextPath}/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
@@ -95,9 +95,9 @@
 
     <ol class="breadcrumb">
       <li class="breadcrumb-item">
-        <a href="index.html">상품관리</a>
+        <a href="index.html">중고마켓관리</a>
       </li>
-      <li class="breadcrumb-item active">내가 거래 요청한 물건</li>
+      <li class="breadcrumb-item active">거래요청한 중고마켓품목</li>
     </ol>
 
     <!-- Blog Post -->
@@ -115,6 +115,36 @@
       </div>
       <div class="card-footer text-muted">
        	<p><label>판매자연락처 : </label>${list.phone_Num}</p>
+        <a href="#"></a>
+      </div>
+    </div>
+    </c:forEach>
+    
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <a href="index.html">재능마켓관리</a>
+      </li>
+      <li class="breadcrumb-item active">거래요청한 재능마켓품목</li>
+    </ol>
+
+    <!-- Blog Post -->
+    <c:forEach items="${list2}" var="list2">
+    <div class="card mb-4">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-lg-6">
+            <h2 class="card-title"><label>제목 : </label>${list2.tals_Title}</h2>
+            <p class="card-text"><label>판매자 : </label>${list2.tals_Id}</p>
+            <p class="card-text"><label>1차분류 : </label>${list2.tals_Kinds}</p>
+            <p class="card-text"><label>2차분류 : </label>${list2.tals_Kinds_2}</p>
+            <p class="card-text"><label>가격 : </label>${list2.tals_Price}</p>
+            <p class="card-text"><label>기간 : </label>${list2.tals_Term}</p>
+            <a id="wantbuy_btn" href="/talent/talent_S_view?n=${list2.tals_Code}" class="btn btn-primary">상세한 정보 확인하기 &rarr;</a>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer text-muted">
+       	<p><label>판매자연락처 : </label>${list2.phone_Num}</p>
         <a href="#"></a>
       </div>
     </div>

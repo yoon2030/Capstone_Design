@@ -109,6 +109,7 @@
           <div class="card-body">
 				<h4 class="card-title"><label>제목 : </label>${list.goods_Name}</h4>
 				 <p class="card-text"><label>가격 : </label><fmt:formatNumber value="${list.goods_Price}" pattern="###,###,###원"/></p>
+				 <p class="card-text"><label>상태 : </label>${list.goods_State}</p>
           </div>
           <div class="card-footer">
           	<span>작성자:</span>

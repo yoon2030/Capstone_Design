@@ -1,10 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page session="false" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-
-<!DOCTYPE html>
-
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE jsp>
+<jsp lang="en">
 <head>
 
   <meta charset="utf-8">
@@ -13,32 +12,96 @@
   <meta name="author" content="">
 
   <title>Modern Business - Start Bootstrap Template</title>
-<script src="/resources/jquery/jquery-3.3.1.min.js"></script>
+
   <!-- Bootstrap core CSS -->
   <link href="${pageContext.request.contextPath}/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
 
   <!-- Custom styles for this template -->
   <link href="${pageContext.request.contextPath}/resources/css/modern-business.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="./about2.css">
+  <link rel="stylesheet" href="./about3.css">
+  
+      <!--  add CSS -->
+  <link href="${pageContext.request.contextPath}/resources/vendor/bootstrap/css/web.css" rel="stylesheet" type="text/css">
+  
+  
+ <style>
+ 
+ 	section#container { padding:20px 0; border-top:2px solid #eee; border-bottom:2px solid #eee; }
+	section#container::after { content:""; display:block; clear:both; }
+	div#container_box { float:right; width:calc(100% - 200px - 20px); }
+	div#wrapper {
+    position: relative;
+    height: 100%;
+    
+}
 
+.rate {
+    float: left;
+    height: 46px;
+    padding: 0 10px;
+}
+.rate:not(:checked) > input {
+    position:absolute;
+    top:-9999px;
+}
+.rate:not(:checked) > label {
+    float:right;
+    width:1em;
+    overflow:hidden;
+    white-space:nowrap;
+    cursor:pointer;
+    font-size:30px;
+    color:#ccc;
+}
+.rate:not(:checked) > label:before {
+    content: '★ ';
+}
+.rate > input:checked ~ label {
+    color: #ffc700;    
+}
+.rate:not(:checked) > label:hover,
+.rate:not(:checked) > label:hover ~ label {
+    color: #deb217;  
+}
+.rate > input:checked + label:hover,
+.rate > input:checked + label:hover ~ label,
+.rate > input:checked ~ label:hover,
+.rate > input:checked ~ label:hover ~ label,
+.rate > label:hover ~ input:checked ~ label {
+    color: #c59b08;
+}
+	
+</style>
+ 
 <style>
 .inputArea { margin:10px 0; }
 select { width:100px; }
-label { display:inline-block; width:200px; padding:5px; }
+label { display:inline-block; width:90px; padding:5px; }
 label[for='gdsDes'] { display:block; }
 input { width:150px; }
-.gdsDes { marigin:10px 0;width:400px; height:180px; }
-.card-img-top{width:418px; height:250px; }
-.star{background-image:url(/resources/image/star.jpg);}
-.thumbImg {}
-#com_Btn {border : 0; width:100px; height:30px;;  position: relative; left:70%;}
-#rej_Btn {border : 0; width:100px; height:30px;;  position: relative; left:70%;}
-#cancel_Btn {border : 0; width:100px; height:30px;;  position: relative; left:70%;}
-#req_Btn {border : 0; width:100px; height:30px;;  position: relative; left:70%;}
+textarea#gdsDes { width:400px; height:180px; }
+.step_url {    position: absolute;    top: 16px;    right: 13px;    font-size: 15px;    color: #8e8e8e;}
+
+.select_img img {margin:20px 0;}
+#wrapper {
+    position: relative;
+    height: 100%;
+}
+#content {
+    position: relative;
+    left: 50%;
+    transform: translate(-50%);
+    width: 800px;
+}
+
 </style>
+
 
 </head>
 
 <body>
+
 
   <!-- Navigation -->
   <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
@@ -98,85 +161,82 @@ input { width:150px; }
     </div>
   </nav>
 
-  <!-- Page Content -->
-  <div class="container">
 
-    <!-- Page Heading/Breadcrumbs -->
-    <h1 class="mt-4 mb-3">재능구매 상세</h1>
+  
 
-	<form role="form" method="post" autocomplete="off">
+    <!-- Team Members -->
+   <section id="container">
+   
+		<div id="wrapper"> 
+<div id="content">
+		
+			    <h1 class="mt-4 mb-3">재능거래 후기작성
+      <small></small>
+    </h1>
+			    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <a href="index.html">마이페이지</a>
+      </li>
+      <li class="breadcrumb-item active">후기관리 / 재능거래 후기작성</li>
+    </ol>
 			
-	<input type="hidden" name="n" value="${talent.talb_Code}"/>
+<form role="form" method="post" autocomplete="off" enctype="multipart/form-data">
 
-    <!-- Intro Content -->
-    <div class="row">
-      <div class="col-lg-6">
-        <div class="inputArea">
-				<label for="gdsName">제목</label>
-				<span>${talent.talb_Title}</span>
+
+<div class="inputArea">
+	<div id = selltitle >
+	<h2>제목 : <span>${trade.talent_Title}</span></h2>
+	</div>
+	<div id= writer> 
+	<h4>판매자 : <span>${trade.seller_Id}</span></h4>
+	</div>
+	<div class="inputArea">
+	<label for="rev_T_Sta">별점</label>
+	<select id="rev_T_Sta" name="rev_T_Sta" >
+		<option value=1 selected="selected">1</option>
+  		<option value=2>2</option>
+ 	 	<option value=3>3</option>
+ 	 	<option value=4>4</option>
+ 	 	<option value=5>5</option>
+	</select>
+</div>
+	</div>
+
+	
+
+
+<div class="inputArea">
+	<label for="gdsDes">후기 작성</label>
+	<textarea rows="5" cols="70" id="rev_T_Content" name="rev_T_Content"></textarea>
+
+ 
+ 
+
+
+</div>
+	<div id="after-btn-container">
+	<button type="submit" id="after_Btn" class="btn btn-primary">등록</button>
+	</div>
+
+</div>
+</div>
+
+</form>
+			
 		</div>
-		<div class="inputArea">
-				<label for="gdsCategory">구매희망분류</label>
-				<span>${talent.talb_Kinds}</span>
-		</div>
-		 <div class="inputArea">
-				<label>작성자</label>
-				<span>${talent.talb_Id}</span>
-		</div>
-		<div class="inputArea">
-				<label for="gdsCategory">연락처</label>
-				<span>${talent.phone_Num}</span>
-		</div>
-        <div class="inputArea">
-				<label for="gdsDes">내용</label>	
-				<div class="gdsDes">${talent.talb_Content}</div>
-			</div>
-      </div>
-    </div>
+	
+	</section>
 
     <!-- /.row -->
-  </div>
-  <c:choose>
-  <c:when test = "${member.id eq talent.talb_Id}">
-  <div id = "tradebtn">
-    <button type="button" id="modify_Btn" class="btn btn-warning">수정</button>
-	<button type="button" id="delete_Btn" class="btn btn-danger">삭제</button>
-			<script>
-					var formObj = $("form[role='form']");
-					
-					$("#modify_Btn").click(function(){
-						formObj.attr("action", "/talent/talent_B_modify");
-						formObj.attr("method", "get")
-						formObj.submit();
-					});
-					
-					$("#delete_Btn").click(function(){
-						
-						var con = confirm("정말로 삭제하시겠습니까?");
-						
-						if(con) {						
-							formObj.attr("action", "/talent/talent_B_delete");
-							formObj.submit();
-						}
-					});
-				</script>	
-  </div>
-
-</c:when>
-<c:otherwise>
-
-</c:otherwise>
-
-</c:choose>
 
 
-   
+  
   <!-- /.container -->
 
   <!-- Footer -->
   <footer class="py-5 bg-dark">
     <div class="container">
-      <p class="m-0 text-center text-white">충대 장터</p>
+      <p class="m-0 text-center text-white">충대장터</p>
     </div>
     <!-- /.container -->
   </footer>
@@ -184,7 +244,6 @@ input { width:150px; }
   <!-- Bootstrap core JavaScript -->
   <script src="<c:url value="/resources/vendor/jquery/jquery.min.js" />"></script>
   <script src="<c:url value="/resources/vendor/bootstrap/js/bootstrap.bundle.min.js" />"></script>
-
 </body>
 
-</html>
+</jsp>

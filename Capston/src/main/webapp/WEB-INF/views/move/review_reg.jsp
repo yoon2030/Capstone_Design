@@ -170,14 +170,14 @@ textarea#gdsDes { width:400px; height:180px; }
 		<div id="wrapper"> 
 <div id="content">
 		
-			    <h1 class="mt-4 mb-3">후기 작성
+			    <h1 class="mt-4 mb-3">중고거래 후기작성
       <small></small>
     </h1>
 			    <ol class="breadcrumb">
       <li class="breadcrumb-item">
         <a href="index.html">마이페이지</a>
       </li>
-      <li class="breadcrumb-item active">후기관리 / 후기작성</li>
+      <li class="breadcrumb-item active">후기관리 / 중고거래 후기작성</li>
     </ol>
 			
 <form role="form" method="post" autocomplete="off" enctype="multipart/form-data">

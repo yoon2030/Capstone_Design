@@ -1,9 +1,9 @@
-<%@ page session="false" pageEncoding="utf-8" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
-<!DOCTYPE html>
-<html lang="en">
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page session="false" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE jsp>
+<jsp lang="en">
 <head>
 
   <meta charset="utf-8">
@@ -21,12 +21,56 @@
   <link rel="stylesheet" href="./about2.css">
   <link rel="stylesheet" href="./about3.css">
   
+      <!--  add CSS -->
+  <link href="${pageContext.request.contextPath}/resources/vendor/bootstrap/css/web.css" rel="stylesheet" type="text/css">
+  
   
  <style>
  
  	section#container { padding:20px 0; border-top:2px solid #eee; border-bottom:2px solid #eee; }
 	section#container::after { content:""; display:block; clear:both; }
 	div#container_box { float:right; width:calc(100% - 200px - 20px); }
+	div#wrapper {
+    position: relative;
+    height: 100%;
+    
+}
+
+.rate {
+    float: left;
+    height: 46px;
+    padding: 0 10px;
+}
+.rate:not(:checked) > input {
+    position:absolute;
+    top:-9999px;
+}
+.rate:not(:checked) > label {
+    float:right;
+    width:1em;
+    overflow:hidden;
+    white-space:nowrap;
+    cursor:pointer;
+    font-size:30px;
+    color:#ccc;
+}
+.rate:not(:checked) > label:before {
+    content: '★ ';
+}
+.rate > input:checked ~ label {
+    color: #ffc700;    
+}
+.rate:not(:checked) > label:hover,
+.rate:not(:checked) > label:hover ~ label {
+    color: #deb217;  
+}
+.rate > input:checked + label:hover,
+.rate > input:checked + label:hover ~ label,
+.rate > input:checked ~ label:hover,
+.rate > input:checked ~ label:hover ~ label,
+.rate > label:hover ~ input:checked ~ label {
+    color: #c59b08;
+}
 	
 </style>
  
@@ -40,7 +84,6 @@ textarea#gdsDes { width:400px; height:180px; }
 .step_url {    position: absolute;    top: 16px;    right: 13px;    font-size: 15px;    color: #8e8e8e;}
 
 .select_img img {margin:20px 0;}
-.select_img img {width:418px; height:250px;}
 #wrapper {
     position: relative;
     height: 100%;
@@ -51,6 +94,7 @@ textarea#gdsDes { width:400px; height:180px; }
     transform: translate(-50%);
     width: 800px;
 }
+
 </style>
 
 
@@ -58,8 +102,9 @@ textarea#gdsDes { width:400px; height:180px; }
 
 <body>
 
+
   <!-- Navigation -->
-    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
+  <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
       <a class="navbar-brand" href="/move/index">충대 장터</a>
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -115,49 +160,46 @@ textarea#gdsDes { width:400px; height:180px; }
       </div>
     </div>
   </nav>
+
+
   
 
     <!-- Team Members -->
-    <section id="container">
+   <section id="container">
    
 		<div id="wrapper"> 
 <div id="content">
 		
-			    <h1 class="mt-4 mb-3">중고구매 수정
+			    <h1 class="mt-4 mb-3">후기 수정
       <small></small>
     </h1>
 			    <ol class="breadcrumb">
       <li class="breadcrumb-item">
-        <a href="index.html">중고구매</a>
+        <a href="index.html">마이페이지</a>
       </li>
-      <li class="breadcrumb-item active">중고구매 수정</li>
+      <li class="breadcrumb-item active">후기관리 / 재능 거래 후기 수정</li>
     </ol>
 			
 <form role="form" method="post" autocomplete="off" enctype="multipart/form-data">
 
-<input type="hidden" name="goodsb_Code" value="${goods.goodsb_Code}" />
-
+<input type="hidden" name="rev_T_Code" value="${review_t.rev_T_Code}" />
 
 <div class="inputArea">
- <label for="goods_Title">제목</label>
- <input type="text" id="goodsb_Title" name="goodsb_Title" value="${goods.goodsb_Title}"/>
-</div>
-<div class="inputArea">
-	<label for="goodsb_Cate">구매희망분류</label>
-	<select id="goodsb_Cate" name="goodsb_Cate" >
-		<option value="서적" <c:if test='${goods.goodsb_Cate == "서적"}'>selected</c:if>>서적</option>
-  		<option value="기계" <c:if test='${goods.goodsb_Cate == "기계"}'>selected</c:if>>기계</option>
- 	 	<option value="옷"  <c:if test='${goods.goodsb_Cate == "옷"}'>selected</c:if>>옷</option>
+	<label for="rev_T_Sta">별점</label>
+	<select id="rev_T_Sta" name="rev_T_Sta" >
+		<option value=1 <c:if test="${review_t.rev_T_Sta == '1'}">selected</c:if>>1</option>
+  		<option value=2 <c:if test="${review_t.rev_T_Sta == '2'}">selected</c:if>>2</option>
+ 	 	<option value=3 <c:if test="${review_t.rev_T_Sta == '3'}">selected</c:if>>3</option>
+ 	 	<option value=4 <c:if test="${review_t.rev_T_Sta == '4'}">selected</c:if>>4</option>
+ 	 	<option value=5 <c:if test="${review_t.rev_T_Sta == '5'}">selected</c:if>>5</option>
 	</select>
 </div>
+
 <div class="inputArea">
- <label for="goods_Price">구매희망가격</label>
- <input type="text" id="goodsb_Price" name="goodsb_Price" value="${goods.goodsb_Price}"/>
+	<label for="gdsDes">후기 내용</label>
+	<textarea rows="5" cols="70" id="rev_T_Content" name="rev_T_Content"></textarea>
 </div>
-<div class="inputArea">
- <label for="goodsb_Des">구매희망내용</label>
- <textarea rows="5" cols="50" id="goodsb_Des" name="goodsb_Des">${goods.goodsb_Des}</textarea>
-</div>
+
 
 <div class="inputArea">
  <button type="submit" id="update_Btn" class="btn btn-primary">완료</button>
@@ -165,14 +207,16 @@ textarea#gdsDes { width:400px; height:180px; }
   <script>
  $("#back_Btn").click(function(){
   //history.back();
-  location.href = "/admin/goodsb_view?n=" + ${goods.goodsb_Code};
+  location.href = "/move/review";
  });   
 </script>
-</div>   
+</div>
+
 
 </form>
 			
 		</div>
+	
 	</section>
 
     <!-- /.row -->
@@ -184,7 +228,7 @@ textarea#gdsDes { width:400px; height:180px; }
   <!-- Footer -->
   <footer class="py-5 bg-dark">
     <div class="container">
-      <p class="m-0 text-center text-white">충대 장터</p>
+      <p class="m-0 text-center text-white">충대장터</p>
     </div>
     <!-- /.container -->
   </footer>
@@ -192,7 +236,6 @@ textarea#gdsDes { width:400px; height:180px; }
   <!-- Bootstrap core JavaScript -->
   <script src="<c:url value="/resources/vendor/jquery/jquery.min.js" />"></script>
   <script src="<c:url value="/resources/vendor/bootstrap/js/bootstrap.bundle.min.js" />"></script>
-
 </body>
 
-</html>
+</jsp>

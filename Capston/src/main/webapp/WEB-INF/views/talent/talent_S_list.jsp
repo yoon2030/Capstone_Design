@@ -111,7 +111,8 @@
           <div class="col-lg-6">
             <h2 class="card-title"><label>제목 : </label>${list.tals_Title}</h2>
             <p class="card-text"><label>작성자 : </label>${list.tals_Id}</p>
-            <p class="card-text"><label>판매희망분류 : </label>${list.tals_Kinds}</p>
+            <p class="card-text"><label>재능1차분류 : </label>${list.tals_Kinds}</p>
+            <p class="card-text"><label>재능2차분류 : </label>${list.tals_Kinds_2}</p>
             <p class="card-text"><label>가격 : </label><fmt:formatNumber value="${list.tals_Price}" pattern="###,###,###원"/></p>
             <p class="card-text"><div id="btn-place"><a href="/talent/talent_S_view?n=${list.tals_Code}"  class="btn btn-primary">상세보기 &rarr;</a></div> </p> 
           </div>

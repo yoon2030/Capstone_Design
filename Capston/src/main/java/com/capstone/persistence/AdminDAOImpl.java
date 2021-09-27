@@ -56,36 +56,10 @@ public class AdminDAOImpl implements AdminDAO {
 	public void goodsDelete(int goods_Code) throws Exception {
 		sql.delete(namespace + ".goodsDelete", goods_Code);
 	}
-	
-	//구매상품등록
-	@Override
-	public void goods_B_Register(Goods_B_VO vo) throws Exception{
-		sql.insert(namespace + ".goods_B_Register", vo);
-	}
-	//구매상품수정
-	@Override
-	public void goods_B_Modify(Goods_B_VO vo) throws Exception{
-		sql.update(namespace + ".goods_B_Modify", vo);
-	}
-	//구매상품삭제
-	@Override
-	public void goods_B_Delete(int goods_B_Code) throws Exception{
-		sql.delete(namespace + ".goods_B_Delete", goods_B_Code);
-	}
-	//구매상품목록(화면)출력
-	@Override
-	public List<Goods_B_VO> goods_B_list() throws Exception{
-		return sql.selectList(namespace + ".goods_B_list");
-	}
-	//구매상품상세조회
-	@Override
-	public Goods_B_VO goods_B_View(int goods_B_Code) throws Exception{
-		return sql.selectOne(namespace + ".goods_B_View", goods_B_Code);
-	}
 	//거래등록
 	@Override
-	public void trade_register(GoodsVO vo)throws Exception{
-		sql.insert(namespace + ".trade_register",vo);
+	public void trade_register(TradeVO tv)throws Exception{
+		sql.insert(namespace + ".trade_register",tv);
 	}
 	
 	//거래조회
@@ -94,13 +68,8 @@ public class AdminDAOImpl implements AdminDAO {
 		return sql.selectOne(namespace + ".trade_view", goods_Code);
 	}
 	
-	//거래요청
-	@Override
-	public void trade_req(TradeVO tv)throws Exception{
-		sql.update(namespace + ".trade_req",tv);
-	}
 	
-	//거래요청 취소 및 거부
+	//거래요청 취소 및 거부 (삭제)
 	@Override
 	public void trade_cancel(TradeVO tv)throws Exception{
 		sql.update(namespace + ".trade_cancel",tv);
@@ -111,16 +80,11 @@ public class AdminDAOImpl implements AdminDAO {
 		sql.update(namespace + ".trade_complete",tv);
 	}
 	
-	//거래 완료후 상품 상태 2번으로 승격
+	//거래에 따른 물품 상태 변환
 	@Override
-	public void goods_set(int goods_Code)throws Exception{
-		sql.update(namespace + ".goods_set", goods_Code);
+	public void goods_set(GoodsVO vo)throws Exception{
+		sql.update(namespace + ".goods_set", vo);
 	}
 	
-	//거래 삭제
-	@Override
-	public void tradeDelete(int goods_Code) throws Exception {
-		sql.delete(namespace+ ".tradeDelete", goods_Code);
-	}
 
 }

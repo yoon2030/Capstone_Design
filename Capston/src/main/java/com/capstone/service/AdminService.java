@@ -27,40 +27,19 @@ public interface AdminService {
 	//판매상품 삭제
 	public void goodsDelete(int goods_Code) throws Exception;
 	
-	
-	//구매상품등록
-	public void goods_B_Register(Goods_B_VO vo) throws Exception;
-	
-	//구매상품수정
-	public void goods_B_Modify(Goods_B_VO vo) throws Exception;		
-			
-	//구매상품삭제
-	public void goods_B_Delete(int goods_B_Code) throws Exception;
-			
-	//구매상품목록(화면)출력
-	public List<Goods_B_VO> goods_B_list() throws Exception;		
-			
-	//구매상품상세조회
-	public Goods_B_VO goods_B_View(int goods_B_Code) throws Exception;
-	
-	//거래 등록
-	public void trade_register(GoodsVO vo)throws Exception;
+	//거래 요청
+	public void trade_register(TradeVO tv)throws Exception;
 	
 	//거래 조회
 	public TradeVO trade_view(int goods_Code)throws Exception;
-
-	//거래요청
-	public void trade_req(TradeVO tv)throws Exception;
 	
-	//거래요청취소 및 거부
+	//거래요청취소 및 거부(삭제)
 	public void trade_cancel(TradeVO tv)throws Exception;
 	
 	//거래 완료
 	public void trade_complete(TradeVO tv)throws Exception;
 	
-	//거래 완료후 상품 상태 2번으로 승격
-	public void goods_set(int goods_Code)throws Exception;
-	
-	//거래 삭제
-	public void tradeDelete(int goods_Code) throws Exception;
+	//거래에 따른 물품 상태 변환
+	public void goods_set(GoodsVO vo)throws Exception;
+
 }

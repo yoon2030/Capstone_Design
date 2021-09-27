@@ -55,7 +55,31 @@ textarea#gdsDes { width:400px; height:180px; }
 }
 </style>
 
-
+<script language = "javascript">
+function categoryChange(e) {
+	var talent_1 = ["웹디자인/상세페이지", "포토샵편집", "일러스트/캐릭터", "3D모델링/도면", "기타디자인"];
+	var talent_2 = ["영어", "중국어", "일본어", "한자", "기타외국어"];
+	var talent_3 = ["프로젠테이션/엑셀", "워드/타이핑", "교정/편집", "기타문서작성"];
+	var talent_4 = ["영상편집/제작", "애니메이션/UCC", "노래/댄스", "기타음악영상"];
+	var talent_5 = ["홈페이지/웹개발", "응용프로그래밍(코딩)", "모바일/앱", "DB/서버", "기타프로그램개발"];
+	var target = document.getElementById("tals_Kinds_2");
+	
+	if(e.value == "디자인") var a = talent_1;
+	else if(e.value == "번역/외국어") var a = talent_2;
+	else if(e.value == "문서작성") var a = talent_3;
+	else if(e.value == "음악/영상") var a = talent_4;
+	else if(e.value == "프로그램개발") var a = talent_5;
+	
+	target.options.length = 0;
+	
+	for(x in a){
+		var opt = document.createElement("option");
+		opt.value = a[x];
+		opt.innerHTML = a[x];
+		target.appendChild(opt);
+	}
+}
+</script>
 </head>
 
 <body>
@@ -127,7 +151,7 @@ textarea#gdsDes { width:400px; height:180px; }
 	  <h1 class="mt-4 mb-3">재능판매
       <small></small>
     </h1>
-			    <ol class="breadcrumb">
+	<ol class="breadcrumb">
       <li class="breadcrumb-item">
         <a href="talent_B_list.html">재능판매 장터</a>
       </li>
@@ -143,13 +167,18 @@ textarea#gdsDes { width:400px; height:180px; }
 </div>
 <div class="inputArea">
 	<label for="tals_Kinds">재능분류</label>
-	<select id="tals_Kinds" name="tals_Kinds" >
-		<option value="디자인" selected="selected">디자인</option>
-  		<option value="코딩">코딩</option>
- 	 	<option value="과제" >과제</option>
+	<select id="tals_Kinds" name="tals_Kinds" onchange="categoryChange(this)">
+		<option>재능을 선택해주세요</option>
+		<option value="디자인">디자인</option>
+		<option value="번역/외국어">번역/외국어</option>
+		<option value="문서작성">문서작성</option>
+		<option value="음악/영상">음악/영상</option>
+		<option value="프로그램개발">프로그램개발</option>
+	</select>
+	<select id="tals_Kinds_2" name ="tals_Kinds_2">
+	<option>세부 재능 선택</option> 	
 	</select>
 </div>
-
 <div class="inputArea">
 	<label for="tals_Content">내용</label>
 	<textarea rows="5" cols="50" id="tals_Content" name="tals_Content"></textarea>
@@ -168,12 +197,11 @@ textarea#gdsDes { width:400px; height:180px; }
 <div class="inputArea">
 	<button type="submit" id="register_Btn" class="btn btn-primary">등록</button>
 </div>
-</div>
-</div>
 </form>
-			
 </div>
-	</section>
+</div>
+
+</section>
 
 <hr />
 

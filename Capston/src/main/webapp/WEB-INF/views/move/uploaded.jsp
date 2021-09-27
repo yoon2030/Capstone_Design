@@ -13,7 +13,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>마이 페이지 - 등록한 물품 목록</title>
+  <title>마이 페이지 - 등록한 목록</title>
 
   <!-- Bootstrap core CSS -->
   <link href="${pageContext.request.contextPath}/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
@@ -55,7 +55,7 @@
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
               <a class="dropdown-item" href="/talent/talent_S_list">재능판매</a>
-              <a class="dropdown-item" href="/talent/talent_B_list">재능구매</a>
+
             </div>
           </li>
           <li class="nav-item dropdown">
@@ -98,9 +98,9 @@
 
     <ol class="breadcrumb">
       <li class="breadcrumb-item">
-        <a href="index.html">상품관리</a>
+        <a href="index.html">품목관리</a>
       </li>
-      <li class="breadcrumb-item active">내가 판매등록한 물건</li>
+      <li class="breadcrumb-item active">중고마켓 물건</li>
     </ol>
 	<c:forEach items="${list}" var="list">
     <div class="card mb-4">
@@ -127,23 +127,26 @@
 	</c:forEach>
  <ol class="breadcrumb">
       <li class="breadcrumb-item">
-        <a href="index.html">상품관리</a>
+        <a href="index.html">품목관리</a>
       </li>
-      <li class="breadcrumb-item active">내가 구매등록한 물건</li>
+      <li class="breadcrumb-item active">재능마켓 재능</li>
     </ol>
 <c:forEach items="${list2}" var="list2">
     <div class="card mb-4">
       <div class="card-body">
         <div class="row">
           <div class="col-lg-6">
-            <h2 class="card-title">${list2.goodsb_Title}</h2>
-            <p class="card-text">${list2.goodsb_Des}</p>
-            <a id="wantbuy_btn" href="/admin/goodsb_view?n=${list2.goodsb_Code}" class="btn btn-primary">상세한 정보 확인하기 &rarr;</a>
+            <h2 class="card-title">${list2.tals_Title}</h2>
+            <p class="card-text">${list2.tals_Kinds}</p>
+            <p class="card-text">${list2.tals_Kinds_2}</p>
+            <p class="card-text">${list2.tals_Price}</p>
+            <p class="card-text">${list2.tals_Term}</p>
+            <a id="wantbuy_btn" href="/talent/talent_S_view?n=${list2.tals_Code}" class="btn btn-primary">상세한 정보 확인하기 &rarr;</a>
           </div>
         </div>
       </div>
       <div class="card-footer text-muted">
-     	 <fmt:formatDate pattern="yyyy/MM/dd" value="${list2.goodsb_Date}"/>
+     	 <fmt:formatDate pattern="yyyy/MM/dd" value="${list2.tals_Date}"/>
       </div>
     </div>
 	</c:forEach>

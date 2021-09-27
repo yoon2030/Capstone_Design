@@ -6,8 +6,9 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
 
-import com.capstone.domain.Talent_B_VO;
 import com.capstone.domain.Talent_S_VO;
+import com.capstone.domain.TradeVO;
+import com.capstone.domain.Trade_T_VO;
 import com.capstone.persistence.TalentDAO;
 
 @Service
@@ -36,8 +37,8 @@ public class TalentServiceImpl implements TalentService{
 
 	//재능 판매 목록(화면) 출력
 	@Override
-	public List<Talent_S_VO> talentSlist() throws Exception {
-		return dao.talentSlist();
+	public List<Talent_S_VO> talentSlist(String Kinds) throws Exception {
+		return dao.talentSlist(Kinds);
 	}
 
 	//재능 판매 상세 조회
@@ -45,31 +46,36 @@ public class TalentServiceImpl implements TalentService{
 	public Talent_S_VO talentSview(int Tals_Code) throws Exception {
 		return dao.talentSview(Tals_Code);
 	}
-			
-			
-	//재능 구매 등록
+	
+	//거래 조회
 	@Override
-	public void talent_B_Register(Talent_B_VO vo) throws Exception{
-		dao.talent_B_Register(vo);
+	public Trade_T_VO trade_view(int trade_T_Code)throws Exception{
+		return dao.trade_view(trade_T_Code);
 	}
-	//재능 구매 수정
+	
+	//구매자 거래 요청 조회
 	@Override
-	public void talent_B_Modify(Talent_B_VO vo) throws Exception{
-		dao.talent_B_Modify(vo);
+	public Trade_T_VO trade_view(String Buyer_Id)throws Exception{
+		return dao.trade_view(Buyer_Id);
 	}
-	//재능 구매 삭제
+	
+	//거래 등록
 	@Override
-	public void talent_B_Delete(int talb_Code) throws Exception{
-		dao.talent_B_Delete(talb_Code);
+	public void trade_T_register(Trade_T_VO vo)throws Exception{
+		dao.trade_T_register(vo);
 	}
-	//재능 구매 목록(화면) 출력
+	
+	//거래 완료
 	@Override
-	public List<Talent_B_VO> talent_B_list() throws Exception{
-		return dao.talent_B_list();
+	public void trade_T_complete(Trade_T_VO vo) throws Exception{
+		dao.trade_T_complete(vo);
 	}
-	//재능 구매 상세 조회
+	
+	//거래 취소
 	@Override
-	public Talent_B_VO talent_B_View(int talb_Code) throws Exception{
-		return dao.talent_B_View(talb_Code);
+	public void trade_T_delete(int trade_T_Code)throws Exception{
+		dao.trade_T_delete(trade_T_Code);
 	}
+	
+
 }

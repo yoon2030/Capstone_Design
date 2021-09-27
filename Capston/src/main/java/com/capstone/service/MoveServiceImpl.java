@@ -11,7 +11,10 @@ import com.capstone.domain.GoodsVO;
 import com.capstone.domain.Goods_B_VO;
 import com.capstone.domain.NoticeVO;
 import com.capstone.domain.ReviewVO;
+import com.capstone.domain.Review_T_VO;
+import com.capstone.domain.Talent_S_VO;
 import com.capstone.domain.TradeVO;
+import com.capstone.domain.Trade_T_VO;
 import com.capstone.persistence.AdminDAO;
 import com.capstone.persistence.MoveDAO;
 
@@ -45,16 +48,34 @@ public class MoveServiceImpl implements MoveService {
 		return dao.goodslist(seller_Id);
 	}
 		
-	//내가 구매희망 물품
+	//내가 등록한 재능거래
 	@Override
-	public List<Goods_B_VO> goods_B_List(String goodsb_Id) throws Exception{
-		return dao.goods_B_List(goodsb_Id);
+	public List<Talent_S_VO> talent_List(String seller_Id) throws Exception{
+		return dao.talent_List(seller_Id);
 	}
 	
-	//내가 요청한 거래들
+	//요청받은 중고거래들
 	@Override
-	public List<TradeVO> my_Trade_List(String goodsb_Id) throws Exception{
-		return dao.my_Trade_List(goodsb_Id);
+	public List<TradeVO> trade_List(String seller_Id) throws Exception{
+		return dao.trade_List(seller_Id);
+	}
+	
+	//요청받은 재능거래들
+	@Override
+	public List<Trade_T_VO> trade_T_List(String seller_Id) throws Exception{
+		return dao.trade_T_List(seller_Id);
+	}
+	
+	//내가 요청한 중고거래들
+	@Override
+	public List<TradeVO> my_Trade_List(String buyer_Id) throws Exception{
+		return dao.my_Trade_List(buyer_Id);
+	}
+	
+	//내가 요청한 재능거래들
+	@Override
+	public List<Trade_T_VO> my_Trade_T_List(String buyer_Id) throws Exception{
+		return dao.my_Trade_T_List(buyer_Id);
 	}
 	
 	//등록된판매상품조회
@@ -63,46 +84,92 @@ public class MoveServiceImpl implements MoveService {
 		return dao.goodsView(goods_Code);
 	}
 	
-	//거래조회
+	//등록된 재능판매상품조회
+	@Override
+	public Talent_S_VO talentView(String tals_Code) throws Exception{
+		return dao.talentView(tals_Code);
+	}
+	
+	//중고거래조회
 	@Override
 	public TradeVO trade_view(int goods_Code)throws Exception{
 		return dao.trade_view(goods_Code);
 	}
+	
+	//재능거래조회
+	@Override
+	public Trade_T_VO trade_T_View(String trade_T_Code) throws Exception{
+		return dao.trade_T_View(trade_T_Code);
+	}
 		
-	//후기 작성 완료
+	//중고거래 후기 작성 완료
 	@Override
 	public void trade_com(TradeVO tv)throws Exception{
 		dao.trade_com(tv);
 	}
-		
-	
-	//후기 작성
+	//중고거래 후기 작성
 	@Override
 	public void review_register(ReviewVO vo)throws Exception{
 		dao.review_register(vo);
 	}
 	
-	//후기 출력
+	//중고거래 후기 출력
 	@Override
 	public List<ReviewVO> reviewlist(String Id) throws Exception{
 		return dao.reviewlist(Id);
 	}
 	
-	//후기 삭제
+	//중고거래 후기 삭제
 	@Override
 	public void reviewDelete(int review_Code) throws Exception{
 		dao.reviewDelete(review_Code);
 	}
 		
-	//후기 수정
+	//중고거래 후기 수정
 	@Override
 	public void reviewModify(ReviewVO vo) throws Exception{
 		dao.reviewModify(vo);
 	}
 	
-	//후기 조회
+	//중고거래 후기 조회
 	@Override
 	public ReviewVO reviewView(int review_Code) throws Exception{
 		return dao.reviewView(review_Code);
+	}
+	
+	//재능거래 후기 작성 완료
+	@Override
+	public void trade_T_com(Trade_T_VO vo)throws Exception{
+		dao.trade_T_com(vo);
+	}
+	
+	//재능 거래 후기 작성
+	@Override
+	public void review_t_register(Review_T_VO vo)throws Exception{
+		dao.review_t_register(vo);
+	}
+	
+	//재능 거래 후기 출력
+	@Override
+	public List<Review_T_VO> review_t_list(String Id) throws Exception{
+		return dao.review_t_list(Id);
+	}
+	
+	//재능 거래 후기 삭제
+	@Override
+	public void review_t_Delete(int rev_T_Code) throws Exception{
+		dao.review_t_Delete(rev_T_Code);
+	}
+	
+	//재능 거래 후기 수정
+	@Override
+	public void review_t_Modify(Review_T_VO vo) throws Exception{
+		dao.review_t_Modify(vo);
+	}
+	
+	//재능 거래 후기 조회
+	@Override
+	public Review_T_VO review_t_View(int rev_T_Code) throws Exception{
+		return dao.review_t_View(rev_T_Code);
 	}
 }

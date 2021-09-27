@@ -51,8 +51,7 @@
               재능장터
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
-              <a class="dropdown-item" href="/talent/talent_S_list">재능판매</a>
-              <a class="dropdown-item" href="/talent/talent_B_list">재능구매</a>
+              <a class="dropdown-item" href="/talent/talent_S_list?n=디자인">재능판매</a>
             </div>
           </li>
           <li class="nav-item dropdown">
@@ -61,6 +60,7 @@
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
               <a class="dropdown-item" href="/move/uploaded">내가 등록한 물건</a>
+              <a class="dropdown-item" href="/move/trade">내가 요청받은 물건</a>
               <a class="dropdown-item" href="/move/wantbuy">내가 요청한 물건</a>
               <a class="dropdown-item" href="/move/review">후기관리</a>
               <a class="dropdown-item" href="/move/trade_complete">거래완료(후기작성)</a>

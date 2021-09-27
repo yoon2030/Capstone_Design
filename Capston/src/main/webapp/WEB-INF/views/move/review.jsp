@@ -96,7 +96,7 @@
       <li class="breadcrumb-item">
         <a href="index.html">후기관리</a>
       </li>
-      <li class="breadcrumb-item active">후기관리</li>
+      <li class="breadcrumb-item active">중고거래 후기관리</li>
     </ol>
 	<c:forEach items="${list}" var="list">
     <div class="card mb-4">
@@ -116,6 +116,35 @@
       </div>
       <div class="card-footer text-muted">
        <fmt:formatDate pattern="yyyy/MM/dd" value="${list.review_Date}"/>
+      </div>
+    </div>
+	</c:forEach>
+	
+	<ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <a href="index.html">후기관리</a>
+      </li>
+      <li class="breadcrumb-item active">재능거래 후기관리</li>
+    </ol>
+	<c:forEach items="${list2}" var="list2">
+    <div class="card mb-4">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-lg-6">
+            <p class="card-text"><span>재능 1차분류 :</span>${list2.rev_T_Kinds}</p>
+            <p class="card-text"><span>재능 2차분류 :</span>${list2.rev_T_Kinds_2}</p>
+            <p class="card-text"><span>거래자 :</span>${list2.rev_T_Trader}</p>
+            <p class="card-text"><span>별점 :</span>${list2.rev_T_Sta}</p>
+            <p class="card-text"><span>후기내용 :</span>${list2.rev_T_Content}</p>
+
+			<a href="/move/review_modify_t?n=${list2.rev_T_Code}" class="btn btn-primary">수정 &rarr;</a>
+			<a href="/move/review_delete_t?n=${list2.rev_T_Code}" class="btn btn-primary">삭제 &rarr;</a>
+
+          </div>
+        </div>
+      </div>
+      <div class="card-footer text-muted">
+       <fmt:formatDate pattern="yyyy/MM/dd" value="${list2.rev_T_Date}"/>
       </div>
     </div>
 	</c:forEach>

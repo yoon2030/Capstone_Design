@@ -23,7 +23,10 @@ import com.capstone.domain.Goods_B_VO;
 import com.capstone.domain.MemberVO;
 import com.capstone.domain.NoticeVO;
 import com.capstone.domain.ReviewVO;
+import com.capstone.domain.Review_T_VO;
+import com.capstone.domain.Talent_S_VO;
 import com.capstone.domain.TradeVO;
+import com.capstone.domain.Trade_T_VO;
 import com.capstone.service.AdminService;
 import com.capstone.service.MoveService;
 import com.capstone.utils.UploadFileUtils;
@@ -73,7 +76,7 @@ public class MoveController {
 		HttpSession session = req.getSession();
 		MemberVO member = (MemberVO) session.getAttribute("member");
 		List<GoodsVO> list = moveService.goodslist(member.getId());
-		List<Goods_B_VO> list2 = moveService.goods_B_List(member.getId());
+		List<Talent_S_VO> list2 = moveService.talent_List(member.getId());
 		model.addAttribute("member", member);	
 		model.addAttribute("list", list); 
 		model.addAttribute("list2", list2);
@@ -86,35 +89,80 @@ public class MoveController {
 		logger.info("get wantbuy");
 		HttpSession session = req.getSession();
 		MemberVO member = (MemberVO) session.getAttribute("member");
-		List<TradeVO>list = moveService.my_Trade_List(member.getId());
-		List<GoodsVO> list2 = new ArrayList();
-		for(TradeVO e : list) {
+		List<TradeVO>list_1 = moveService.my_Trade_List(member.getId());
+		List<GoodsVO> list = new ArrayList();
+		for(TradeVO e : list_1) {
 			if(e.getTrade_State()==2) {
 			GoodsVO res = moveService.goodsView(e.getGoods_Code());
-			list2.add(res);
+			list.add(res);
 			}
 		}
 		model.addAttribute("member", member);	
-		model.addAttribute("list", list2);
+		model.addAttribute("list", list);
+		
+		List<Trade_T_VO>list_2 = moveService.my_Trade_T_List(member.getId());
+		List<Talent_S_VO> list2 = new ArrayList();
+		for(Trade_T_VO e : list_2) {
+			if(e.getTrade_T_State()==2) {
+				Talent_S_VO ves = moveService.talentView(e.getTalent_Code());
+				list2.add(ves);
+			}
+		}
+		model.addAttribute("list2", list2);
+ 		
 	}
+	
+	//요청받은 거래 목록 get
+	@RequestMapping(value = "/trade", method = RequestMethod.GET)
+	public void getTrade(Model model, HttpServletRequest req) throws Exception {
+		logger.info("get trade");
+		HttpSession session = req.getSession();
+		MemberVO member = (MemberVO) session.getAttribute("member");
+		List<TradeVO>list = moveService.trade_List(member.getId());
+		List<GoodsVO> list3 = new ArrayList();
+		for(TradeVO e : list) {
+			GoodsVO res = moveService.goodsView(e.getGoods_Code());
+			list3.add(res);
+		}
+		model.addAttribute("list", list3);
+		
+		List<Trade_T_VO>list2 = moveService.trade_T_List(member.getId());
+		model.addAttribute("member", member);	
+		model.addAttribute("list2", list2);
+		
+		
+		
+	}
+	
 	//거래 완료한 거래 목록 get
 	@RequestMapping(value = "/trade_complete", method = RequestMethod.GET)
 	public void getTrade_Complete(Model model, HttpServletRequest req) throws Exception {
 		logger.info("get complete");
 		HttpSession session = req.getSession();
 		MemberVO member = (MemberVO) session.getAttribute("member");
-		List<TradeVO>list = moveService.my_Trade_List(member.getId());
-		List<GoodsVO> list2 = new ArrayList();
-		for(TradeVO e : list) {
+		List<TradeVO>list_1 = moveService.my_Trade_List(member.getId());
+		List<GoodsVO> list = new ArrayList();
+		for(TradeVO e : list_1) {
 			if(e.getTrade_State()==3) {
 			GoodsVO res = moveService.goodsView(e.getGoods_Code());
-			list2.add(res);
+			list.add(res);
 			}
 		}
 		model.addAttribute("member", member);	
-		model.addAttribute("list", list2);
+		model.addAttribute("list", list);
+		
+		List<Trade_T_VO>list_2 = moveService.my_Trade_T_List(member.getId());
+		List<Trade_T_VO> list2 = new ArrayList();
+		for(Trade_T_VO e : list_2) {
+			if(e.getTrade_T_State()==3) {
+				Trade_T_VO ves = moveService.trade_T_View(e.getTrade_T_Code());
+				list2.add(ves);
+			}
+		}
+		model.addAttribute("list2", list2);
 	}
 	
+	// 중고거래 후기 관련
 	// 후기작성 get
 	@RequestMapping(value = "/review_reg", method = RequestMethod.GET)
 	public void getReviewReg(@RequestParam("n") int goods_Code, Model model , HttpServletRequest req) throws Exception {
@@ -145,7 +193,7 @@ public class MoveController {
 		
 	}
 	
-	//후기 출력
+	//중고거래 재능 거래 후기 출력
 	@RequestMapping(value = "/review", method = RequestMethod.GET)
 	public void getReviewList(Model model, HttpServletRequest req) throws Exception {
 		logger.info("get review_list");
@@ -154,6 +202,9 @@ public class MoveController {
 		List<ReviewVO> list = moveService.reviewlist(member.getId());  // GoodsVO형태의 List형 변수 list 선언
 		model.addAttribute("member", member);	
 		model.addAttribute("list", list);  // 변수 list의 값을 list 세션에 부여
+		
+		List<Review_T_VO>list2 = moveService.review_t_list(member.getId());
+		model.addAttribute("list2", list2);
 	}
 
 	//후기 삭제
@@ -186,6 +237,68 @@ public class MoveController {
 			
 		return "redirect:/move/review";
 	}
+	
+	// 재능거래 후기 관련
+	// 후기작성 get
+	@RequestMapping(value = "/review_reg_t", method = RequestMethod.GET)
+	public void getReviewReg_T(@RequestParam("n") String trade_T_Code, Model model , HttpServletRequest req) throws Exception {
+		logger.info("get review register");
+		HttpSession session = req.getSession();
+		MemberVO member = (MemberVO) session.getAttribute("member");
+		Trade_T_VO vo = moveService.trade_T_View(trade_T_Code);
+		model.addAttribute("trade", vo);
+	}
+	//후기 작성 post
+	@RequestMapping(value = "/review_reg_t", method = RequestMethod.POST)
+	public String postReviewReg_T(@RequestParam("n") String trade_T_Code, Model model, HttpServletRequest req, Review_T_VO vo) throws Exception {
+		logger.info("post review register");
+		HttpSession session = req.getSession();
+		MemberVO member = (MemberVO) session.getAttribute("member");
+		Trade_T_VO res = moveService.trade_T_View(trade_T_Code);
+		vo.setRev_T_Writer(member.getId());
+		vo.setRev_T_Trader(res.getSeller_Id());
+		vo.setRev_T_Kinds(res.getTalent_Kinds());
+		vo.setRev_T_Kinds_2(res.getTalent_Kinds_2());
+		
+		moveService.review_t_register(vo);
+		
+		res.setTrade_T_State(4);
+		moveService.trade_T_com(res);
+		
+		return "redirect:/move/review";
+		
+	}
+
+	//후기 삭제
+	@RequestMapping(value = "/review_delete_t", method = RequestMethod.GET)
+	public String postReviewDelete_t(@RequestParam("n") int rev_T_Code) throws Exception {
+	// @RequestParam("n")으로 인해, URL주소에 있는 n의 값을 가져와 gdsNum에 저장
+			
+		logger.info("post review delete");
+		moveService.review_t_Delete(rev_T_Code);
+				
+		return "redirect:/move/review";
+	}
+	//후기 수정 
+	@RequestMapping(value = "/review_modify_t", method = RequestMethod.GET)
+	public void getGoodsModify_t(@RequestParam("n") int rev_T_Code, Model model) throws Exception {
+	// @RequestParam("n")으로 인해, URL주소에 있는 n의 값을 가져와 gdsNum에 저장
+				
+		logger.info("get review modify");
+		
+		Review_T_VO review = moveService.review_t_View(rev_T_Code);
+		model.addAttribute("review_t", review);
+	}
+	// 후기 수정
+	@RequestMapping(value = "/review_modify_t", method = RequestMethod.POST)
+	public String postGoodsModify_t(Review_T_VO vo, HttpServletRequest req) throws Exception {
+		logger.info("post review modify");
+		moveService.review_t_Modify(vo);
+			
+		return "redirect:/move/review";
+	}
+		
+	
 	
 	//1:1문의 get
 	@RequestMapping(value = "/faq2", method = RequestMethod.GET)
