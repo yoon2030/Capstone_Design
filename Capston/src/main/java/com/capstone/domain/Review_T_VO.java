@@ -5,7 +5,7 @@ import java.util.Date;
 public class Review_T_VO {
 	private String rev_T_Code;
 	private String rev_T_Content;
-	private String rev_T_Sta;
+	private int rev_T_Sta;
 	private String rev_T_Writer;
 	private Date rev_T_Date;
 	private String rev_T_Kinds;
@@ -26,10 +26,11 @@ public class Review_T_VO {
 	public void setRev_T_Content(String rev_T_Content) {
 		this.rev_T_Content = rev_T_Content;
 	}
-	public String getRev_T_Sta() {
+	
+	public int getRev_T_Sta() {
 		return rev_T_Sta;
 	}
-	public void setRev_T_Sta(String rev_T_Sta) {
+	public void setRev_T_Sta(int rev_T_Sta) {
 		this.rev_T_Sta = rev_T_Sta;
 	}
 	public String getRev_T_Writer() {

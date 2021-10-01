@@ -203,5 +203,16 @@
     		from review_t
         		where rev_T_Code = #{rev_T_Code}
 	</select>	
-
+<!-- 중고 거래 리뷰 별점 업데이트 -->
+	<update id="goods_Sta">
+	update member set
+		goods_Sta = #{goods_Sta}
+		where Id = #{Id}
+	</update>
+<!-- 재능 거래 리뷰 별점 업데이트 -->
+	<update id="tal_Sta">
+	update member set
+		tal_Sta = #{tal_Sta}
+		where Id = #{id}
+	</update>
 </mapper>

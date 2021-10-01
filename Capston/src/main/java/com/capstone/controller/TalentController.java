@@ -19,6 +19,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.capstone.domain.Goods_B_VO;
 import com.capstone.domain.MemberVO;
+import com.capstone.domain.ReviewVO;
+import com.capstone.domain.Review_T_VO;
 import com.capstone.domain.Talent_S_VO;
 import com.capstone.domain.TradeVO;
 import com.capstone.domain.Trade_T_VO;
@@ -82,13 +84,26 @@ public class TalentController {
 		return "redirect:/move/index";
 	}
 	
-	//재능 판매 화면 출력
+	//재능 판매 대분류 화면 출력 
 	@RequestMapping(value="/talent_S_list",method=RequestMethod.GET)
 	public void getTalentList(@RequestParam("n") String Kinds,Model model, HttpServletRequest req) throws Exception{
 		logger.info("get talent_S_list");
 		HttpSession session = req.getSession();
 		MemberVO member = (MemberVO) session.getAttribute("member"); 
 		List<Talent_S_VO>list=talentService.talentSlist(Kinds);
+		model.addAttribute("Kinds",Kinds);
+		model.addAttribute("member",member);
+		model.addAttribute("list",list);
+	}
+	
+	//재능 판매 소분류 화면 출력 
+	@RequestMapping(value="/talent_S_list_2",method=RequestMethod.GET)
+	public void getTalentList_2(@RequestParam("n") String Kinds,Model model, HttpServletRequest req) throws Exception{
+		logger.info("get talent_S_list_2");
+		HttpSession session = req.getSession();
+		MemberVO member = (MemberVO) session.getAttribute("member"); 
+		List<Talent_S_VO>list=talentService.talentSlist_2(Kinds);
+		model.addAttribute("Kinds",Kinds);
 		model.addAttribute("member",member);
 		model.addAttribute("list",list);
 	}
@@ -101,8 +116,10 @@ public class TalentController {
 		HttpSession session = req.getSession();
 		MemberVO member = (MemberVO) session.getAttribute("member");
 		Talent_S_VO talent = talentService.talentSview(Tals_Code);
+		List<Review_T_VO> list = talentService.talsReview(talent.getTals_Id());
 		model.addAttribute("talent", talent);
 		model.addAttribute("member", member);
+		model.addAttribute("list", list);
 	}
 	
 	

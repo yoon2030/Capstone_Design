@@ -6,8 +6,8 @@
 
 <!-- 회원 가입 -->
 <insert id="signup">
- insert into member (Name, Id, Pw, Major, Student_Num, Email, Phone_Num)
-  values(#{Name}, #{Id}, #{Pw}, #{Major}, #{Student_Num}, #{Email}, #{Phone_Num}) 
+ insert into member (Name, Id, Pw, Major, Student_Num, Email, Phone_Num, tal_Sta, goods_Sta)
+  values(#{Name}, #{Id}, #{Pw}, #{Major}, #{Student_Num}, #{Email}, #{Phone_Num}, 0, 0) 
 </insert>
 
 <!-- 로그인 -->

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import com.capstone.domain.FaqVO;
 import com.capstone.domain.GoodsVO;
 import com.capstone.domain.Goods_B_VO;
+import com.capstone.domain.MemberVO;
 import com.capstone.domain.NoticeVO;
 import com.capstone.domain.ReviewVO;
 import com.capstone.domain.Review_T_VO;
@@ -98,6 +99,7 @@ public class MoveDAOImpl implements MoveDAO {
 		return sql.selectOne(namespace + ".tradeView", goods_Code);
 	}
 	
+	
 	//재능거래조회
 	@Override
 	public Trade_T_VO trade_T_View(String trade_T_Code) throws Exception{
@@ -141,6 +143,12 @@ public class MoveDAOImpl implements MoveDAO {
 		return sql.selectOne(namespace + ".reviewView", review_Code);
 	}
 	
+	//중고 거래 리뷰 별점 업데이트 
+	@Override
+	public void goods_Sta(MemberVO vo)throws Exception{
+		sql.update(namespace+".goods_Sta",vo);
+	}
+	
 	//재능거래 후기 작성 완료
 	@Override
 	public void trade_T_com(Trade_T_VO vo)throws Exception{
@@ -175,5 +183,11 @@ public class MoveDAOImpl implements MoveDAO {
 	@Override
 	public Review_T_VO review_t_View(int rev_T_Code) throws Exception{
 		return sql.selectOne(namespace+".review_t_View", rev_T_Code);
+	}
+	
+	//재능 거래 리뷰 별점 업데이트
+	@Override
+	public void tal_Sta(MemberVO vo)throws Exception{
+		sql.update(namespace+".tal_Sta",vo);
 	}
 }

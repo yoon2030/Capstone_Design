@@ -184,7 +184,8 @@ public class MoveController {
 		vo.setReview_Goods(res.getGoods_Name());
 		
 		moveService.review_register(vo);
-		
+		member.setGoods_Sta(vo.getReview_Sta()+member.getGoods_Sta());
+		moveService.goods_Sta(member);
 		TradeVO trade = moveService.trade_view(goods_Code);
 		trade.setTrade_State(4);
 		moveService.trade_com(trade);
@@ -209,10 +210,16 @@ public class MoveController {
 
 	//후기 삭제
 	@RequestMapping(value = "/review_delete", method = RequestMethod.GET)
-	public String postReviewDelete(@RequestParam("n") int review_Code) throws Exception {
+	public String postReviewDelete(@RequestParam("n") int review_Code, HttpServletRequest req) throws Exception {
 	// @RequestParam("n")으로 인해, URL주소에 있는 n의 값을 가져와 gdsNum에 저장
 			
 		logger.info("post review delete");
+		HttpSession session = req.getSession();
+		MemberVO member = (MemberVO) session.getAttribute("member");
+		ReviewVO review = moveService.reviewView(review_Code);
+		member.setGoods_Sta(member.getGoods_Sta()-review.getReview_Sta());
+		moveService.goods_Sta(member);
+		
 		moveService.reviewDelete(review_Code);
 				
 		return "redirect:/move/review";
@@ -232,9 +239,16 @@ public class MoveController {
 	@RequestMapping(value = "/review_modify", method = RequestMethod.POST)
 	public String postGoodsModify(ReviewVO vo, HttpServletRequest req) throws Exception {
 		logger.info("post review modify");
-		System.out.println(vo.getReview_Code());
+
+		
+		ReviewVO t = moveService.reviewView(Integer.parseInt(vo.getReview_Code()));
+		int sta = t.getReview_Sta();
 		moveService.reviewModify(vo);
-			
+		HttpSession session = req.getSession();
+		MemberVO member = (MemberVO) session.getAttribute("member");
+		member.setGoods_Sta((member.getGoods_Sta()-sta)+vo.getReview_Sta());
+		moveService.goods_Sta(member);
+		
 		return "redirect:/move/review";
 	}
 	
@@ -261,7 +275,8 @@ public class MoveController {
 		vo.setRev_T_Kinds_2(res.getTalent_Kinds_2());
 		
 		moveService.review_t_register(vo);
-		
+		member.setTal_Sta(vo.getRev_T_Sta()+member.getTal_Sta());
+		moveService.tal_Sta(member);
 		res.setTrade_T_State(4);
 		moveService.trade_T_com(res);
 		
@@ -271,10 +286,16 @@ public class MoveController {
 
 	//후기 삭제
 	@RequestMapping(value = "/review_delete_t", method = RequestMethod.GET)
-	public String postReviewDelete_t(@RequestParam("n") int rev_T_Code) throws Exception {
+	public String postReviewDelete_t(@RequestParam("n") int rev_T_Code, HttpServletRequest req) throws Exception {
 	// @RequestParam("n")으로 인해, URL주소에 있는 n의 값을 가져와 gdsNum에 저장
 			
 		logger.info("post review delete");
+		HttpSession session = req.getSession();
+		MemberVO member = (MemberVO) session.getAttribute("member");
+		Review_T_VO review = moveService.review_t_View(rev_T_Code);
+		member.setTal_Sta(member.getTal_Sta()-review.getRev_T_Sta());
+		moveService.tal_Sta(member);
+		
 		moveService.review_t_Delete(rev_T_Code);
 				
 		return "redirect:/move/review";
@@ -293,7 +314,13 @@ public class MoveController {
 	@RequestMapping(value = "/review_modify_t", method = RequestMethod.POST)
 	public String postGoodsModify_t(Review_T_VO vo, HttpServletRequest req) throws Exception {
 		logger.info("post review modify");
+		Review_T_VO t = moveService.review_t_View(Integer.parseInt(vo.getRev_T_Code()));
+		int sta = t.getRev_T_Sta();
 		moveService.review_t_Modify(vo);
+		HttpSession session = req.getSession();
+		MemberVO member = (MemberVO) session.getAttribute("member");
+		member.setTal_Sta((member.getTal_Sta()-sta)+vo.getRev_T_Sta());
+		moveService.tal_Sta(member);
 			
 		return "redirect:/move/review";
 	}

@@ -58,6 +58,15 @@
 	from Talent_S where tals_Code = #{Tals_Code}
 </select>
 
+<!--재능 판매 상세 조회(후기출력관련) -->
+	<select id="talsReview" resultType="com.capstone.domain.Review_T_VO">
+		select
+			rev_T_Code, rev_T_Content, rev_T_Sta , rev_T_Writer, rev_T_Date, rev_T_Kinds, rev_T_Kinds_2
+		from review_t
+		where rev_T_Trader = #{tal_Id}
+			order by rev_T_Code desc
+	</select>
+
 <!-- 거래 테이블 조회 -->
 <select id="trade_view" resultType="com.capstone.domain.Trade_T_VO">
 	select trade_T_Code, talent_Code, seller_Id, buyer_Id ,trade_T_State

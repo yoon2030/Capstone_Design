@@ -5,6 +5,7 @@ import java.util.List;
 import com.capstone.domain.FaqVO;
 import com.capstone.domain.GoodsVO;
 import com.capstone.domain.Goods_B_VO;
+import com.capstone.domain.MemberVO;
 import com.capstone.domain.NoticeVO;
 import com.capstone.domain.ReviewVO;
 import com.capstone.domain.Review_T_VO;
@@ -71,6 +72,9 @@ public interface MoveService {
 	//중고 거래 후기 조회
 	public ReviewVO reviewView(int review_Code) throws Exception;
 	
+	//중고 거래 리뷰 별점 업데이트 
+	public void goods_Sta(MemberVO vo)throws Exception;
+	
 	//재능거래 후기 작성 완료
 	public void trade_T_com(Trade_T_VO vo)throws Exception;
 	
@@ -88,6 +92,9 @@ public interface MoveService {
 	
 	//재능 거래 후기 조회
 	public Review_T_VO review_t_View(int rev_T_Code) throws Exception;
+	
+	//재능 거래 리뷰 별점 업데이트
+	public void tal_Sta(MemberVO vo)throws Exception;
 	
 	
 }

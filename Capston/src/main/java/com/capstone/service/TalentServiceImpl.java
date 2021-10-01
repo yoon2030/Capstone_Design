@@ -6,6 +6,7 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
 
+import com.capstone.domain.Review_T_VO;
 import com.capstone.domain.Talent_S_VO;
 import com.capstone.domain.TradeVO;
 import com.capstone.domain.Trade_T_VO;
@@ -40,11 +41,23 @@ public class TalentServiceImpl implements TalentService{
 	public List<Talent_S_VO> talentSlist(String Kinds) throws Exception {
 		return dao.talentSlist(Kinds);
 	}
+	
+	//재능 판매 목록(화면) 소분류 출력
+	@Override
+	public List<Talent_S_VO> talentSlist_2(String Kinds) throws Exception {
+		return dao.talentSlist_2(Kinds);
+	}
 
 	//재능 판매 상세 조회
 	@Override
 	public Talent_S_VO talentSview(int Tals_Code) throws Exception {
 		return dao.talentSview(Tals_Code);
+	}
+	
+	//재능 판매 상세 조회(후기 출력관련)
+	@Override
+	public List<Review_T_VO> talsReview(String tal_Id) throws Exception{
+		return dao.talsReview(tal_Id);
 	}
 	
 	//거래 조회

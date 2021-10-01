@@ -3,6 +3,8 @@ package com.capstone.service;
 import java.util.List;
 
 import com.capstone.domain.GoodsVO;
+import com.capstone.domain.ReviewVO;
+import com.capstone.domain.Review_T_VO;
 import com.capstone.domain.Talent_S_VO;
 import com.capstone.domain.TradeVO;
 import com.capstone.domain.Trade_T_VO;
@@ -20,9 +22,15 @@ public interface TalentService {
 		
 	//재능 판매 목록(화면) 출력
 	public List<Talent_S_VO> talentSlist(String Kinds) throws Exception;
+	
+	//재능 판매 목록(화면) 소분류 출력
+	public List<Talent_S_VO> talentSlist_2(String Kinds) throws Exception;
 		
 	//재능 판매 상세 조회
 	public Talent_S_VO talentSview(int Tals_Code) throws Exception;
+	
+	//재능 판매 상세 조회(후기 출력관련)
+	public List<Review_T_VO> talsReview(String tal_Id) throws Exception;
 	
 	//거래 조회
 	public Trade_T_VO trade_view(int trade_T_Code)throws Exception;

@@ -102,7 +102,7 @@
       </li>
       <li class="breadcrumb-item active">재능판매 리스트</li>
     </ol>
-  	<c:if test="${Kinds eq '디자인'}">
+  	<c:if test="${Kinds eq '웹디자인/상세페이지' || Kinds eq '포토샵편집' || Kinds eq '일러스트/캐릭터' || Kinds eq '3D모델링/도면' || Kinds eq '기타디자인'}">
   	<a class="dropdown-item" href="/talent/talent_S_list?n=디자인">전체보기</a>
   	<a class="dropdown-item" href="/talent/talent_S_list_2?n=웹디자인/상세페이지">웹디자인/상세페이지</a>
   	<a class="dropdown-item" href="/talent/talent_S_list_2?n=포토샵편집">포토샵편집</a>
@@ -110,7 +110,7 @@
   	<a class="dropdown-item" href="/talent/talent_S_list_2?n=3D모델링/도면">3D모델링/도면</a>
   	<a class="dropdown-item" href="/talent/talent_S_list_2?n=기타디자인">기타디자인</a>
   	</c:if>
-  	<c:if test="${Kinds eq '번역/외국어'}">
+  	<c:if test="${Kinds eq '영어' || Kinds eq '중국어' || Kinds eq '일본어' || Kinds eq '한자' || Kinds eq '기타외국어'}">
   	<a class="dropdown-item" href="/talent/talent_S_list?n=번역/외국어">전체보기</a>
   	<a class="dropdown-item" href="/talent/talent_S_list_2?n=영어">영어</a>
   	<a class="dropdown-item" href="/talent/talent_S_list_2?n=중국어">중국어</a>
@@ -118,21 +118,21 @@
   	<a class="dropdown-item" href="/talent/talent_S_list_2?n=한자">한자</a>
   	<a class="dropdown-item" href="/talent/talent_S_list_2?n=기타외국어">기타외국어</a>
   	</c:if>
-  	<c:if test="${Kinds eq '문서작성'}">
+  	<c:if test="${Kinds eq '프레젠테이션/엑셀' || Kinds eq '워드/타이핑' || Kinds eq '교정/편집' || Kinds eq '기타문서작성'}">
   	<a class="dropdown-item" href="/talent/talent_S_list?n=문서작성">전체보기</a>
   	<a class="dropdown-item" href="/talent/talent_S_list_2?n=프레젠테이션/엑셀">프레젠테이션/엑셀</a>
   	<a class="dropdown-item" href="/talent/talent_S_list_2?n=워드/타이핑">워드/타이핑</a>
   	<a class="dropdown-item" href="/talent/talent_S_list_2?n=교정/편집">교정/편집</a>
   	<a class="dropdown-item" href="/talent/talent_S_list_2?n=기타문서작성">기타문서작성</a>
   	</c:if>
-  	<c:if test="${Kinds eq '음악/영상'}">
-   	<a class="dropdown-item" href="/talent/talent_S_list?n=음악/영상">전체보기</a>
+  	<c:if test="${Kinds eq '영상편집/제작'|| Kinds eq '애니메이션/UCC' || Kinds eq '노래/댄스' || Kinds eq '기타음악영상'}">
+  	<a class="dropdown-item" href="/talent/talent_S_list?n=음악/영상">전체보기</a>
   	<a class="dropdown-item" href="/talent/talent_S_list_2?n=영상편집/제작">영상편집/제작</a>
   	<a class="dropdown-item" href="/talent/talent_S_list_2?n=애니메이션/UCC">애니메이션/UCC</a>
   	<a class="dropdown-item" href="/talent/talent_S_list_2?n=노래/댄스">노래/댄스</a>
   	<a class="dropdown-item" href="/talent/talent_S_list_2?n=기타음악영상">기타음악영상</a>
   	</c:if>
-  	<c:if test="${Kinds eq '프로그램개발'}">
+  	<c:if test="${Kinds eq '홈페이지/웹개발' || Kinds eq '응용프로그래밍(코딩)' || Kinds eq '모바일/앱' || Kinds eq 'DB/서버' || Kinds eq '기타프로그램개발'}">
   	<a class="dropdown-item" href="/talent/talent_S_list?n=프로그램개발">전체보기</a>
   	<a class="dropdown-item" href="/talent/talent_S_list_2?n=홈페이지/웹개발">홈페이지/웹개발</a>
   	<a class="dropdown-item" href="/talent/talent_S_list_2?n=응용프로그래밍(코딩)">응용프로그래밍(코딩)</a>
@@ -140,13 +140,14 @@
   	<a class="dropdown-item" href="/talent/talent_S_list_2?n=DB/서버">DB/서버</a>
   	<a class="dropdown-item" href="/talent/talent_S_list_2?n=기타프로그램개발">기타프로그램개발</a>
   	</c:if>
-  	<c:if test="${Kinds eq '생활서비스'}">
+  	<c:if test="${Kinds eq '여행일정/계획' || Kinds eq '컴퓨터수리/조립' || Kinds eq '미용/스타일링' || Kinds eq '구매대행/직구' || Kinds eq '기타생활서비스'}">
   	<a class="dropdown-item" href="/talent/talent_S_list?n=생활서비스">전체보기</a>
   	<a class="dropdown-item" href="/talent/talent_S_list_2?n=여행일정/계획">여행일정/계획</a>
   	<a class="dropdown-item" href="/talent/talent_S_list_2?n=컴퓨터수리/조립">컴퓨터수리/조립</a>
   	<a class="dropdown-item" href="/talent/talent_S_list_2?n=미용/스타일링">미용/스타일링</a>
   	<a class="dropdown-item" href="/talent/talent_S_list_2?n=구매대행/직구">구매대행/직구</a>
   	<a class="dropdown-item" href="/talent/talent_S_list_2?n=기타생활서비스">기타생활서비스</a>
+  	
   	</c:if>
 
     <c:forEach items="${list}" var="list">
