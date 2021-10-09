@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.capstone.domain.EmailVO;
 import com.capstone.domain.Goods_B_VO;
 import com.capstone.domain.MemberVO;
 import com.capstone.domain.ReviewVO;
@@ -25,6 +26,8 @@ import com.capstone.domain.Talent_S_VO;
 import com.capstone.domain.TradeVO;
 import com.capstone.domain.Trade_T_VO;
 import com.capstone.service.AdminService;
+import com.capstone.service.EmailService;
+import com.capstone.service.MessageService;
 import com.capstone.service.TalentService;
 
 @Controller
@@ -36,10 +39,20 @@ public class TalentController {
 	@Inject
 	TalentService talentService;
 	
+    @Inject
+    EmailService emailService;
+    
+	@Inject
+	MessageService messageService;
+	
 	//재능 판매 등록 get
 	@RequestMapping(value="/talent_S_reg", method=RequestMethod.GET)
-	public void getTalent_S_Register(Model model) throws Exception{
+	public void getTalent_S_Register(Model model, HttpServletRequest req) throws Exception{
 		logger.info("get Tals_S_Register");
+		HttpSession session = req.getSession();
+		MemberVO member = (MemberVO) session.getAttribute("member");
+		int num = messageService.message_Count(member.getId());
+		model.addAttribute("num", num);
 	}
 	
 	//재능 판매 등록 post
@@ -58,9 +71,12 @@ public class TalentController {
 	
 	//재능 판매 수정 get
 	@RequestMapping(value="/talent_S_modify", method=RequestMethod.GET)
-	public void getTalentModify(@RequestParam("n") int Tals_Code, Model model) throws Exception{
+	public void getTalentModify(@RequestParam("n") int Tals_Code, Model model,HttpServletRequest req) throws Exception{
 		logger.info("get talent modify");
-		
+		HttpSession session = req.getSession();
+		MemberVO member = (MemberVO) session.getAttribute("member");
+		int num = messageService.message_Count(member.getId());
+		model.addAttribute("num", num);
 		Talent_S_VO talent=talentService.talentSview(Tals_Code);
 		model.addAttribute("talent",talent);
 	}
@@ -89,7 +105,9 @@ public class TalentController {
 	public void getTalentList(@RequestParam("n") String Kinds,Model model, HttpServletRequest req) throws Exception{
 		logger.info("get talent_S_list");
 		HttpSession session = req.getSession();
-		MemberVO member = (MemberVO) session.getAttribute("member"); 
+		MemberVO member = (MemberVO) session.getAttribute("member");
+		int num = messageService.message_Count(member.getId());
+		model.addAttribute("num", num);
 		List<Talent_S_VO>list=talentService.talentSlist(Kinds);
 		model.addAttribute("Kinds",Kinds);
 		model.addAttribute("member",member);
@@ -101,7 +119,9 @@ public class TalentController {
 	public void getTalentList_2(@RequestParam("n") String Kinds,Model model, HttpServletRequest req) throws Exception{
 		logger.info("get talent_S_list_2");
 		HttpSession session = req.getSession();
-		MemberVO member = (MemberVO) session.getAttribute("member"); 
+		MemberVO member = (MemberVO) session.getAttribute("member");
+		int num = messageService.message_Count(member.getId());
+		model.addAttribute("num", num);
 		List<Talent_S_VO>list=talentService.talentSlist_2(Kinds);
 		model.addAttribute("Kinds",Kinds);
 		model.addAttribute("member",member);
@@ -115,6 +135,8 @@ public class TalentController {
 		logger.info("get talent view");
 		HttpSession session = req.getSession();
 		MemberVO member = (MemberVO) session.getAttribute("member");
+		int num = messageService.message_Count(member.getId());
+		model.addAttribute("num", num);
 		Talent_S_VO talent = talentService.talentSview(Tals_Code);
 		List<Review_T_VO> list = talentService.talsReview(talent.getTals_Id());
 		model.addAttribute("talent", talent);
@@ -150,6 +172,17 @@ public class TalentController {
 		out.println("alert('정상적으로 거래요청 되었습니다.');");
 		out.println("</script>");
 		out.flush();
+		try {
+			EmailVO vo = new EmailVO();
+			vo.setSenderName("충대장터");
+			vo.setSenderMail("alsghwhro39@gmail.com");
+			vo.setReceiveMail("alsghwhro@naver.com");
+			vo.setSubject("등록하신 재능장터의 거래에 대한 요청이 있습니다.");
+			vo.setMessage("재능장터에 등록하신 재능 거래에 대한 요청이 있습니다. 충대장터에 들어가 확인해주시기 바랍니다.");
+            emailService.sendMail(vo);  
+        } catch (Exception e) {
+            e.printStackTrace();     
+        }
 		}
 		else{
 			out.println("<script language='javascript'>");
@@ -176,6 +209,18 @@ public class TalentController {
 			out.println("</script>");
 			out.flush();
 			talentService.trade_T_complete(trade);
+			
+			try {
+				EmailVO vo = new EmailVO();
+				vo.setSenderName("충대장터");
+				vo.setSenderMail("alsghwhro39@gmail.com");
+				vo.setReceiveMail("alsghwhro@naver.com");		//판매자 이메일 적을것
+				vo.setSubject("요청하신 재능장터의 거래가 완료되었습니다.");
+				vo.setMessage("요청하신 재능 거래가 완료되었습니다. 충대장터에 들어가 리뷰를 작성해주시기 바랍니다.");
+	            emailService.sendMail(vo);  
+	        } catch (Exception e) {
+	            e.printStackTrace();     
+	        }
 		}
 		return "/move/index";
 		

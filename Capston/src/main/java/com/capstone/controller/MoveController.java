@@ -28,6 +28,7 @@ import com.capstone.domain.Talent_S_VO;
 import com.capstone.domain.TradeVO;
 import com.capstone.domain.Trade_T_VO;
 import com.capstone.service.AdminService;
+import com.capstone.service.MessageService;
 import com.capstone.service.MoveService;
 import com.capstone.utils.UploadFileUtils;
 
@@ -39,16 +40,25 @@ public class MoveController {
 	
 	@Inject
 	MoveService moveService;
+	@Inject
+	MessageService messageService;
 	//메인화면 get
 	@RequestMapping(value = "/index", method = RequestMethod.GET)
-	public void getIndex() throws Exception {
+	public void getIndex(Model model, HttpServletRequest req) throws Exception {
+		HttpSession session = req.getSession();
+		MemberVO member = (MemberVO) session.getAttribute("member");
+		int num = messageService.message_Count(member.getId());
+		model.addAttribute("num", num);
 		logger.info("get index");
 	}
 	
 	// 메인화면 post
 	@RequestMapping(value = "/index", method = RequestMethod.POST)
-	public String postIndex(MemberVO vo) throws Exception {
-		 
+	public String postIndex(MemberVO vo, Model model, HttpServletRequest req) throws Exception {
+		HttpSession session = req.getSession();
+		MemberVO member = (MemberVO) session.getAttribute("member");
+		int num = messageService.message_Count(member.getId());
+		model.addAttribute("num", num);
 		return "move/index";
 	}
 	//공지사항 get
@@ -57,6 +67,10 @@ public class MoveController {
 		logger.info("get contact list");
 		List<NoticeVO> list = moveService.noticelist();
 		model.addAttribute("list", list);
+		HttpSession session = req.getSession();
+		MemberVO member = (MemberVO) session.getAttribute("member");
+		int num = messageService.message_Count(member.getId());
+		model.addAttribute("num", num);
 	}
 	
 	// 공지사항 상세 조회
@@ -66,6 +80,9 @@ public class MoveController {
 		HttpSession session = req.getSession(); 	
 		NoticeVO notice = moveService.notice_View(notice_Num);
 		model.addAttribute("notice", notice);
+		MemberVO member = (MemberVO) session.getAttribute("member");
+		int num = messageService.message_Count(member.getId());
+		model.addAttribute("num", num);
 	}
 	
 	
@@ -75,6 +92,8 @@ public class MoveController {
 		logger.info("get uploaded");
 		HttpSession session = req.getSession();
 		MemberVO member = (MemberVO) session.getAttribute("member");
+		int num = messageService.message_Count(member.getId());
+		model.addAttribute("num", num);
 		List<GoodsVO> list = moveService.goodslist(member.getId());
 		List<Talent_S_VO> list2 = moveService.talent_List(member.getId());
 		model.addAttribute("member", member);	
@@ -89,6 +108,8 @@ public class MoveController {
 		logger.info("get wantbuy");
 		HttpSession session = req.getSession();
 		MemberVO member = (MemberVO) session.getAttribute("member");
+		int num = messageService.message_Count(member.getId());
+		model.addAttribute("num", num);
 		List<TradeVO>list_1 = moveService.my_Trade_List(member.getId());
 		List<GoodsVO> list = new ArrayList();
 		for(TradeVO e : list_1) {
@@ -118,6 +139,8 @@ public class MoveController {
 		logger.info("get trade");
 		HttpSession session = req.getSession();
 		MemberVO member = (MemberVO) session.getAttribute("member");
+		int num = messageService.message_Count(member.getId());
+		model.addAttribute("num", num);
 		List<TradeVO>list = moveService.trade_List(member.getId());
 		List<GoodsVO> list3 = new ArrayList();
 		for(TradeVO e : list) {
@@ -140,6 +163,8 @@ public class MoveController {
 		logger.info("get complete");
 		HttpSession session = req.getSession();
 		MemberVO member = (MemberVO) session.getAttribute("member");
+		int num = messageService.message_Count(member.getId());
+		model.addAttribute("num", num);
 		List<TradeVO>list_1 = moveService.my_Trade_List(member.getId());
 		List<GoodsVO> list = new ArrayList();
 		for(TradeVO e : list_1) {
@@ -169,6 +194,8 @@ public class MoveController {
 		logger.info("get review register");
 		HttpSession session = req.getSession();
 		MemberVO member = (MemberVO) session.getAttribute("member");
+		int num = messageService.message_Count(member.getId());
+		model.addAttribute("num", num);
 		GoodsVO res = moveService.goodsView(goods_Code);
 		model.addAttribute("goods", res);
 	}
@@ -199,7 +226,9 @@ public class MoveController {
 	public void getReviewList(Model model, HttpServletRequest req) throws Exception {
 		logger.info("get review_list");
 		HttpSession session = req.getSession();
-		MemberVO member = (MemberVO) session.getAttribute("member"); 
+		MemberVO member = (MemberVO) session.getAttribute("member");
+		int num = messageService.message_Count(member.getId());
+		model.addAttribute("num", num);
 		List<ReviewVO> list = moveService.reviewlist(member.getId());  // GoodsVO형태의 List형 변수 list 선언
 		model.addAttribute("member", member);	
 		model.addAttribute("list", list);  // 변수 list의 값을 list 세션에 부여
@@ -226,11 +255,14 @@ public class MoveController {
 	}
 	//후기 수정 
 	@RequestMapping(value = "/review_modify", method = RequestMethod.GET)
-	public void getGoodsModify(@RequestParam("n") int review_Code, Model model) throws Exception {
+	public void getGoodsModify(@RequestParam("n") int review_Code, Model model,HttpServletRequest req) throws Exception {
 	// @RequestParam("n")으로 인해, URL주소에 있는 n의 값을 가져와 gdsNum에 저장
 				
 		logger.info("get review modify");
-		
+		HttpSession session = req.getSession();
+		MemberVO member = (MemberVO) session.getAttribute("member");
+		int num = messageService.message_Count(member.getId());
+		model.addAttribute("num", num);
 		ReviewVO review = moveService.reviewView(review_Code);  // ReviewVO형태 변수 review에 후기 정보 저장
 		model.addAttribute("review", review);
 		System.out.println(review_Code);
@@ -259,6 +291,8 @@ public class MoveController {
 		logger.info("get review register");
 		HttpSession session = req.getSession();
 		MemberVO member = (MemberVO) session.getAttribute("member");
+		int num = messageService.message_Count(member.getId());
+		model.addAttribute("num", num);
 		Trade_T_VO vo = moveService.trade_T_View(trade_T_Code);
 		model.addAttribute("trade", vo);
 	}
@@ -302,11 +336,14 @@ public class MoveController {
 	}
 	//후기 수정 
 	@RequestMapping(value = "/review_modify_t", method = RequestMethod.GET)
-	public void getGoodsModify_t(@RequestParam("n") int rev_T_Code, Model model) throws Exception {
+	public void getGoodsModify_t(@RequestParam("n") int rev_T_Code, Model model,HttpServletRequest req) throws Exception {
 	// @RequestParam("n")으로 인해, URL주소에 있는 n의 값을 가져와 gdsNum에 저장
 				
 		logger.info("get review modify");
-		
+		HttpSession session = req.getSession();
+		MemberVO member = (MemberVO) session.getAttribute("member");
+		int num = messageService.message_Count(member.getId());
+		model.addAttribute("num", num);
 		Review_T_VO review = moveService.review_t_View(rev_T_Code);
 		model.addAttribute("review_t", review);
 	}
@@ -329,8 +366,12 @@ public class MoveController {
 	
 	//1:1문의 get
 	@RequestMapping(value = "/faq2", method = RequestMethod.GET)
-	public void getfaq2() throws Exception {
+	public void getfaq2(HttpServletRequest req, Model model) throws Exception {
 		logger.info("get faq2");
+		HttpSession session = req.getSession();
+		MemberVO member = (MemberVO) session.getAttribute("member");
+		int num = messageService.message_Count(member.getId());
+		model.addAttribute("num", num);
 	}
 	
 	//1:1문의 post
@@ -345,8 +386,12 @@ public class MoveController {
 	
 	//질문 get
 	@RequestMapping(value = "/faq1", method = RequestMethod.GET)
-	public void getfaq1() throws Exception {
+	public void getfaq1(HttpServletRequest req, Model model) throws Exception {
 		logger.info("get faq1");
+		HttpSession session = req.getSession();
+		MemberVO member = (MemberVO) session.getAttribute("member");
+		int num = messageService.message_Count(member.getId());
+		model.addAttribute("num", num);
 	}
 	
 	// 질문 post

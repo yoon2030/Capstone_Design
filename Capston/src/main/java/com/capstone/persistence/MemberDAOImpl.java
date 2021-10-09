@@ -38,7 +38,14 @@ public class MemberDAOImpl implements MemberDAO {
 	}
 
 	//거래 조회
+	@Override
 	public List<TradeVO> tradeView(String Id) throws Exception{
 		return sql.selectList(namespace + ".tradeView", Id);
+	}
+	
+	//멤버조회
+	@Override
+	public MemberVO member_check(String Id) throws Exception{
+		return sql.selectOne(namespace + ".member_check", Id);
 	}
 }

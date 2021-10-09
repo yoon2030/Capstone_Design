@@ -90,6 +90,9 @@ input { width:150px; }
             </div>
           </li>
           <li class="nav-item">
+            <a class="nav-link" href="/message/message_list">쪽지함(${num})</a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link" href="/member/logout">로그아웃</a>
           </li>
         </ul>
@@ -177,6 +180,7 @@ input { width:150px; }
   <div id = "tradebtn">
     <button type="button" id="req_Btn" class="btn btn-warning">거래요청</button>
 	<button type="button" id="cancel_Btn" class="btn btn-danger">거래취소</button>
+	<button type="button" id="message_Btn" onclick ="rowClick('${goods.seller_Id}');" class="btn btn-danger">쪽지보내기</button>
 			<script>
 					var formObj = $("form[role='form']");
 					
@@ -189,6 +193,10 @@ input { width:150px; }
 							formObj.attr("action", "/admin/cancel");
 							formObj.submit();
 					});
+					function rowClick(id){
+						var url = '/message/message_Send?n='+id;
+						window.open(url,'popupView','widt=500,height=500');
+					}
 			</script>	
   </div>
 </c:otherwise>

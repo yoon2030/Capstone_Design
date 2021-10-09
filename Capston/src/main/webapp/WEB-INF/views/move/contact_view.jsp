@@ -60,7 +60,7 @@ li {
 <body>
 
   <!-- Navigation -->
-   <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
+  <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
       <a class="navbar-brand" href="/move/index">충대 장터</a>
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -107,6 +107,9 @@ li {
               <a class="dropdown-item" href="/move/faq1">자주찾는 질문</a>
               <a class="dropdown-item" href="/move/faq2">1:1문의</a>
             </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/message/message_list">쪽지함(${num})</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/member/logout">로그아웃</a>

@@ -110,6 +110,9 @@ textarea#gdsDes { width:400px; height:180px; }
             </div>
           </li>
           <li class="nav-item">
+            <a class="nav-link" href="/message/message_list">쪽지함(${num})</a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link" href="/member/logout">로그아웃</a>
           </li>
         </ul>

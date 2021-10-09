@@ -20,12 +20,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.capstone.domain.EmailVO;
 import com.capstone.domain.GoodsVO;
 import com.capstone.domain.Goods_B_VO;
 import com.capstone.domain.MemberVO;
 import com.capstone.domain.ReviewVO;
 import com.capstone.domain.TradeVO;
 import com.capstone.service.AdminService;
+import com.capstone.service.EmailService;
+import com.capstone.service.MessageService;
 import com.capstone.utils.UploadFileUtils;
 
 @Controller
@@ -36,13 +39,23 @@ public class AdminController {
 	
 	@Inject
 	AdminService adminService;
-		
+	
+	@Inject
+	MessageService messageService;
+	
+    @Inject
+    EmailService emailService;
+    
 	@Resource(name="uploadPath")
 	private String uploadPath;
 	
 	// 판매상품 등록 get
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
-	public void getGoodsRegister(Model model) throws Exception {
+	public void getGoodsRegister(Model model, HttpServletRequest req) throws Exception {
+		HttpSession session = req.getSession();
+		MemberVO member = (MemberVO) session.getAttribute("member");
+		int num = messageService.message_Count(member.getId());
+		model.addAttribute("num", num);
 		logger.info("get goods register");
 	}
 	
@@ -82,11 +95,14 @@ public class AdminController {
 	
 	// 판매상품 수정 
 	@RequestMapping(value = "/modify", method = RequestMethod.GET)
-	public void getGoodsModify(@RequestParam("n") int goods_Code, Model model) throws Exception {
+	public void getGoodsModify(@RequestParam("n") int goods_Code, Model model, HttpServletRequest req) throws Exception {
 	// @RequestParam("n")으로 인해, URL주소에 있는 n의 값을 가져와 gdsNum에 저장
 			
 		logger.info("get goods modify");
-			
+		HttpSession session = req.getSession();
+		MemberVO member = (MemberVO) session.getAttribute("member");
+		int num = messageService.message_Count(member.getId());
+		model.addAttribute("num", num);	
 		GoodsVO goods = adminService.goodsView(goods_Code);  // GoodsVO형태 변수 goods에 상품 정보 저장
 		model.addAttribute("goods", goods);
 	}
@@ -135,7 +151,9 @@ public class AdminController {
 	public void getGoodsList(Model model, HttpServletRequest req) throws Exception {
 		logger.info("get trade_list");
 		HttpSession session = req.getSession();
-		MemberVO member = (MemberVO) session.getAttribute("member"); 
+		MemberVO member = (MemberVO) session.getAttribute("member");
+		int num = messageService.message_Count(member.getId());
+		model.addAttribute("num", num);
 		List<GoodsVO> list = adminService.goodslist();  // GoodsVO형태의 List형 변수 list 선언
 		model.addAttribute("member", member);	
 		model.addAttribute("list", list);  // 변수 list의 값을 list 세션에 부여
@@ -146,7 +164,9 @@ public class AdminController {
 	public void getGoodsview(@RequestParam("n") int goods_Code, Model model, HttpServletRequest req) throws Exception {
 		logger.info("get goods view");
 		HttpSession session = req.getSession();
-		MemberVO member = (MemberVO) session.getAttribute("member"); 	
+		MemberVO member = (MemberVO) session.getAttribute("member");
+		int num = messageService.message_Count(member.getId());
+		model.addAttribute("num", num);	
 		GoodsVO goods = adminService.goodsView(goods_Code);
 		List<ReviewVO> list = adminService.goodsReview(goods.getSeller_Id());
 		model.addAttribute("goods", goods);
@@ -183,6 +203,18 @@ public class AdminController {
 		out.println("alert('정상적으로 거래요청 되었습니다.');");
 		out.println("</script>");
 		out.flush();
+		
+		try {
+			EmailVO vo = new EmailVO();
+			vo.setSenderName("충대장터");
+			vo.setSenderMail("alsghwhro39@gmail.com");
+			vo.setReceiveMail("alsghwhro@naver.com");
+			vo.setSubject("등록하신 중고장터의 거래에 대한 요청이 있습니다.");
+			vo.setMessage("재능장터에 등록하신 중고 거래에 대한 요청이 있습니다. 충대장터에 들어가 확인해주시기 바랍니다.");
+            emailService.sendMail(vo);  
+        } catch (Exception e) {
+            e.printStackTrace();     
+        }
 		}
 		else{
 			out.println("<script language='javascript'>");
@@ -240,6 +272,17 @@ public class AdminController {
 			goods.setGoods_State("거래완료");
 			adminService.trade_complete(trade);
 			adminService.goods_set(goods);
+			try {
+				EmailVO vo = new EmailVO();
+				vo.setSenderName("충대장터");
+				vo.setSenderMail("alsghwhro39@gmail.com");
+				vo.setReceiveMail("alsghwhro@naver.com");		//판매자 이메일 적을것
+				vo.setSubject("요청하신 중고장터의 거래가 완료되었습니다.");
+				vo.setMessage("요청하신 중고 거래가 완료되었습니다. 충대장터에 들어가 리뷰를 작성해주시기 바랍니다.");
+	            emailService.sendMail(vo);  
+	        } catch (Exception e) {
+	            e.printStackTrace();     
+	        }
 		}
 		else if(trade.getTrade_State()==1) {
 			out.println("<script language='javascript'>");

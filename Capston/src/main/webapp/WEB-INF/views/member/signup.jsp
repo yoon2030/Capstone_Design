@@ -99,6 +99,15 @@
                     </a>
                     <span class="error_next_box">이메일 주소를 다시 확인해주세요.</span>    
                 </div>
+                
+                <!-- EMAIL -->
+                <div class="int_email_area">
+                    <h3 class="join_title"><label for="Email_2">알림용 이메일<span class="optional"></span></label></h3>
+                    <span class="box int_email">
+                        <input type="text" id="Email_2" name="Email_2" class="int" maxlength="100" placeholder="알림용이메일을 입력해주세요" required="required">
+                    </span>  
+                    <span class="error_next_box"></span>
+                </div>
 
                 <!-- MOBILE -->
                 <div>

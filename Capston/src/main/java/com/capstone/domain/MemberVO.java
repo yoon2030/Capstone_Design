@@ -11,9 +11,16 @@ public class MemberVO {
 	private String Phone_Num;
 	private int tal_Sta;
 	private int goods_Sta;
+	private String Email_2;
 	
 	
 	
+	public String getEmail_2() {
+		return Email_2;
+	}
+	public void setEmail_2(String email_2) {
+		Email_2 = email_2;
+	}
 	public int getTal_Sta() {
 		return tal_Sta;
 	}

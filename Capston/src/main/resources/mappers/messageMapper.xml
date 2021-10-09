@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.capstone.mappers.messageMapper">
+<!-- 메시지 전송 -->
+<insert id ="message_Send">
+insert into Message (message_Num, send_Id, recv_Id, content)
+values(message_seq.nextval,#{send_Id}, #{recv_Id}, #{content})
+</insert>
+
+<!-- 메시지 리스트 출력 -->
+<select id="message_List" resultType="com.capstone.domain.MessageVO">
+select message_Num, send_Id, recv_Id, send_Time, content, read_Chk
+	from Message where recv_Id = #{recv_Id} order by message_Num desc 
+</select>
+
+<!-- 메시지 확인 -->
+<select id="message_View" resultType="com.capstone.domain.MessageVO">
+select message_Num, send_Id, recv_Id, send_Time, content, read_chk 
+	from Message where message_Num = #{message_Num}
+</select>
+
+<!-- 메시지 읽음 상태로 전환 -->
+<update id ="read_State">
+update Message set
+	read_Time = SYSDATE,
+	read_chk = 1
+	where message_Num = #{message_Num}
+</update>
+
+<!-- 메시지 삭제 -->
+<delete id="message_Delete">
+delete Message where message_Num = #{message_Num}
+</delete>
+
+<!-- 읽지 않은 메시지 갯수 세기 -->
+<select id ="message_Count" resultType="int">
+select count(*) from Message where read_Chk=0 AND recv_Id = #{recv_Id}
+</select>
+
+</mapper>

@@ -25,6 +25,7 @@ import com.capstone.domain.GoodsVO;
 import com.capstone.domain.MemberVO;
 import com.capstone.domain.TradeVO;
 import com.capstone.service.MemberService;
+import com.capstone.service.MessageService;
 
 @Controller
 @RequestMapping("/member/*")
@@ -35,7 +36,8 @@ private static final Logger logger = LoggerFactory.getLogger(MemberController.cl
 	@Inject
 	MemberService service;
 	
-	
+	@Inject
+	MessageService messageService;
 	// 회원 가입 get
 	@RequestMapping(value = "/signup", method = RequestMethod.GET)
 	public void getSignup() throws Exception {
@@ -87,6 +89,8 @@ private static final Logger logger = LoggerFactory.getLogger(MemberController.cl
 					out.flush();
 				}
 			}
+			int num = messageService.message_Count(login.getId());
+			model.addAttribute("num", num);
 			return "/move/index";
 					
 	}	

@@ -3,7 +3,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en">
 
 <head>
 
@@ -134,6 +133,9 @@ function categoryChange(e) {
               <a class="dropdown-item" href="/move/faq1">자주찾는 질문</a>
               <a class="dropdown-item" href="/move/faq2">1:1문의</a>
             </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/message/message_list">쪽지함(${num})</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/member/logout">로그아웃</a>
