@@ -11,7 +11,6 @@ public class MemberVO {
 	private String Phone_Num;
 	private int tal_Sta;
 	private int goods_Sta;
-<<<<<<< HEAD
 	private String Email_2;
 	
 	
@@ -22,16 +21,6 @@ public class MemberVO {
 	public void setEmail_2(String email_2) {
 		Email_2 = email_2;
 	}
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> parent of dc4c627 (쪽지 기능 및 이메일 알림 기능 구현)
-	
-	
-	
->>>>>>> f6dc091b9ee04e37ef904ac46a71a96f0bdf1f5a
 	public int getTal_Sta() {
 		return tal_Sta;
 	}
@@ -44,10 +33,6 @@ public class MemberVO {
 	public void setGoods_Sta(int goods_Sta) {
 		this.goods_Sta = goods_Sta;
 	}
-<<<<<<< HEAD
-=======
->>>>>>> parent of dc4c627 (쪽지 기능 및 이메일 알림 기능 구현)
->>>>>>> f6dc091b9ee04e37ef904ac46a71a96f0bdf1f5a
 	public String getId() {
 		return Id;
 	}
