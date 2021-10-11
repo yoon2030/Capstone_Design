@@ -2,9 +2,11 @@ package com.capstone.service;
 
 import java.util.List;
 
+import com.capstone.domain.Criteria;
 import com.capstone.domain.GoodsVO;
 import com.capstone.domain.ReviewVO;
 import com.capstone.domain.Review_T_VO;
+import com.capstone.domain.SearchCriteria;
 import com.capstone.domain.Talent_S_VO;
 import com.capstone.domain.TradeVO;
 import com.capstone.domain.Trade_T_VO;
@@ -46,5 +48,16 @@ public interface TalentService {
 	
 	//거래 취소
 	public void trade_T_delete(int trade_T_Code)throws Exception;	
-
+	
+	//목록+페이징
+	public List<Talent_S_VO> listPage(Criteria cri) throws Exception;
+	
+	//게시글 총 개수
+	public int listCount() throws Exception;
+	
+	//목록+페이징+검색
+	public List<Talent_S_VO> listSearch(SearchCriteria scri) throws Exception;
+	
+	//검색결과개수
+	public int countSearch(SearchCriteria scri) throws Exception;
 }

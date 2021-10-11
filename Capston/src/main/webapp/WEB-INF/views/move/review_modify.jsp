@@ -116,19 +116,21 @@ textarea#gdsDes { width:400px; height:180px; }
             <a class="nav-link" href="/move/contact">공지사항</a>
           </li>
           <li class="nav-item dropdown">
-            <a class="nav-link" href="/admin/trade_list"> 중고장터</a>
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPortfolio" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              중고장터
+            </a>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPortfolio">
+              <a class="dropdown-item" href="/admin/trade_list">중고판매</a>
+              <a class="dropdown-item" href="/admin/goodsb_list">중고구매</a>
+            </div>
           </li>
           <li class="nav-item dropdown">
                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               재능장터
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
-              <a class="dropdown-item" href="/talent/talent_S_list?n=디자인">디자인</a>
-              <a class="dropdown-item" href="/talent/talent_S_list?n=번역/외국어">번역/외국어</a>
-              <a class="dropdown-item" href="/talent/talent_S_list?n=문서작성">문서작성</a>
-              <a class="dropdown-item" href="/talent/talent_S_list?n=음악/영상">음악/영상</a>
-              <a class="dropdown-item" href="/talent/talent_S_list?n=프로그램개발">프로그램개발</a>
-              <a class="dropdown-item" href="/talent/talent_S_list?n=생활서비스">생활서비스</a>
+              <a class="dropdown-item" href="/talent/talent_S_list">재능판매</a>
+              <a class="dropdown-item" href="/talent/talent_B_list">재능구매</a>
             </div>
           </li>
           <li class="nav-item dropdown">
@@ -136,11 +138,10 @@ textarea#gdsDes { width:400px; height:180px; }
               마이페이지
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
-              <a class="dropdown-item" href="/move/uploaded">등록한 중고/재능</a>
-              <a class="dropdown-item" href="/move/trade">거래요청받은 중고/재능거래</a>
-              <a class="dropdown-item" href="/move/wantbuy">거래요청한 중고/재능거래</a>
-              <a class="dropdown-item" href="/move/trade_complete">거래완료(후기작성)</a>
+              <a class="dropdown-item" href="/move/uploaded">내가 등록한 물건</a>
+              <a class="dropdown-item" href="/move/wantbuy">내가 요청한 물건</a>
               <a class="dropdown-item" href="/move/review">후기관리</a>
+              <a class="dropdown-item" href="/move/trade_complete">거래완료(후기작성)</a>
             </div>
           </li>
           <li class="nav-item dropdown">
@@ -151,9 +152,6 @@ textarea#gdsDes { width:400px; height:180px; }
               <a class="dropdown-item" href="/move/faq1">자주찾는 질문</a>
               <a class="dropdown-item" href="/move/faq2">1:1문의</a>
             </div>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/message/message_list">쪽지함(${num})</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/member/logout">로그아웃</a>
@@ -172,14 +170,14 @@ textarea#gdsDes { width:400px; height:180px; }
 		<div id="wrapper"> 
 <div id="content">
 		
-			    <h1 class="mt-4 mb-3">후기 수정
+			    <h1 class="mt-4 mb-3">후기 작성
       <small></small>
     </h1>
 			    <ol class="breadcrumb">
       <li class="breadcrumb-item">
         <a href="index.html">마이페이지</a>
       </li>
-      <li class="breadcrumb-item active">후기관리 / 중고 거래 후기 수정</li>
+      <li class="breadcrumb-item active">후기관리 / 후기작성</li>
     </ol>
 			
 <form role="form" method="post" autocomplete="off" enctype="multipart/form-data">
@@ -189,16 +187,16 @@ textarea#gdsDes { width:400px; height:180px; }
 <div class="inputArea">
 	<label for="review_Sta">별점</label>
 	<select id="review_Sta" name="review_Sta" >
-		<option value=1 <c:if test="${review.review_Sta == '1'}">selected</c:if>>1</option>
-  		<option value=2 <c:if test="${review.review_Sta == '2'}">selected</c:if>>2</option>
- 	 	<option value=3 <c:if test="${review.review_Sta == '3'}">selected</c:if>>3</option>
- 	 	<option value=4 <c:if test="${review.review_Sta == '4'}">selected</c:if>>4</option>
- 	 	<option value=5 <c:if test="${review.review_Sta == '5'}">selected</c:if>>5</option>
+		<option value=1 <c:if test="${review_Sta == '1'}">selected</c:if>>1</option>
+  		<option value=2 <c:if test="${review_Sta == '2'}">selected</c:if>>2</option>
+ 	 	<option value=3 <c:if test="${review_Sta == '3'}">selected</c:if>>3</option>
+ 	 	<option value=4 <c:if test="${review_Sta == '4'}">selected</c:if>>4</option>
+ 	 	<option value=5 <c:if test="${review_Sta == '5'}">selected</c:if>>5</option>
 	</select>
 </div>
 
 <div class="inputArea">
-	<label for="gdsDes">후기 내용</label>
+	<label for="gdsDes">후기 작성</label>
 	<textarea rows="5" cols="70" id="review_Content" name="review_Content"></textarea>
 </div>
 

@@ -81,19 +81,21 @@ textarea#faqDes { width:600px; height:300px; }
             <a class="nav-link" href="/move/contact">공지사항</a>
           </li>
           <li class="nav-item dropdown">
-            <a class="nav-link" href="/admin/trade_list"> 중고장터</a>
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPortfolio" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              중고장터
+            </a>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPortfolio">
+              <a class="dropdown-item" href="/admin/trade_list">중고판매</a>
+              <a class="dropdown-item" href="/admin/goodsb_list">중고구매</a>
+            </div>
           </li>
           <li class="nav-item dropdown">
                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               재능장터
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
-              <a class="dropdown-item" href="/talent/talent_S_list?n=디자인">디자인</a>
-              <a class="dropdown-item" href="/talent/talent_S_list?n=번역/외국어">번역/외국어</a>
-              <a class="dropdown-item" href="/talent/talent_S_list?n=문서작성">문서작성</a>
-              <a class="dropdown-item" href="/talent/talent_S_list?n=음악/영상">음악/영상</a>
-              <a class="dropdown-item" href="/talent/talent_S_list?n=프로그램개발">프로그램개발</a>
-              <a class="dropdown-item" href="/talent/talent_S_list?n=생활서비스">생활서비스</a>
+              <a class="dropdown-item" href="/talent/talent_S_list">재능판매</a>
+              <a class="dropdown-item" href="/talent/talent_B_list">재능구매</a>
             </div>
           </li>
           <li class="nav-item dropdown">
@@ -101,11 +103,10 @@ textarea#faqDes { width:600px; height:300px; }
               마이페이지
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
-              <a class="dropdown-item" href="/move/uploaded">등록한 중고/재능</a>
-              <a class="dropdown-item" href="/move/trade">거래요청받은 중고/재능거래</a>
-              <a class="dropdown-item" href="/move/wantbuy">거래요청한 중고/재능거래</a>
-              <a class="dropdown-item" href="/move/trade_complete">거래완료(후기작성)</a>
+              <a class="dropdown-item" href="/move/uploaded">내가 등록한 물건</a>
+              <a class="dropdown-item" href="/move/wantbuy">내가 요청한 물건</a>
               <a class="dropdown-item" href="/move/review">후기관리</a>
+              <a class="dropdown-item" href="/move/trade_complete">거래완료(후기작성)</a>
             </div>
           </li>
           <li class="nav-item dropdown">
@@ -118,15 +119,13 @@ textarea#faqDes { width:600px; height:300px; }
             </div>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/message/message_list">쪽지함(${num})</a>
-          </li>
-          <li class="nav-item">
             <a class="nav-link" href="/member/logout">로그아웃</a>
           </li>
         </ul>
       </div>
     </div>
   </nav>
+
   
 
     <!-- Team Members -->
@@ -143,6 +142,7 @@ textarea#faqDes { width:600px; height:300px; }
         <a href="index.html">FAQ</a>
       </li>
       <li class="breadcrumb-item active">1:1 문의</li>
+      <a href="/move/faq2_list">Faq 리스트</a>
     </ol>
 			
 <form role="form" method="post" autocomplete="off" enctype="multipart/form-data">

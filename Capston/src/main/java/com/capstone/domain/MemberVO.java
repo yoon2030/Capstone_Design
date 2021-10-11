@@ -11,28 +11,6 @@ public class MemberVO {
 	private String Phone_Num;
 	private int tal_Sta;
 	private int goods_Sta;
-	private String Email_2;
-	
-	
-	
-	public String getEmail_2() {
-		return Email_2;
-	}
-	public void setEmail_2(String email_2) {
-		Email_2 = email_2;
-	}
-	public int getTal_Sta() {
-		return tal_Sta;
-	}
-	public void setTal_Sta(int tal_Sta) {
-		this.tal_Sta = tal_Sta;
-	}
-	public int getGoods_Sta() {
-		return goods_Sta;
-	}
-	public void setGoods_Sta(int goods_Sta) {
-		this.goods_Sta = goods_Sta;
-	}
 	public String getId() {
 		return Id;
 	}
@@ -75,9 +53,18 @@ public class MemberVO {
 	public void setPhone_Num(String phone_Num) {
 		Phone_Num = phone_Num;
 	}
-	
-
-	
+	public int getTal_Sta() {
+		return tal_Sta;
+	}
+	public void setTal_Sta(int tal_Sta) {
+		this.tal_Sta = tal_Sta;
+	}
+	public int getGoods_Sta() {
+		return goods_Sta;
+	}
+	public void setGoods_Sta(int goods_Sta) {
+		this.goods_Sta = goods_Sta;
+	}
 	
 	
 }
