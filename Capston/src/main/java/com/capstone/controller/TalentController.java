@@ -16,7 +16,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+<<<<<<< HEAD
 import com.capstone.domain.Criteria;
+=======
+>>>>>>> parent of dc4c627 (쪽지 기능 및 이메일 알림 기능 구현)
 import com.capstone.domain.Goods_B_VO;
 import com.capstone.domain.MemberVO;
 import com.capstone.domain.PageMaker;
@@ -150,5 +153,89 @@ public class TalentController {
 		Talent_S_VO talent = talentService.talentSview(Tals_Code);
 		model.addAttribute("talent", talent);
 		model.addAttribute("member", member);
+<<<<<<< HEAD
 	}
+=======
+		model.addAttribute("list", list);
+	}
+	
+	
+//////////////여기까지 재능 판매 관련
+	//거래 요청
+	@RequestMapping(value = "/trade_req", method = RequestMethod.POST)
+	public String postTradeReq(@RequestParam("n") int Tals_Code, Model model, HttpServletRequest req, HttpServletResponse response) throws Exception {
+		logger.info("post trade request");
+		HttpSession session = req.getSession();
+		MemberVO member = (MemberVO) session.getAttribute("member"); 
+		Trade_T_VO trade_t = talentService.trade_view(member.getId());
+		Talent_S_VO talent_s = talentService.talentSview(Tals_Code);
+		response.setContentType("text/html; charset=UTF-8");
+		PrintWriter out = response.getWriter();
+		
+		if(trade_t==null || (trade_t.getTalent_Code() != talent_s.getTals_Code() && trade_t.getTrade_T_State()!=2)) {
+		Trade_T_VO trade = new Trade_T_VO();
+		trade.setSeller_Id(talent_s.getTals_Id());
+		trade.setTalent_Code(talent_s.getTals_Code());
+		trade.setBuyer_Id(member.getId());
+		trade.setBuyer_Phone(member.getPhone_Num());
+		trade.setTalent_Title(talent_s.getTals_Title());
+		trade.setTrade_T_State(2);
+		trade.setTalent_Kinds(talent_s.getTals_Kinds());
+		trade.setTalent_Kinds_2(talent_s.getTals_Kinds_2());
+		talentService.trade_T_register(trade);
+		out.println("<script language='javascript'>");
+		out.println("alert('정상적으로 거래요청 되었습니다.');");
+		out.println("</script>");
+		out.flush();
+		}
+		else{
+			out.println("<script language='javascript'>");
+			out.println("alert('해당 재능과는 이미 거래 진행중입니다.');");
+			out.println("</script>");
+			out.flush();
+			
+		}
+		
+		return "/move/index";
+	}
+	
+	//거래 완료
+	@RequestMapping(value = "/complete", method = RequestMethod.GET)
+	public String postTradeComplete(@RequestParam("n") int trade_T_Code, Model model, HttpServletRequest req, HttpServletResponse response) throws Exception {
+		logger.info("post trade complete");
+		Trade_T_VO trade = talentService.trade_view(trade_T_Code);
+		response.setContentType("text/html; charset=UTF-8");
+		PrintWriter out = response.getWriter();
+		if(trade.getTrade_T_State()==2) {
+			trade.setTrade_T_State(3);
+			out.println("<script language='javascript'>");
+			out.println("alert('정상적으로 거래완료 되었습니다.');");
+			out.println("</script>");
+			out.flush();
+			talentService.trade_T_complete(trade);
+		}
+		return "/move/index";
+		
+	}
+	
+	//거래 거부
+	@RequestMapping(value = "/reject", method = RequestMethod.GET)
+	public String postTradeReject(@RequestParam("n") int trade_T_Code, Model model, HttpServletResponse response) throws Exception {
+		logger.info("post trade reject");
+		Trade_T_VO trade = talentService.trade_view(trade_T_Code);
+		response.setContentType("text/html; charset=UTF-8");
+		PrintWriter out = response.getWriter();
+		out.println("<script language='javascript'>");
+		out.println("alert('정상적으로 요청된 거래를 거부 하였습니다.');");
+		out.println("</script>");
+		out.flush();
+		talentService.trade_T_delete(trade_T_Code);
+
+		
+		return "/move/index";
+		
+	}
+
+	
+>>>>>>> parent of dc4c627 (쪽지 기능 및 이메일 알림 기능 구현)
 }

@@ -42,7 +42,10 @@ public class MoveController {
 	
 	@Inject
 	MoveService moveService;
+<<<<<<< HEAD
 	
+=======
+>>>>>>> parent of dc4c627 (쪽지 기능 및 이메일 알림 기능 구현)
 	//메인화면 get
 	@RequestMapping(value = "/index", method = RequestMethod.GET)
 	public void getIndex() throws Exception {
@@ -130,6 +133,7 @@ public class MoveController {
 		HttpSession session = req.getSession(); 	
 		NoticeVO notice = moveService.notice_View(notice_Num);
 		model.addAttribute("notice", notice);
+<<<<<<< HEAD
 	}
 	
 	//공지사항 페이징
@@ -238,6 +242,8 @@ public class MoveController {
 		List<GoodsVO> list=moveService.goodslist();
 		model.addAttribute("member", member);
 		model.addAttribute("list", list);
+=======
+>>>>>>> parent of dc4c627 (쪽지 기능 및 이메일 알림 기능 구현)
 	}
 	
 	//관리자-판매상품 상세조회
@@ -337,9 +343,15 @@ public class MoveController {
 		logger.info("get wantbuy");
 		HttpSession session = req.getSession();
 		MemberVO member = (MemberVO) session.getAttribute("member");
+<<<<<<< HEAD
 		List<TradeVO>list = moveService.my_Trade_List(member.getId());
 		List<GoodsVO> list2 = new ArrayList();
 		for(TradeVO e : list) {
+=======
+		List<TradeVO>list_1 = moveService.my_Trade_List(member.getId());
+		List<GoodsVO> list = new ArrayList();
+		for(TradeVO e : list_1) {
+>>>>>>> parent of dc4c627 (쪽지 기능 및 이메일 알림 기능 구현)
 			if(e.getTrade_State()==2) {
 			GoodsVO res = moveService.goodsView(e.getGoods_Code());
 			list2.add(res);
@@ -348,15 +360,47 @@ public class MoveController {
 		model.addAttribute("member", member);	
 		model.addAttribute("list", list2);
 	}
+<<<<<<< HEAD
+=======
+	
+	//요청받은 거래 목록 get
+	@RequestMapping(value = "/trade", method = RequestMethod.GET)
+	public void getTrade(Model model, HttpServletRequest req) throws Exception {
+		logger.info("get trade");
+		HttpSession session = req.getSession();
+		MemberVO member = (MemberVO) session.getAttribute("member");
+		List<TradeVO>list = moveService.trade_List(member.getId());
+		List<GoodsVO> list3 = new ArrayList();
+		for(TradeVO e : list) {
+			GoodsVO res = moveService.goodsView(e.getGoods_Code());
+			list3.add(res);
+		}
+		model.addAttribute("list", list3);
+		
+		List<Trade_T_VO>list2 = moveService.trade_T_List(member.getId());
+		model.addAttribute("member", member);	
+		model.addAttribute("list2", list2);
+		
+		
+		
+	}
+	
+>>>>>>> parent of dc4c627 (쪽지 기능 및 이메일 알림 기능 구현)
 	//거래 완료한 거래 목록 get
 	@RequestMapping(value = "/trade_complete", method = RequestMethod.GET)
 	public void getTrade_Complete(Model model, HttpServletRequest req) throws Exception {
 		logger.info("get complete");
 		HttpSession session = req.getSession();
 		MemberVO member = (MemberVO) session.getAttribute("member");
+<<<<<<< HEAD
 		List<TradeVO>list = moveService.my_Trade_List(member.getId());
 		List<GoodsVO> list2 = new ArrayList();
 		for(TradeVO e : list) {
+=======
+		List<TradeVO>list_1 = moveService.my_Trade_List(member.getId());
+		List<GoodsVO> list = new ArrayList();
+		for(TradeVO e : list_1) {
+>>>>>>> parent of dc4c627 (쪽지 기능 및 이메일 알림 기능 구현)
 			if(e.getTrade_State()==3) {
 			GoodsVO res = moveService.goodsView(e.getGoods_Code());
 			list2.add(res);
@@ -434,6 +478,86 @@ public class MoveController {
 		logger.info("post review modify");
 		System.out.println(vo.getReview_Code());
 		moveService.reviewModify(vo);
+<<<<<<< HEAD
+=======
+		HttpSession session = req.getSession();
+		MemberVO member = (MemberVO) session.getAttribute("member");
+		member.setGoods_Sta((member.getGoods_Sta()-sta)+vo.getReview_Sta());
+		moveService.goods_Sta(member);
+		
+		return "redirect:/move/review";
+	}
+	
+	// 재능거래 후기 관련
+	// 후기작성 get
+	@RequestMapping(value = "/review_reg_t", method = RequestMethod.GET)
+	public void getReviewReg_T(@RequestParam("n") String trade_T_Code, Model model , HttpServletRequest req) throws Exception {
+		logger.info("get review register");
+		HttpSession session = req.getSession();
+		MemberVO member = (MemberVO) session.getAttribute("member");
+		Trade_T_VO vo = moveService.trade_T_View(trade_T_Code);
+		model.addAttribute("trade", vo);
+	}
+	//후기 작성 post
+	@RequestMapping(value = "/review_reg_t", method = RequestMethod.POST)
+	public String postReviewReg_T(@RequestParam("n") String trade_T_Code, Model model, HttpServletRequest req, Review_T_VO vo) throws Exception {
+		logger.info("post review register");
+		HttpSession session = req.getSession();
+		MemberVO member = (MemberVO) session.getAttribute("member");
+		Trade_T_VO res = moveService.trade_T_View(trade_T_Code);
+		vo.setRev_T_Writer(member.getId());
+		vo.setRev_T_Trader(res.getSeller_Id());
+		vo.setRev_T_Kinds(res.getTalent_Kinds());
+		vo.setRev_T_Kinds_2(res.getTalent_Kinds_2());
+		
+		moveService.review_t_register(vo);
+		member.setTal_Sta(vo.getRev_T_Sta()+member.getTal_Sta());
+		moveService.tal_Sta(member);
+		res.setTrade_T_State(4);
+		moveService.trade_T_com(res);
+		
+		return "redirect:/move/review";
+		
+	}
+
+	//후기 삭제
+	@RequestMapping(value = "/review_delete_t", method = RequestMethod.GET)
+	public String postReviewDelete_t(@RequestParam("n") int rev_T_Code, HttpServletRequest req) throws Exception {
+	// @RequestParam("n")으로 인해, URL주소에 있는 n의 값을 가져와 gdsNum에 저장
+			
+		logger.info("post review delete");
+		HttpSession session = req.getSession();
+		MemberVO member = (MemberVO) session.getAttribute("member");
+		Review_T_VO review = moveService.review_t_View(rev_T_Code);
+		member.setTal_Sta(member.getTal_Sta()-review.getRev_T_Sta());
+		moveService.tal_Sta(member);
+		
+		moveService.review_t_Delete(rev_T_Code);
+				
+		return "redirect:/move/review";
+	}
+	//후기 수정 
+	@RequestMapping(value = "/review_modify_t", method = RequestMethod.GET)
+	public void getGoodsModify_t(@RequestParam("n") int rev_T_Code, Model model) throws Exception {
+	// @RequestParam("n")으로 인해, URL주소에 있는 n의 값을 가져와 gdsNum에 저장
+				
+		logger.info("get review modify");
+		
+		Review_T_VO review = moveService.review_t_View(rev_T_Code);
+		model.addAttribute("review_t", review);
+	}
+	// 후기 수정
+	@RequestMapping(value = "/review_modify_t", method = RequestMethod.POST)
+	public String postGoodsModify_t(Review_T_VO vo, HttpServletRequest req) throws Exception {
+		logger.info("post review modify");
+		Review_T_VO t = moveService.review_t_View(Integer.parseInt(vo.getRev_T_Code()));
+		int sta = t.getRev_T_Sta();
+		moveService.review_t_Modify(vo);
+		HttpSession session = req.getSession();
+		MemberVO member = (MemberVO) session.getAttribute("member");
+		member.setTal_Sta((member.getTal_Sta()-sta)+vo.getRev_T_Sta());
+		moveService.tal_Sta(member);
+>>>>>>> parent of dc4c627 (쪽지 기능 및 이메일 알림 기능 구현)
 			
 		return "redirect:/move/review";
 	}

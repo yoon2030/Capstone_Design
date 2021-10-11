@@ -13,7 +13,11 @@
 <!-- 로그인 -->
 <select id="signin" resultType="com.capstone.domain.MemberVO">
 	select
+<<<<<<< HEAD
 	    Name, Id, Pw, Major, Student_Num, Email, Phone_Num, verify
+=======
+	    Name, Id, Pw, Major, Student_Num, Email, Phone_Num
+>>>>>>> parent of dc4c627 (쪽지 기능 및 이메일 알림 기능 구현)
 	from
 	    member
 	where Id = #{Id} AND Pw = #{Pw}
@@ -42,5 +46,8 @@
 	    where buyer_Id = #{Id} AND trade_State = 3
 	        order by goods_Code desc
 	</select>
+<<<<<<< HEAD
 	
+=======
+>>>>>>> parent of dc4c627 (쪽지 기능 및 이메일 알림 기능 구현)
 </mapper>

@@ -11,6 +11,24 @@ public class MemberVO {
 	private String Phone_Num;
 	private int tal_Sta;
 	private int goods_Sta;
+<<<<<<< HEAD
+=======
+	
+	
+	
+	public int getTal_Sta() {
+		return tal_Sta;
+	}
+	public void setTal_Sta(int tal_Sta) {
+		this.tal_Sta = tal_Sta;
+	}
+	public int getGoods_Sta() {
+		return goods_Sta;
+	}
+	public void setGoods_Sta(int goods_Sta) {
+		this.goods_Sta = goods_Sta;
+	}
+>>>>>>> parent of dc4c627 (쪽지 기능 및 이메일 알림 기능 구현)
 	public String getId() {
 		return Id;
 	}

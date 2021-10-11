@@ -21,7 +21,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+<<<<<<< HEAD
 import com.capstone.domain.Criteria;
+=======
+>>>>>>> parent of dc4c627 (쪽지 기능 및 이메일 알림 기능 구현)
 import com.capstone.domain.GoodsVO;
 import com.capstone.domain.Goods_B_VO;
 import com.capstone.domain.MemberVO;
@@ -300,7 +303,10 @@ public class AdminController {
 		out.println("alert('정상적으로 거래요청 되었습니다.');");
 		out.println("</script>");
 		out.flush();
+<<<<<<< HEAD
 		adminService.trade_req(trade);
+=======
+>>>>>>> parent of dc4c627 (쪽지 기능 및 이메일 알림 기능 구현)
 		}
 		else if(trade.getTrade_State()==2) {
 			out.println("<script language='javascript'>");
@@ -355,7 +361,11 @@ public class AdminController {
 			out.println("</script>");
 			out.flush();
 			adminService.trade_complete(trade);
+<<<<<<< HEAD
 			adminService.goods_set(goods_Code);
+=======
+			adminService.goods_set(goods);
+>>>>>>> parent of dc4c627 (쪽지 기능 및 이메일 알림 기능 구현)
 		}
 		else if(trade.getTrade_State()==1) {
 			out.println("<script language='javascript'>");
