@@ -7,9 +7,7 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
-import com.capstone.domain.Criteria;
 import com.capstone.domain.Review_T_VO;
-import com.capstone.domain.SearchCriteria;
 import com.capstone.domain.Talent_S_VO;
 import com.capstone.domain.TradeVO;
 import com.capstone.domain.Trade_T_VO;
@@ -44,7 +42,7 @@ public class TalentDAOImpl implements TalentDAO{
 	//재능 판매 목록(화면) 출력
 	@Override
 	public List<Talent_S_VO> talentSlist(String Kinds) throws Exception {
-		return sql.selectList(namespace + ".talentSlist",Kinds);
+		return sql.selectList(namespace + ".talentSlist", Kinds);
 	}
 	
 	//재능 판매 목록(화면) 소분류 출력
@@ -93,29 +91,5 @@ public class TalentDAOImpl implements TalentDAO{
 	@Override
 	public void trade_T_delete(int trade_T_Code)throws Exception{
 		sql.delete(namespace+ ".trade_t_delete", trade_T_Code);
-	}
-	
-	//목록+페이징
-	@Override
-	public List<Talent_S_VO> listPage(Criteria cri) throws Exception{
-		return sql.selectList(namespace+".listPage",cri);
-	}
-	
-	//게시글 총 개수
-	@Override
-	public int listCount() throws Exception{
-		return sql.selectOne(namespace+".listCount");
-	}
-	
-	//목록+페이징+검색
-	@Override
-	public List<Talent_S_VO> listSearch(SearchCriteria scri) throws Exception {
-		return sql.selectList(namespace+".listSearch",scri);
-	}
-
-	//검색 결과 개수
-	@Override
-	public int countSearch(SearchCriteria scri) throws Exception {
-		return sql.selectOne(namespace+".countSearch",scri);
 	}
 }

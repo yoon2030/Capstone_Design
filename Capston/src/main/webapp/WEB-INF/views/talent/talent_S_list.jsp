@@ -79,6 +79,9 @@
             </div>
           </li>
           <li class="nav-item">
+            <a class="nav-link" href="/message/message_list">쪽지함(${num})</a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link" href="/member/logout">로그아웃</a>
           </li>
         </ul>
@@ -88,7 +91,7 @@
 
   <!-- Page Content -->
   <div class="container">
-<a href="/talent/talentlistSearch"  class="btn btn-primary">재능판매 검색 &rarr;</a>
+
     <!-- Page Heading/Breadcrumbs -->
     <h1 id ="talb_list_title" class="mt-4 mb-3">재능판매 장터
     <button id = "reg" onclick="location.href='/talent/talent_S_reg'">등록</button>

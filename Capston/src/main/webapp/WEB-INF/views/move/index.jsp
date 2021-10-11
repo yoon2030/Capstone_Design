@@ -35,10 +35,10 @@
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
-            <a class="nav-link" href="/move/contactlistPage">공지사항</a>
+            <a class="nav-link" href="/move/contact">공지사항</a>
           </li>
           <li class="nav-item dropdown">
-            <a class="nav-link" href="/admin/tradelistPage"> 중고장터</a>
+            <a class="nav-link" href="/admin/trade_list"> 중고장터</a>
           </li>
           <li class="nav-item dropdown">
                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -51,8 +51,6 @@
               <a class="dropdown-item" href="/talent/talent_S_list?n=음악/영상">음악/영상</a>
               <a class="dropdown-item" href="/talent/talent_S_list?n=프로그램개발">프로그램개발</a>
               <a class="dropdown-item" href="/talent/talent_S_list?n=생활서비스">생활서비스</a>
-              <a class="dropdown-item" href="/talent/talentlistPage">재능리스트</a>
-              <a class="dropdown-item" href="/talent/talentlistSearch">재능리스트검색</a>
             </div>
           </li>
           <li class="nav-item dropdown">
@@ -75,6 +73,9 @@
               <a class="dropdown-item" href="/move/faq1">자주찾는 질문</a>
               <a class="dropdown-item" href="/move/faq2">1:1문의</a>
             </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/message/message_list">쪽지함(${num})</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/member/logout">로그아웃</a>

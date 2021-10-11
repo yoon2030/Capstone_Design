@@ -6,9 +6,7 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
 
-import com.capstone.domain.Criteria;
 import com.capstone.domain.Review_T_VO;
-import com.capstone.domain.SearchCriteria;
 import com.capstone.domain.Talent_S_VO;
 import com.capstone.domain.TradeVO;
 import com.capstone.domain.Trade_T_VO;
@@ -92,27 +90,5 @@ public class TalentServiceImpl implements TalentService{
 		dao.trade_T_delete(trade_T_Code);
 	}
 	
-	//목록+페이징
-	@Override
-	public List<Talent_S_VO> listPage(Criteria cri) throws Exception{
-		return dao.listPage(cri);
-	}
-	
-	//게시글 총 개수
-	@Override
-	public int listCount() throws Exception{
-		return dao.listCount();
-	}
-	
-	//목록+페이징+검색
-	@Override
-	public List<Talent_S_VO> listSearch(SearchCriteria scri) throws Exception {
-		return dao.listSearch(scri);
-	}
 
-	//검색결과개수
-	@Override
-	public int countSearch(SearchCriteria scri) throws Exception {
-		return dao.countSearch(scri);
-	}
 }

@@ -4,68 +4,19 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.capstone.mappers.adminMapper">
 
-<!-- Paging -->
-<select id="listPage" resultType="com.capstone.domain.GoodsVO"
-parameterType="com.capstone.domain.Criteria">
-    select goods_Code, seller_Id, goods_Name, goods_Cate, goods_Sta,goods_Price, goods_Des, goods_Pic, goods_Date, phone_Num
-       from (
-           select goods_Code, seller_Id, goods_Name, goods_Cate, goods_Sta,goods_Price, goods_Des, goods_Pic, goods_Date, phone_Num,
-               row_number() over(order by goods_Code desc) as rNum
-           from goods
-     ) mb
-    where rNum between #{rowStart} and #{rowEnd}
-        order by goods_Code desc
-</select>
-
-<!-- 검색 -->
-<select id="listSearch" resultType="com.capstone.domain.GoodsVO"
-parameterType="com.capstone.domain.SearchCriteria">
-select goods_Code, seller_Id, goods_Name, goods_Cate
-       from (
-           select goods_Code, seller_Id, goods_Name, goods_Cate,
-               row_number() over(order by goods_Code desc) as rNum
-           from goods
-      <include refid="search"></include>
-     )
-    where rNum between #{rowStart} and #{rowEnd}
-        order by goods_Code desc
-</select>
-
-<sql id="search">
- <if test="searchType != null">
-  <if test="searchType == 't'.toString()">where goods_Name like '%' || #{keyword} || '%'</if>
-  <if test="searchType == 'c'.toString()">where goods_Des like '%' || #{keyword} || '%'</if>
- </if>
-</sql>
-
-<select id="countSearch" resultType="int">
- select count(goods_Code)
-  from goods
-   <include refid="search"></include>
-<![CDATA[
-   and goods_Code > 0
-]]>
-</select>
-
-<!-- 게시글 총 개수 구하기 -->
-<select id="listCount" resultType="int">
-<![CDATA[select count(goods_Code)
-			from goods where goods_Code>0
-			]]>
-</select>
-
 <!--판매 상품 등록 -->
 	<insert id="register">
 		insert into goods (goods_Code, seller_Id, goods_Name, goods_Cate, goods_Price,goods_Sta, goods_Des, 
 								goods_Pic, phone_Num, goods_State)
 	   		values (goods_seq.nextval, #{seller_Id},#{goods_Name}, #{goods_Cate}, #{goods_Price}, #{goods_Sta} ,#{goods_Des},
-	   		 		#{goods_Pic}, #{phone_Num}, 1)  	
+	   		 		#{goods_Pic}, #{phone_Num}, #{goods_State})  	
 	</insert>
 <!--판매 상품 목록(화면) 출력-->	
 	<select id="goodslist" resultType="com.capstone.domain.GoodsVO">
 		select
-			goods_Code, seller_Id, goods_Name, goods_Cate, goods_Sta,goods_Price, goods_Des, goods_Pic, goods_Date, phone_Num
+			goods_Code, seller_Id, goods_Name, goods_Cate, goods_Sta,goods_Price, goods_Des, goods_Pic, goods_Date, phone_Num, goods_State
 	    from goods
+	    	where goods_State='대기중' OR goods_State = '거래중'
 	        order by goods_Code desc
 	</select>
 <!--판매 상품 조회 -->
@@ -106,8 +57,8 @@ select goods_Code, seller_Id, goods_Name, goods_Cate
 	
 <!-- 거래 등록 -->
 	<insert id="trade_register">
-		insert into trade (trade_Code, goods_Code, seller_Id, trade_State)
-		values (trade_seq.nextval, #{goods_Code}, #{seller_Id}, 1)
+		insert into trade (trade_Code, goods_Code, seller_Id, buyer_Id,trade_State, buyer_Phone, goods_Title)
+		values (trade_seq.nextval, #{goods_Code}, #{seller_Id}, #{buyer_Id},#{trade_State}, #{buyer_Phone}, #{goods_Title})
 	</insert>
 <!-- 거래 조회 -->
 	<select id="trade_view" resultType="com.capstone.domain.TradeVO">
@@ -125,13 +76,11 @@ select goods_Code, seller_Id, goods_Name, goods_Cate
 			where goods_Code = #{goods_Code}
 	</update>
 	
-<!-- 거래 요청 취소 및 거부 -->
+<!-- 거래 요청 취소 및 거부 (삭제) -->
 	<update id="trade_cancel">
-		update trade
-			set
-				buyer_Id = #{buyer_Id},
-				trade_State = #{trade_State}
-			where trade_Code = #{trade_Code}
+		delete
+			trade
+		where trade_Code = #{trade_Code}
 	</update>
 	
 <!-- 거래 완료 -->
@@ -141,18 +90,13 @@ select goods_Code, seller_Id, goods_Name, goods_Cate
 				trade_State = #{trade_State}
 			where trade_Code = #{trade_Code}
 	</update>
-<!-- 거래 완료 후 상품 상태 승격 -->
+<!-- 상품상태 변경 -->
 	<update id="goods_set">
 		update goods
 			set
-				goods_State = 2
+				goods_State = #{goods_State}
 			where goods_Code = #{goods_Code}
 	</update>
-<!-- 거래 삭제 -->
-	<delete id="tradeDelete">
-		delete 
-			trade
-		where goods_Code = #{goods_Code}
-	</delete>
+
 	
 </mapper>

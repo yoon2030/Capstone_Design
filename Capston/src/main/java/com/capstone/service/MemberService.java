@@ -23,6 +23,6 @@ public interface MemberService {
 	//거래 조회
 	public List<TradeVO> tradeView(String Id) throws Exception;
 	
-	//관리자 로그인
-	public MemberVO managersignin(MemberVO vo) throws Exception;
+	//멤버조회
+	public MemberVO member_check(String Id) throws Exception;
 }

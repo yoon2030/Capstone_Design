@@ -8,6 +8,13 @@ public class FaqVO {
 	private String faq_Content;
 	private Date faq_Date;
 	private String faq_Id;
+	
+	public String getFaq_Id() {
+		return faq_Id;
+	}
+	public void setFaq_Id(String faq_Id) {
+		this.faq_Id = faq_Id;
+	}
 	public String getFaq_Title() {
 		return faq_Title;
 	}
@@ -32,10 +39,5 @@ public class FaqVO {
 	public void setFaq_Date(Date faq_Date) {
 		this.faq_Date = faq_Date;
 	}
-	public String getFaq_Id() {
-		return faq_Id;
-	}
-	public void setFaq_Id(String faq_Id) {
-		this.faq_Id = faq_Id;
-	}
+	
 }

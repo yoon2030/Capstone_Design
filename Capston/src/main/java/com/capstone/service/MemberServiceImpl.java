@@ -42,13 +42,14 @@ public class MemberServiceImpl implements MemberService {
 	}
 	
 	//거래 조회
+	@Override
 	public List<TradeVO> tradeView(String Id) throws Exception{
 		return dao.tradeView(Id);
 	}
-
-	//관리자 로그인
+	
+	//멤버조회
 	@Override
-	public MemberVO managersignin(MemberVO vo) throws Exception {
-		return dao.managersignin(vo);
+	public MemberVO member_check(String Id) throws Exception{
+		return dao.member_check(Id);
 	}
 }
