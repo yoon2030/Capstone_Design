@@ -23,9 +23,12 @@ public interface MemberService {
 	//거래 조회
 	public List<TradeVO> tradeView(String Id) throws Exception;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	
 	//관리자 로그인
 	public MemberVO managersignin(MemberVO vo) throws Exception;
+=======
+>>>>>>> parent of dc4c627 (쪽지 기능 및 이메일 알림 기능 구현)
 =======
 >>>>>>> parent of dc4c627 (쪽지 기능 및 이메일 알림 기능 구현)
 }

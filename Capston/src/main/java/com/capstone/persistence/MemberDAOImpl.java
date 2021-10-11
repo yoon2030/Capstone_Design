@@ -42,12 +42,15 @@ public class MemberDAOImpl implements MemberDAO {
 		return sql.selectList(namespace + ".tradeView", Id);
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	//관리자 로그인
 	@Override
 	public MemberVO managersignin(MemberVO vo) throws Exception {
 		return sql.selectOne(namespace+".managersignin",vo);
 	}
+=======
+>>>>>>> parent of dc4c627 (쪽지 기능 및 이메일 알림 기능 구현)
 =======
 >>>>>>> parent of dc4c627 (쪽지 기능 및 이메일 알림 기능 구현)
 }

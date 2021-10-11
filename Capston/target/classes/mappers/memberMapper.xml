@@ -14,7 +14,11 @@
 <select id="signin" resultType="com.capstone.domain.MemberVO">
 	select
 <<<<<<< HEAD
+<<<<<<< HEAD
 	    Name, Id, Pw, Major, Student_Num, Email, Phone_Num, verify
+=======
+	    Name, Id, Pw, Major, Student_Num, Email, Phone_Num
+>>>>>>> parent of dc4c627 (쪽지 기능 및 이메일 알림 기능 구현)
 =======
 	    Name, Id, Pw, Major, Student_Num, Email, Phone_Num
 >>>>>>> parent of dc4c627 (쪽지 기능 및 이메일 알림 기능 구현)
@@ -47,7 +51,10 @@
 	        order by goods_Code desc
 	</select>
 <<<<<<< HEAD
+<<<<<<< HEAD
 	
+=======
+>>>>>>> parent of dc4c627 (쪽지 기능 및 이메일 알림 기능 구현)
 =======
 >>>>>>> parent of dc4c627 (쪽지 기능 및 이메일 알림 기능 구현)
 </mapper>

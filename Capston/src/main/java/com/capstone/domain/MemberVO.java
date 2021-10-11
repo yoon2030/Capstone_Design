@@ -12,7 +12,10 @@ public class MemberVO {
 	private int tal_Sta;
 	private int goods_Sta;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> parent of dc4c627 (쪽지 기능 및 이메일 알림 기능 구현)
 	
 	
 	

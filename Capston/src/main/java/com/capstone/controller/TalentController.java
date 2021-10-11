@@ -17,7 +17,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 import com.capstone.domain.Criteria;
+=======
+>>>>>>> parent of dc4c627 (쪽지 기능 및 이메일 알림 기능 구현)
 =======
 >>>>>>> parent of dc4c627 (쪽지 기능 및 이메일 알림 기능 구현)
 import com.capstone.domain.Goods_B_VO;

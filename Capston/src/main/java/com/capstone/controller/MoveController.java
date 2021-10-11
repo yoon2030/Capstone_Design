@@ -43,7 +43,10 @@ public class MoveController {
 	@Inject
 	MoveService moveService;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	
+=======
+>>>>>>> parent of dc4c627 (쪽지 기능 및 이메일 알림 기능 구현)
 =======
 >>>>>>> parent of dc4c627 (쪽지 기능 및 이메일 알림 기능 구현)
 	//메인화면 get
@@ -133,6 +136,7 @@ public class MoveController {
 		HttpSession session = req.getSession(); 	
 		NoticeVO notice = moveService.notice_View(notice_Num);
 		model.addAttribute("notice", notice);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	}
 	
@@ -244,6 +248,8 @@ public class MoveController {
 		model.addAttribute("list", list);
 =======
 >>>>>>> parent of dc4c627 (쪽지 기능 및 이메일 알림 기능 구현)
+=======
+>>>>>>> parent of dc4c627 (쪽지 기능 및 이메일 알림 기능 구현)
 	}
 	
 	//관리자-판매상품 상세조회
@@ -344,10 +350,13 @@ public class MoveController {
 		HttpSession session = req.getSession();
 		MemberVO member = (MemberVO) session.getAttribute("member");
 <<<<<<< HEAD
+<<<<<<< HEAD
 		List<TradeVO>list = moveService.my_Trade_List(member.getId());
 		List<GoodsVO> list2 = new ArrayList();
 		for(TradeVO e : list) {
 =======
+=======
+>>>>>>> parent of dc4c627 (쪽지 기능 및 이메일 알림 기능 구현)
 		List<TradeVO>list_1 = moveService.my_Trade_List(member.getId());
 		List<GoodsVO> list = new ArrayList();
 		for(TradeVO e : list_1) {
@@ -393,10 +402,13 @@ public class MoveController {
 		HttpSession session = req.getSession();
 		MemberVO member = (MemberVO) session.getAttribute("member");
 <<<<<<< HEAD
+<<<<<<< HEAD
 		List<TradeVO>list = moveService.my_Trade_List(member.getId());
 		List<GoodsVO> list2 = new ArrayList();
 		for(TradeVO e : list) {
 =======
+=======
+>>>>>>> parent of dc4c627 (쪽지 기능 및 이메일 알림 기능 구현)
 		List<TradeVO>list_1 = moveService.my_Trade_List(member.getId());
 		List<GoodsVO> list = new ArrayList();
 		for(TradeVO e : list_1) {
