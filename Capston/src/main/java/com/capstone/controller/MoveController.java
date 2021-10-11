@@ -40,8 +40,18 @@ public class MoveController {
 	
 	@Inject
 	MoveService moveService;
+<<<<<<< HEAD
 	@Inject
 	MessageService messageService;
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+	
+=======
+>>>>>>> parent of dc4c627 (쪽지 기능 및 이메일 알림 기능 구현)
+=======
+>>>>>>> parent of dc4c627 (쪽지 기능 및 이메일 알림 기능 구현)
+>>>>>>> f6dc091b9ee04e37ef904ac46a71a96f0bdf1f5a
 	//메인화면 get
 	@RequestMapping(value = "/index", method = RequestMethod.GET)
 	public void getIndex(Model model, HttpServletRequest req) throws Exception {
@@ -80,9 +90,126 @@ public class MoveController {
 		HttpSession session = req.getSession(); 	
 		NoticeVO notice = moveService.notice_View(notice_Num);
 		model.addAttribute("notice", notice);
+<<<<<<< HEAD
 		MemberVO member = (MemberVO) session.getAttribute("member");
 		int num = messageService.message_Count(member.getId());
 		model.addAttribute("num", num);
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+	}
+	
+	//공지사항 페이징
+	@RequestMapping(value="/contactlistPage",method=RequestMethod.GET)
+	public void contactlistPage(@ModelAttribute("cri") Criteria cri, Model model, HttpServletRequest req) throws Exception{
+		logger.info("get contactlist page");
+		HttpSession session = req.getSession();
+		List<NoticeVO> list=moveService.listPage(cri);
+		model.addAttribute("list",list);
+		
+		PageMaker pageMaker=new PageMaker();
+		pageMaker.setCri(cri);
+		pageMaker.setTotalCount(moveService.listCount());
+		model.addAttribute("pageMaker",pageMaker);
+	}
+	
+	//공지사항_페이징_검색
+	@RequestMapping(value="/contactlistSearch",method=RequestMethod.GET)
+	public void contactlistSearch(@ModelAttribute("scri") SearchCriteria scri, Model model, HttpServletRequest req) throws Exception{
+		logger.info("get contactsearch");
+		HttpSession session = req.getSession();
+		List<NoticeVO> list=moveService.listSearch(scri);
+		model.addAttribute("list",list);
+		
+		PageMaker pageMaker=new PageMaker();
+		pageMaker.setCri(scri);
+		pageMaker.setTotalCount(moveService.listCount());
+		model.addAttribute("pageMaker",pageMaker);
+	}
+	
+	//관리자공지사항 페이징
+	@RequestMapping(value="/managerlistPage",method=RequestMethod.GET)
+	public void managerlistPage(@ModelAttribute("cri") Criteria cri, Model model, HttpServletRequest req) throws Exception{
+		logger.info("get contactlist page");
+		HttpSession session = req.getSession();
+		List<NoticeVO> list=moveService.listPage(cri);
+		model.addAttribute("list",list);
+		
+		PageMaker pageMaker=new PageMaker();
+		pageMaker.setCri(cri);
+		pageMaker.setTotalCount(moveService.listCount());
+		model.addAttribute("pageMaker",pageMaker);
+	}
+	
+	//관리자공지사항_페이징_검색
+	@RequestMapping(value="/managerlistSearch",method=RequestMethod.GET)
+	public void managerlistSearch(@ModelAttribute("scri") SearchCriteria scri, Model model, HttpServletRequest req) throws Exception{
+		logger.info("get contactsearch");
+		HttpSession session = req.getSession();
+		List<NoticeVO> list=moveService.listSearch(scri);
+		model.addAttribute("list",list);
+		
+		PageMaker pageMaker=new PageMaker();
+		pageMaker.setCri(scri);
+		pageMaker.setTotalCount(moveService.listCount());
+		model.addAttribute("pageMaker",pageMaker);
+	}
+	
+	
+	//관리자-재능 판매 화면 출력
+	@RequestMapping(value="/manager_talent_S", method=RequestMethod.GET)
+	public void getManagerTalentList(Model model, HttpServletRequest req) throws Exception{
+		logger.info("get manager_S");
+		HttpSession session=req.getSession();
+		MemberVO member=(MemberVO) session.getAttribute("member");
+		List<Talent_S_VO>list=moveService.talentSlist();
+		model.addAttribute("member",member);
+		model.addAttribute("list",list);
+	}
+	
+	//관리자-재능 판매 화면 상세 조회
+	@RequestMapping(value="/manager_talent_S_view", method=RequestMethod.GET)
+	public void getManagerTalentView(@RequestParam("n") int Tals_Code, Model model, HttpServletRequest req) throws Exception{
+		logger.info("get manager_S view");
+		HttpSession session=req.getSession();
+		MemberVO member=(MemberVO) session.getAttribute("member");
+		Talent_S_VO talent=moveService.talentSview(Tals_Code);
+		model.addAttribute("talent",talent);
+		model.addAttribute("member",member);
+	}
+	
+	//관리자-재능 판매 삭제
+	@RequestMapping(value="/manager_talent_S_delete",method=RequestMethod.GET)
+	public String postManagerTalentDelete(@RequestParam("n") int tals_Code) throws Exception{
+		logger.info("post manager_talent delete");
+		moveService.talentDelete(tals_Code);
+		
+		return "redirect:/move/managertalentlistPage";
+	}
+	
+	//관리자-판매상품 삭제
+	@RequestMapping(value="/manager_sell_delete",method=RequestMethod.GET)
+	public String postManagerGoodsDelete(@RequestParam("n") int goods_Code) throws Exception{
+		logger.info("post manager goods delete");
+		moveService.goodsDelete(goods_Code);
+		
+		return "redirect:/move/manager_sell";
+	}
+	
+	//관리자-판매상품 리스트
+	@RequestMapping(value="/manager_sell",method=RequestMethod.GET)
+	public void getManagerGoodsList(Model model, HttpServletRequest req) throws Exception{
+		logger.info("get manager goods list");
+		HttpSession session = req.getSession();
+		MemberVO member = (MemberVO) session.getAttribute("member");
+		List<GoodsVO> list=moveService.goodslist();
+		model.addAttribute("member", member);
+		model.addAttribute("list", list);
+=======
+>>>>>>> parent of dc4c627 (쪽지 기능 및 이메일 알림 기능 구현)
+=======
+>>>>>>> parent of dc4c627 (쪽지 기능 및 이메일 알림 기능 구현)
+>>>>>>> f6dc091b9ee04e37ef904ac46a71a96f0bdf1f5a
 	}
 	
 	
@@ -108,11 +235,26 @@ public class MoveController {
 		logger.info("get wantbuy");
 		HttpSession session = req.getSession();
 		MemberVO member = (MemberVO) session.getAttribute("member");
+<<<<<<< HEAD
 		int num = messageService.message_Count(member.getId());
 		model.addAttribute("num", num);
 		List<TradeVO>list_1 = moveService.my_Trade_List(member.getId());
 		List<GoodsVO> list = new ArrayList();
 		for(TradeVO e : list_1) {
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+		List<TradeVO>list = moveService.my_Trade_List(member.getId());
+		List<GoodsVO> list2 = new ArrayList();
+		for(TradeVO e : list) {
+=======
+=======
+>>>>>>> parent of dc4c627 (쪽지 기능 및 이메일 알림 기능 구현)
+		List<TradeVO>list_1 = moveService.my_Trade_List(member.getId());
+		List<GoodsVO> list = new ArrayList();
+		for(TradeVO e : list_1) {
+>>>>>>> parent of dc4c627 (쪽지 기능 및 이메일 알림 기능 구현)
+>>>>>>> f6dc091b9ee04e37ef904ac46a71a96f0bdf1f5a
 			if(e.getTrade_State()==2) {
 			GoodsVO res = moveService.goodsView(e.getGoods_Code());
 			list.add(res);
@@ -132,6 +274,11 @@ public class MoveController {
 		model.addAttribute("list2", list2);
  		
 	}
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+>>>>>>> f6dc091b9ee04e37ef904ac46a71a96f0bdf1f5a
 	
 	//요청받은 거래 목록 get
 	@RequestMapping(value = "/trade", method = RequestMethod.GET)
@@ -139,8 +286,11 @@ public class MoveController {
 		logger.info("get trade");
 		HttpSession session = req.getSession();
 		MemberVO member = (MemberVO) session.getAttribute("member");
+<<<<<<< HEAD
 		int num = messageService.message_Count(member.getId());
 		model.addAttribute("num", num);
+=======
+>>>>>>> f6dc091b9ee04e37ef904ac46a71a96f0bdf1f5a
 		List<TradeVO>list = moveService.trade_List(member.getId());
 		List<GoodsVO> list3 = new ArrayList();
 		for(TradeVO e : list) {
@@ -157,17 +307,36 @@ public class MoveController {
 		
 	}
 	
+<<<<<<< HEAD
+=======
+>>>>>>> parent of dc4c627 (쪽지 기능 및 이메일 알림 기능 구현)
+>>>>>>> f6dc091b9ee04e37ef904ac46a71a96f0bdf1f5a
 	//거래 완료한 거래 목록 get
 	@RequestMapping(value = "/trade_complete", method = RequestMethod.GET)
 	public void getTrade_Complete(Model model, HttpServletRequest req) throws Exception {
 		logger.info("get complete");
 		HttpSession session = req.getSession();
 		MemberVO member = (MemberVO) session.getAttribute("member");
+<<<<<<< HEAD
 		int num = messageService.message_Count(member.getId());
 		model.addAttribute("num", num);
 		List<TradeVO>list_1 = moveService.my_Trade_List(member.getId());
 		List<GoodsVO> list = new ArrayList();
 		for(TradeVO e : list_1) {
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+		List<TradeVO>list = moveService.my_Trade_List(member.getId());
+		List<GoodsVO> list2 = new ArrayList();
+		for(TradeVO e : list) {
+=======
+=======
+>>>>>>> parent of dc4c627 (쪽지 기능 및 이메일 알림 기능 구현)
+		List<TradeVO>list_1 = moveService.my_Trade_List(member.getId());
+		List<GoodsVO> list = new ArrayList();
+		for(TradeVO e : list_1) {
+>>>>>>> parent of dc4c627 (쪽지 기능 및 이메일 알림 기능 구현)
+>>>>>>> f6dc091b9ee04e37ef904ac46a71a96f0bdf1f5a
 			if(e.getTrade_State()==3) {
 			GoodsVO res = moveService.goodsView(e.getGoods_Code());
 			list.add(res);
@@ -276,6 +445,11 @@ public class MoveController {
 		ReviewVO t = moveService.reviewView(Integer.parseInt(vo.getReview_Code()));
 		int sta = t.getReview_Sta();
 		moveService.reviewModify(vo);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+>>>>>>> f6dc091b9ee04e37ef904ac46a71a96f0bdf1f5a
 		HttpSession session = req.getSession();
 		MemberVO member = (MemberVO) session.getAttribute("member");
 		member.setGoods_Sta((member.getGoods_Sta()-sta)+vo.getReview_Sta());
@@ -291,8 +465,11 @@ public class MoveController {
 		logger.info("get review register");
 		HttpSession session = req.getSession();
 		MemberVO member = (MemberVO) session.getAttribute("member");
+<<<<<<< HEAD
 		int num = messageService.message_Count(member.getId());
 		model.addAttribute("num", num);
+=======
+>>>>>>> f6dc091b9ee04e37ef904ac46a71a96f0bdf1f5a
 		Trade_T_VO vo = moveService.trade_T_View(trade_T_Code);
 		model.addAttribute("trade", vo);
 	}
@@ -336,6 +513,7 @@ public class MoveController {
 	}
 	//후기 수정 
 	@RequestMapping(value = "/review_modify_t", method = RequestMethod.GET)
+<<<<<<< HEAD
 	public void getGoodsModify_t(@RequestParam("n") int rev_T_Code, Model model,HttpServletRequest req) throws Exception {
 	// @RequestParam("n")으로 인해, URL주소에 있는 n의 값을 가져와 gdsNum에 저장
 				
@@ -344,6 +522,13 @@ public class MoveController {
 		MemberVO member = (MemberVO) session.getAttribute("member");
 		int num = messageService.message_Count(member.getId());
 		model.addAttribute("num", num);
+=======
+	public void getGoodsModify_t(@RequestParam("n") int rev_T_Code, Model model) throws Exception {
+	// @RequestParam("n")으로 인해, URL주소에 있는 n의 값을 가져와 gdsNum에 저장
+				
+		logger.info("get review modify");
+		
+>>>>>>> f6dc091b9ee04e37ef904ac46a71a96f0bdf1f5a
 		Review_T_VO review = moveService.review_t_View(rev_T_Code);
 		model.addAttribute("review_t", review);
 	}
@@ -358,6 +543,10 @@ public class MoveController {
 		MemberVO member = (MemberVO) session.getAttribute("member");
 		member.setTal_Sta((member.getTal_Sta()-sta)+vo.getRev_T_Sta());
 		moveService.tal_Sta(member);
+<<<<<<< HEAD
+=======
+>>>>>>> parent of dc4c627 (쪽지 기능 및 이메일 알림 기능 구현)
+>>>>>>> f6dc091b9ee04e37ef904ac46a71a96f0bdf1f5a
 			
 		return "redirect:/move/review";
 	}

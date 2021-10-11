@@ -46,10 +46,21 @@ public class MemberServiceImpl implements MemberService {
 	public List<TradeVO> tradeView(String Id) throws Exception{
 		return dao.tradeView(Id);
 	}
+<<<<<<< HEAD
 	
 	//멤버조회
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+
+	//관리자 로그인
+>>>>>>> f6dc091b9ee04e37ef904ac46a71a96f0bdf1f5a
 	@Override
 	public MemberVO member_check(String Id) throws Exception{
 		return dao.member_check(Id);
 	}
+=======
+>>>>>>> parent of dc4c627 (쪽지 기능 및 이메일 알림 기능 구현)
+=======
+>>>>>>> parent of dc4c627 (쪽지 기능 및 이메일 알림 기능 구현)
 }

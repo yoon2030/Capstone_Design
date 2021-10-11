@@ -20,7 +20,17 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+<<<<<<< HEAD
 import com.capstone.domain.EmailVO;
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+import com.capstone.domain.Criteria;
+=======
+>>>>>>> parent of dc4c627 (쪽지 기능 및 이메일 알림 기능 구현)
+=======
+>>>>>>> parent of dc4c627 (쪽지 기능 및 이메일 알림 기능 구현)
+>>>>>>> f6dc091b9ee04e37ef904ac46a71a96f0bdf1f5a
 import com.capstone.domain.GoodsVO;
 import com.capstone.domain.Goods_B_VO;
 import com.capstone.domain.MemberVO;
@@ -203,6 +213,7 @@ public class AdminController {
 		out.println("alert('정상적으로 거래요청 되었습니다.');");
 		out.println("</script>");
 		out.flush();
+<<<<<<< HEAD
 		
 		try {
 			EmailVO vo = new EmailVO();
@@ -215,6 +226,15 @@ public class AdminController {
         } catch (Exception e) {
             e.printStackTrace();     
         }
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+		adminService.trade_req(trade);
+=======
+>>>>>>> parent of dc4c627 (쪽지 기능 및 이메일 알림 기능 구현)
+=======
+>>>>>>> parent of dc4c627 (쪽지 기능 및 이메일 알림 기능 구현)
+>>>>>>> f6dc091b9ee04e37ef904ac46a71a96f0bdf1f5a
 		}
 		else{
 			out.println("<script language='javascript'>");
@@ -271,6 +291,7 @@ public class AdminController {
 			out.flush();
 			goods.setGoods_State("거래완료");
 			adminService.trade_complete(trade);
+<<<<<<< HEAD
 			adminService.goods_set(goods);
 			try {
 				EmailVO vo = new EmailVO();
@@ -283,6 +304,16 @@ public class AdminController {
 	        } catch (Exception e) {
 	            e.printStackTrace();     
 	        }
+=======
+<<<<<<< HEAD
+			adminService.goods_set(goods_Code);
+=======
+			adminService.goods_set(goods);
+<<<<<<< HEAD
+>>>>>>> parent of dc4c627 (쪽지 기능 및 이메일 알림 기능 구현)
+=======
+>>>>>>> parent of dc4c627 (쪽지 기능 및 이메일 알림 기능 구현)
+>>>>>>> f6dc091b9ee04e37ef904ac46a71a96f0bdf1f5a
 		}
 		else if(trade.getTrade_State()==1) {
 			out.println("<script language='javascript'>");

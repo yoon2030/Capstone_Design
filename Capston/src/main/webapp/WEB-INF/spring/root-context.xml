@@ -16,6 +16,7 @@
         <property value="jdbc:log4jdbc:oracle:thin:@localhost:1521/xe" name="url"/>
         <property value="scott" name="username"/>
         <property value="tiger" name="password"/>
+<<<<<<< HEAD
     </bean>
    <!-- 이메일 발송 bean 설정 -->
     <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
@@ -33,6 +34,8 @@
 				<prop key="mail.smtp.ssl.protocols">TLSv1.2</prop>
             </props>
         </property>
+=======
+>>>>>>> f6dc091b9ee04e37ef904ac46a71a96f0bdf1f5a
     </bean>
    
     <!-- 마이바티스 연동 -->

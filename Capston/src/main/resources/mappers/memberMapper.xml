@@ -13,7 +13,19 @@
 <!-- 로그인 -->
 <select id="signin" resultType="com.capstone.domain.MemberVO">
 	select
+<<<<<<< HEAD
 	    Name, Id, Pw, Major, Student_Num, Email, Phone_Num, tal_Sta, goods_Sta, Email_2
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+	    Name, Id, Pw, Major, Student_Num, Email, Phone_Num, verify
+=======
+	    Name, Id, Pw, Major, Student_Num, Email, Phone_Num
+>>>>>>> parent of dc4c627 (쪽지 기능 및 이메일 알림 기능 구현)
+=======
+	    Name, Id, Pw, Major, Student_Num, Email, Phone_Num
+>>>>>>> parent of dc4c627 (쪽지 기능 및 이메일 알림 기능 구현)
+>>>>>>> f6dc091b9ee04e37ef904ac46a71a96f0bdf1f5a
 	from
 	    member
 	where Id = #{Id} AND Pw = #{Pw}
@@ -32,10 +44,19 @@
 	    where buyer_Id = #{Id} AND trade_State = 3
 	        order by goods_Code desc
 	</select>
+<<<<<<< HEAD
+<<<<<<< HEAD
 	
+<<<<<<< HEAD
 <!-- 멤버 조회 -->
 <select id="member_check" resultType="com.capstone.domain.MemberVO">
 	select Id, Pw, Name, Major, Email, Phone_Num, tal_Sta, goods_Sta, Student_Num, Email_2;
 	from member where Id = #{Id}
 </select>
+=======
+=======
+>>>>>>> parent of dc4c627 (쪽지 기능 및 이메일 알림 기능 구현)
+=======
+>>>>>>> parent of dc4c627 (쪽지 기능 및 이메일 알림 기능 구현)
+>>>>>>> f6dc091b9ee04e37ef904ac46a71a96f0bdf1f5a
 </mapper>
