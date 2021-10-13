@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 
 <head>
-
+<script src='https://code.jquery.com/jquery-3.3.1.min.js'></script>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
@@ -87,10 +87,8 @@
       </div>
     </div>
   </nav>
-
-
-
   
+
 
     <!-- Team Members -->
     <div id = "title">
@@ -99,8 +97,30 @@
       <button id = "reg" onclick="location.href='/admin/register'">등록</button>
       </div>
   	</div>
-  
+<div class="search">
+ <select name="searchType">
+  <option value="n"<c:out value="${scri.searchType == null ? 'selected' : ''}"/>>-----</option>
+  <option value="t"<c:out value="${scri.searchType eq 't' ? 'selected' : ''}"/>>제목</option>
 
+ </select>
+ 
+ <input type="text" name="keyword" id="keywordInput" value="${scri.keyword}"/>
+
+ <button id="searchBtn">검색</button>
+ 
+ <script>
+ $(function(){
+  $('#searchBtn').click(function() {
+   self.location = "trade_list"
+     + '${pageMaker.makeQuery(1)}'
+     + "&searchType="
+     + $("select option:selected").val()
+     + "&keyword="
+     + encodeURIComponent($('#keywordInput').val());
+    });
+ });   
+ </script>
+</div>
     <div class="row">
     	<c:forEach items="${list}" var="list">
     	 <div class="col-lg-100">
@@ -127,7 +147,21 @@
 
   
   <!-- /.container -->
-
+<div>
+ <ul>
+  <c:if test="${pageMaker.prev}">
+   <li><a href="trade_list${pageMaker.makeQuery(pageMaker.startPage - 1)}">이전</a></li>
+  </c:if> 
+  
+  <c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
+   <li><a href="trade_list${pageMaker.makeQuery(idx)}">${idx}</a></li>
+  </c:forEach>
+    
+  <c:if test="${pageMaker.next && pageMaker.endPage > 0}">
+   <li><a href="trade_list${pageMaker.makeQuery(pageMaker.endPage + 1)}">다음</a></li>
+  </c:if> 
+ </ul>
+</div>
   <!-- Footer -->
   <footer class="py-5 bg-dark">
     <div class="container">

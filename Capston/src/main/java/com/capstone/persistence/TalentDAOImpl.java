@@ -7,7 +7,9 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import com.capstone.domain.Criteria;
 import com.capstone.domain.Review_T_VO;
+import com.capstone.domain.SearchCriteria;
 import com.capstone.domain.Talent_S_VO;
 import com.capstone.domain.TradeVO;
 import com.capstone.domain.Trade_T_VO;
@@ -91,5 +93,68 @@ public class TalentDAOImpl implements TalentDAO{
 	@Override
 	public void trade_T_delete(int trade_T_Code)throws Exception{
 		sql.delete(namespace+ ".trade_t_delete", trade_T_Code);
+	}
+	//목록+페이징
+	@Override
+	public List<Talent_S_VO> listPage(Criteria cri) throws Exception{
+		return sql.selectList(namespace+".listPage",cri);
+	}
+	
+	//게시글 총 개수
+	@Override
+	public int listCount() throws Exception{
+		return sql.selectOne(namespace+".listCount");
+	}
+	
+	//목록+페이징+검색
+	@Override
+	public List<Talent_S_VO> listSearch(SearchCriteria scri) throws Exception {
+		return sql.selectList(namespace+".listSearch",scri);
+	}
+
+	//검색 결과 개수
+	@Override
+	public int countSearch(SearchCriteria scri) throws Exception {
+		return sql.selectOne(namespace+".countSearch",scri);
+	}
+
+	@Override
+	public List<Talent_S_VO> listPage1(Criteria cri) throws Exception {
+		return sql.selectList(namespace+".listPage1",cri);
+	}
+
+	@Override
+	public int listCount1() throws Exception {
+		return sql.selectOne(namespace+".listCount1");
+	}
+
+	@Override
+	public List<Talent_S_VO> listSearch1(SearchCriteria scri) throws Exception {
+		return sql.selectList(namespace+".listSearch1",scri);
+	}
+
+	@Override
+	public int countSearch1(SearchCriteria scri) throws Exception {
+		return sql.selectOne(namespace+".countSearch1",scri);
+	}
+
+	@Override
+	public List<Talent_S_VO> listPage2(Criteria cri) throws Exception {
+		return sql.selectList(namespace+".listPage2",cri);
+	}
+
+	@Override
+	public int listCount2() throws Exception {
+		return sql.selectOne(namespace+".listCount2");
+	}
+
+	@Override
+	public List<Talent_S_VO> listSearch2(SearchCriteria scri) throws Exception {
+		return sql.selectList(namespace+".listSearch2",scri);
+	}
+
+	@Override
+	public int countSearch2(SearchCriteria scri) throws Exception {
+		return sql.selectOne(namespace+".countSearch2",scri);
 	}
 }

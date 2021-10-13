@@ -15,6 +15,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -26,7 +27,9 @@ import com.capstone.domain.EmailVO;
 import com.capstone.domain.GoodsVO;
 import com.capstone.domain.Goods_B_VO;
 import com.capstone.domain.MemberVO;
+import com.capstone.domain.PageMaker;
 import com.capstone.domain.ReviewVO;
+import com.capstone.domain.SearchCriteria;
 import com.capstone.domain.TradeVO;
 import com.capstone.service.AdminService;
 import com.capstone.service.EmailService;
@@ -150,15 +153,21 @@ public class AdminController {
 	
 	// 판매거래소 화면 출력
 	@RequestMapping(value = "/trade_list", method = RequestMethod.GET)
-	public void getGoodsList(Model model, HttpServletRequest req) throws Exception {
+	public void getGoodsList(@ModelAttribute("scri") SearchCriteria scri, Model model, HttpServletRequest req) throws Exception {
 		logger.info("get trade_list");
 		HttpSession session = req.getSession();
 		MemberVO member = (MemberVO) session.getAttribute("member");
 		int num = messageService.message_Count(member.getId());
 		model.addAttribute("num", num);
-		List<GoodsVO> list = adminService.goodslist();  // GoodsVO형태의 List형 변수 list 선언
+		
+		List<GoodsVO> list=adminService.listSearch(scri);  // GoodsVO형태의 List형 변수 list 선언
 		model.addAttribute("member", member);	
 		model.addAttribute("list", list);  // 변수 list의 값을 list 세션에 부여
+		
+		PageMaker pageMaker=new PageMaker();
+		pageMaker.setCri(scri);
+		pageMaker.setTotalCount(adminService.listCount());
+		model.addAttribute("pageMaker",pageMaker);
 	}
 		
 	// 판매상품 상세 조회

@@ -7,7 +7,7 @@
 <!-- 회원 가입 -->
 <insert id="signup">
  insert into member (Name, Id, Pw, Major, Student_Num, Email, Phone_Num, tal_Sta, goods_Sta, Email_2)
-  values(#{Name}, #{Id}, #{Pw}, #{Major}, #{Student_Num}, #{Email}, #{Phone_Num}, 0, 0, Email_2) 
+  values(#{Name}, #{Id}, #{Pw}, #{Major}, #{Student_Num}, #{Email}, #{Phone_Num}, 0, 0, #{Email_2}) 
 </insert>
 
 <!-- 로그인 -->

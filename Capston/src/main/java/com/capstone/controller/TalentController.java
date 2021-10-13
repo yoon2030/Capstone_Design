@@ -12,17 +12,21 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.capstone.domain.Criteria;
 import com.capstone.domain.EmailVO;
 
 import com.capstone.domain.Goods_B_VO;
 import com.capstone.domain.MemberVO;
+import com.capstone.domain.PageMaker;
 import com.capstone.domain.ReviewVO;
 import com.capstone.domain.Review_T_VO;
+import com.capstone.domain.SearchCriteria;
 import com.capstone.domain.Talent_S_VO;
 import com.capstone.domain.TradeVO;
 import com.capstone.domain.Trade_T_VO;
@@ -103,32 +107,64 @@ public class TalentController {
 	
 	//재능 판매 대분류 화면 출력 
 	@RequestMapping(value="/talent_S_list",method=RequestMethod.GET)
-	public void getTalentList(@RequestParam("n") String Kinds,Model model, HttpServletRequest req) throws Exception{
+	public void getTalentList(@ModelAttribute("scri") SearchCriteria scri, @RequestParam("n") String Kinds,Model model, HttpServletRequest req) throws Exception{
 		logger.info("get talent_S_list");
 		HttpSession session = req.getSession();
 		MemberVO member = (MemberVO) session.getAttribute("member");
 		int num = messageService.message_Count(member.getId());
 		model.addAttribute("num", num);
 		List<Talent_S_VO>list=talentService.talentSlist(Kinds);
+		List<Talent_S_VO> list2=talentService.listPage1(scri);
 		model.addAttribute("Kinds",Kinds);
 		model.addAttribute("member",member);
 		model.addAttribute("list",list);
+		model.addAttribute("list2",list2);
+		
+		PageMaker pageMaker=new PageMaker();
+		pageMaker.setCri(scri);
+		pageMaker.setTotalCount(talentService.listCount1());
+		model.addAttribute("pageMaker",pageMaker);
 	}
 	
 	//재능 판매 소분류 화면 출력 
 	@RequestMapping(value="/talent_S_list_2",method=RequestMethod.GET)
-	public void getTalentList_2(@RequestParam("n") String Kinds,Model model, HttpServletRequest req) throws Exception{
+	public void getTalentList_2(@ModelAttribute("scri") SearchCriteria scri, @RequestParam("n") String Kinds,Model model, HttpServletRequest req) throws Exception{
 		logger.info("get talent_S_list_2");
 		HttpSession session = req.getSession();
 		MemberVO member = (MemberVO) session.getAttribute("member");
 		int num = messageService.message_Count(member.getId());
 		model.addAttribute("num", num);
 		List<Talent_S_VO>list=talentService.talentSlist_2(Kinds);
+		List<Talent_S_VO> list2=talentService.listSearch2(scri);
 		model.addAttribute("Kinds",Kinds);
 		model.addAttribute("member",member);
 		model.addAttribute("list",list);
+		model.addAttribute("list2",list2);
+		
+		PageMaker pageMaker=new PageMaker();
+		pageMaker.setCri(scri);
+		pageMaker.setTotalCount(talentService.listCount2());
+		model.addAttribute("pageMaker",pageMaker);	
 	}
-	
+		
+	//글목록+페이징+검색
+	@RequestMapping(value="/talentlist", method=RequestMethod.GET)
+	public void list(@ModelAttribute("scri") SearchCriteria scri, Model model, HttpServletRequest req) throws Exception{
+		logger.info("get list search");
+		HttpSession session = req.getSession();
+		MemberVO member = (MemberVO) session.getAttribute("member");
+		int num = messageService.message_Count(member.getId());
+		model.addAttribute("num", num); 
+		
+		List<Talent_S_VO> list=talentService.listSearch(scri);
+		model.addAttribute("member",member);
+		model.addAttribute("list",list);
+		
+		PageMaker pageMaker=new PageMaker();
+		pageMaker.setCri(scri);
+		pageMaker.setTotalCount(talentService.listCount());
+		model.addAttribute("pageMaker",pageMaker);		
+	}	
 	
 	//재능 판매 상세 조회
 	@RequestMapping(value="/talent_S_view", method=RequestMethod.GET)

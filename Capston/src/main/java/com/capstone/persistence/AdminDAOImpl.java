@@ -7,10 +7,12 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import com.capstone.domain.Criteria;
 import com.capstone.domain.GoodsVO;
 import com.capstone.domain.Goods_B_VO;
 import com.capstone.domain.MemberVO;
 import com.capstone.domain.ReviewVO;
+import com.capstone.domain.SearchCriteria;
 import com.capstone.domain.TradeVO;
 
 @Repository
@@ -85,6 +87,28 @@ public class AdminDAOImpl implements AdminDAO {
 	public void goods_set(GoodsVO vo)throws Exception{
 		sql.update(namespace + ".goods_set", vo);
 	}
+	//목록+페이징
+	@Override
+	public List<GoodsVO> listPage(Criteria cri) throws Exception{
+		return sql.selectList(namespace+".listPage",cri);
+	}
 	
+	//게시글 총 개수
+	@Override
+	public int listCount() throws Exception{
+		return sql.selectOne(namespace+".listCount");
+	}
+	
+	//목록+페이징+검색
+	@Override
+	public List<GoodsVO> listSearch(SearchCriteria scri) throws Exception {
+		return sql.selectList(namespace+".listSearch",scri);
+	}
+
+	//검색 결과 개수
+	@Override
+	public int countSearch(SearchCriteria scri) throws Exception {
+		return sql.selectOne(namespace+".countSearch",scri);
+	}
 
 }

@@ -2,10 +2,12 @@ package com.capstone.persistence;
 
 import java.util.List;
 
+import com.capstone.domain.Criteria;
 import com.capstone.domain.GoodsVO;
 import com.capstone.domain.Goods_B_VO;
 import com.capstone.domain.MemberVO;
 import com.capstone.domain.ReviewVO;
+import com.capstone.domain.SearchCriteria;
 import com.capstone.domain.TradeVO;
 
 public interface AdminDAO {
@@ -42,4 +44,16 @@ public interface AdminDAO {
 		
 		//거래에 따른 물품 상태 변환
 		public void goods_set(GoodsVO vo)throws Exception;
+		
+		//목록+페이징
+		public List<GoodsVO> listPage(Criteria cri) throws Exception;
+		
+		//게시글 총 개수
+		public int listCount() throws Exception;
+		
+		//목록+페이징+검색
+		public List<GoodsVO> listSearch(SearchCriteria scri) throws Exception;
+		
+		//검색 결과 개수
+		public int countSearch(SearchCriteria scri) throws Exception;
 }

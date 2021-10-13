@@ -2,8 +2,10 @@ package com.capstone.persistence;
 
 import java.util.List;
 
+import com.capstone.domain.Criteria;
 import com.capstone.domain.Goods_B_VO;
 import com.capstone.domain.Review_T_VO;
+import com.capstone.domain.SearchCriteria;
 import com.capstone.domain.Talent_S_VO;
 import com.capstone.domain.TradeVO;
 import com.capstone.domain.Trade_T_VO;
@@ -45,5 +47,41 @@ public interface TalentDAO {
 	
 	//거래 취소
 	public void trade_T_delete(int trade_T_Code)throws Exception;	
+	
+	//목록+페이징
+	public List<Talent_S_VO> listPage(Criteria cri) throws Exception;
+	
+	//게시글 총 개수
+	public int listCount() throws Exception;
+	
+	//목록+페이징+검색
+	public List<Talent_S_VO> listSearch(SearchCriteria scri) throws Exception;
+	
+	//검색 결과 개수
+	public int countSearch(SearchCriteria scri) throws Exception;
+	
+	//목록+페이징
+	public List<Talent_S_VO> listPage1(Criteria cri) throws Exception;
+	
+	//게시글 총 개수
+	public int listCount1() throws Exception;
+	
+	//목록+페이징+검색
+	public List<Talent_S_VO> listSearch1(SearchCriteria scri) throws Exception;
+	
+	//검색 결과 개수
+	public int countSearch1(SearchCriteria scri) throws Exception;
+	
+	//목록+페이징
+	public List<Talent_S_VO> listPage2(Criteria cri) throws Exception;
+	
+	//게시글 총 개수
+	public int listCount2() throws Exception;
+	
+	//목록+페이징+검색
+	public List<Talent_S_VO> listSearch2(SearchCriteria scri) throws Exception;
+	
+	//검색 결과 개수
+	public int countSearch2(SearchCriteria scri) throws Exception;
 
 }

@@ -9,7 +9,6 @@
 
   <!-- Custom styles for this template -->
   <link href="${pageContext.request.contextPath}/resources/css/join.css" rel="stylesheet" type="text/css">
-  <script src="vendor/jquery/jquery.min.js"></script>
 <script src="/resources/jquery/jquery-3.3.1.min.js"></script>  
 <style>
 #btnCen {
@@ -37,7 +36,8 @@
 
             <!-- content-->
             <div id="content">
-			<form role="form" method="post" autocomplete="off" id="regForm">
+			<form role="form" method="post" autocomplete="off" id="regForm" action="/member/signup">
+			<input type="hidden" id="Email" name="Email" value="${Email}">
                 <!-- ID -->
                 <div>
                     <h3 class="join_title">
@@ -87,19 +87,6 @@
                     <span class="error_next_box"></span>
                 </div>
 
-                <!-- EMAIL -->
-                <div class="int_email_area">
-                    <h3 class="join_title"><label for="Email">본인확인 이메일<span class="optional"></span></label></h3>
-                    <span class="box int_email">
-                        <input type="text" id="Email" name="Email" class="int" maxlength="100" placeholder="학교이메일을 입력해주세요" required="required">
-                        <span class="step_url">@cbnu.ac.kr</span>
-                    </span>
-                    <a href="#" class="btn_verify btn_primary" id="btnSend" role="button">
-                        <span class="">인증메일 받기</span>
-                    </a>
-                    <span class="error_next_box">이메일 주소를 다시 확인해주세요.</span>    
-                </div>
-                
                 <!-- EMAIL -->
                 <div class="int_email_area">
                     <h3 class="join_title"><label for="Email_2">알림용 이메일<span class="optional"></span></label></h3>
