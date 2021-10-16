@@ -9,12 +9,20 @@ public class MemberVO {
 	private int Student_Num;
 	private String Email;
 	private String Phone_Num;
+	private int Verify;
 	private int tal_Sta;
 	private int goods_Sta;
 	private String Email_2;
 	
 	
 	
+	
+	public int getVerify() {
+		return Verify;
+	}
+	public void setVerify(int verify) {
+		Verify = verify;
+	}
 	public String getEmail_2() {
 		return Email_2;
 	}

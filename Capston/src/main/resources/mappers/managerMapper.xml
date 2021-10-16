@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.capstone.mappers.managerMapper">
+<!-- 공지사항 추가 -->
+<insert id="notice_register">
+	insert into notice(notice_Num, notice_Title, notice_Content, notice_Date)
+	values (notice_seq.nextval, #{notice_Title}, #{notice_Content}, sysdate)
+</insert>
+
+<!-- 공지사항 수정 -->
+<update id="noticeModify">
+	update notice
+		set
+			notice_Title = #{notice_Title},
+			notice_Content = #{notice_Content}
+			
+		where notice_Num = #{notice_Num}
+</update>
+
+<!-- 공지사항 삭제 -->
+<delete id="noticeDelete">
+	delete notice where notice_Num=#{notice_Num}
+</delete>
+
+<!-- 공지사항 -->
+<select id="noticelist" resultType="com.capstone.domain.NoticeVO">
+	select
+		notice_Num, notice_Title
+	from notice
+		order by notice_Num desc
+</select>
+
+<!-- 공지사항 상세 조회 -->
+<select id="notice_View" resultType="com.capstone.domain.NoticeVO">
+	select
+		notice_Num, notice_Title, notice_Content, notice_Date
+	from notice
+		where notice_Num = #{notice_Num}
+</select>
+
+<!-- 1:1문의 리스트 -->
+<select id="faqlist" resultType="com.capstone.domain.FaqVO">
+	select
+		faq_Title, faq_Kinds, faq_Content, faq_Date, faq_Id
+	from faq
+</select>
+	
+<!-- 회원 리스트 -->
+	<select id="memberlist" resultType="com.capstone.domain.MemberVO">
+		select Name, Id, Pw, Major, Student_Num, Email, Phone_Num, RegiDate, Verify, Tal_Sta, Goods_Sta
+			from member
+	</select>
+	
+<!-- 회원 삭제 -->
+	<delete id="memberDelete">
+		delete
+				member
+		where Id=#{Id}
+	</delete>
+
+<!-- Paging -->
+<select id="listPage" resultType="com.capstone.domain.NoticeVO"
+parameterType="com.capstone.domain.Criteria">
+    select notice_Num, notice_Title
+       from (
+           select notice_Num, notice_Title,
+               row_number() over(order by Notice_Num desc) as rNum
+           from Notice
+     ) mb
+    where rNum between #{rowStart} and #{rowEnd}
+        order by Notice_Num desc
+</select>
+
+<!-- 검색 -->
+<select id="listSearch" resultType="com.capstone.domain.NoticeVO"
+parameterType="com.capstone.domain.SearchCriteria">
+select notice_Num, notice_Title
+       from (
+           select notice_Num, notice_Title,
+               row_number() over(order by Notice_Num desc) as rNum
+           from Notice
+      <include refid="search"></include>
+     ) mb
+    where rNum between #{rowStart} and #{rowEnd}
+        order by Notice_Num desc
+</select>
+
+<sql id="search">
+ <if test="searchType != null">
+  <if test="searchType == 't'.toString()">where Notice_Title like '%' || #{keyword} || '%'</if>
+  <if test="searchType == 'c'.toString()">where Notice_Content like '%' || #{keyword} || '%'</if>
+ </if>
+</sql>
+
+<select id="countSearch" resultType="int">
+ select count(Notice_Num)
+  from Notice
+   <include refid="search"></include>
+<![CDATA[
+   and Notice_Num > 0
+]]>
+</select>
+
+<!-- 게시글 총 개수 구하기 -->
+<select id="listCount" resultType="int">
+<![CDATA[select count(Notice_Num)
+			from Notice where Notice_Num>0
+			]]>
+</select>
+
+<!-- Paging -->
+<select id="goodslistPage" resultType="com.capstone.domain.GoodsVO"
+parameterType="com.capstone.domain.Criteria">
+    select goods_Code, seller_Id, goods_Name, goods_Cate, goods_Sta,goods_Price, goods_Des, goods_Pic, goods_Date, phone_Num
+       from (
+           select goods_Code, seller_Id, goods_Name, goods_Cate, goods_Sta,goods_Price, goods_Des, goods_Pic, goods_Date, phone_Num,
+               row_number() over(order by goods_Code desc) as rNum
+           from goods
+     ) mb
+    where rNum between #{rowStart} and #{rowEnd}
+        order by goods_Code desc
+</select>
+
+<!-- 검색 -->
+<select id="goodslistSearch" resultType="com.capstone.domain.GoodsVO"
+parameterType="com.capstone.domain.SearchCriteria">
+select goods_Code, seller_Id, goods_Name, goods_Cate, goods_Sta,goods_Price, goods_Des, goods_Pic, goods_Date, phone_Num
+       from (
+           select goods_Code, seller_Id, goods_Name, goods_Cate, goods_Sta,goods_Price, goods_Des, goods_Pic, goods_Date, phone_Num,
+               row_number() over(order by goods_Code desc) as rNum
+           from goods
+      <include refid="goodssearch"></include>
+     )
+    where rNum between #{rowStart} and #{rowEnd}
+        order by goods_Code desc
+</select>
+
+<sql id="goodssearch">
+ <if test="searchType != null">
+  <if test="searchType == 't'.toString()">where goods_Name like '%' || #{keyword} || '%'</if>
+  <if test="searchType == 'c'.toString()">where goods_Des like '%' || #{keyword} || '%'</if>
+ </if>
+</sql>
+
+<select id="goodscountSearch" resultType="int">
+ select count(goods_Code)
+  from goods
+   <include refid="goodssearch"></include>
+<![CDATA[
+   and goods_Code > 0
+]]>
+</select>
+
+<!-- 게시글 총 개수 구하기 -->
+<select id="goodslistCount" resultType="int">
+<![CDATA[select count(goods_Code)
+			from goods where goods_Code>0
+			]]>
+</select>
+
+<!-- Paging -->
+<select id="talentlistPage" resultType="com.capstone.domain.Talent_S_VO"
+parameterType="com.capstone.domain.Criteria">
+    select tals_Code, tals_Title, tals_Kinds, tals_Kinds_2, tals_Term, tals_Price, tals_Date, tals_Id
+       from (
+           select tals_Code, tals_Title, tals_Kinds, tals_Kinds_2, tals_Term, tals_Price, tals_Date, tals_Id,
+               row_number() over(order by tals_Code desc) as rNum
+           from Talent_S
+     ) mb
+    where rNum between #{rowStart} and #{rowEnd}
+        order by tals_Code desc
+</select>
+
+<!-- 검색 -->
+<select id="talentlistSearch" resultType="com.capstone.domain.Talent_S_VO"
+parameterType="com.capstone.domain.SearchCriteria">
+select tals_Code, tals_Title, tals_Kinds, tals_Kinds_2, tals_Term, tals_Price, tals_Date, tals_Id
+       from (
+           select tals_Code, tals_Title, tals_Kinds, tals_Kinds_2, tals_Term, tals_Price, tals_Date, tals_Id,
+               row_number() over(order by tals_Code desc) as rNum
+           from Talent_S
+      <include refid="talentsearch"></include>
+     ) mb
+    where rNum between #{rowStart} and #{rowEnd}
+        order by tals_Code desc
+</select>
+
+<sql id="talentsearch">
+ <if test="searchType != null">
+  <if test="searchType == 't'.toString()">where tals_Title like '%' || #{keyword} || '%'</if>
+  <if test="searchType == 'c'.toString()">where tals_Content like '%' || #{keyword} || '%'</if>
+  <if test="searchType == 'i'.toString()">where tals_Id like '%' || #{keyword} || '%'</if>
+  <if test="searchType == 'a'.toString()">where tals_Kinds like '%' || #{keyword} || '%'</if>
+  <if test="searchType == 'b'.toString()">where tals_Kinds_2 like '%' || #{keyword} || '%'</if>
+ </if>
+</sql>
+
+<select id="talentcountSearch" resultType="int">
+ select count(tals_Code)
+  from Talent_S
+   <include refid="talentsearch"></include>
+<![CDATA[
+   and tals_Code > 0
+]]>
+</select>
+
+<!-- 게시글 총 개수 구하기 -->
+<select id="talentlistCount" resultType="int">
+<![CDATA[select count(tals_Code)
+			from Talent_S where tals_Code>0
+			]]>
+</select>	
+
+</mapper>

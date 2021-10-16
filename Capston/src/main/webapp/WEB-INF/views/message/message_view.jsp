@@ -16,39 +16,38 @@
   <title>쪽지 확인</title>
 	<script src="/resources/jquery/jquery-3.3.1.min.js"></script>
   <!-- Bootstrap core CSS -->
-  <link href="${pageContext.request.contextPath}/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+  <link href="${pageContext.request.contextPath}/resources/vendor/bootstrap/css/bootstrap.min.css?after" rel="stylesheet" type="text/css">
 
   <!-- Custom styles for this template -->
   <link href="${pageContext.request.contextPath}/resources/css/modern-business.css" rel="stylesheet" type="text/css">
 
 </head>
 
-<body>
-
+<body style = "text-align: center;">
+<div id="message-container"> 
 <form role="form" method="post" autocomplete="off" enctype="multipart/form-data">
 
-<h1 class="mt-4 mb-3">쪽지확인</h1>
-<div class="card-body">
-	
-	<p class="card-text"><label>받는 사람 : </label>${message.recv_Id}</p>
-	<p class="card-text"><label>보낸 사람 : </label>${message.send_Id}</p>
-	<p class="card-text"><label>보낸 시간 : </label><fmt:formatDate pattern="yyyy-MM-dd hh:mm:ss" value="${message.send_Time}"/></p>
-	<p class="card-text"><label>내용 : </label>${message.content}</p>
+<h1 id="message-title" class="mt-4 mb-3">쪽지 확인</h1>
+<div id ="message-content">
+	<p><label>받는 사람 : </label>${message.recv_Id}</p>
+	<p><label>보낸 사람 : </label>${message.send_Id}</p>
+	<p><label>보낸 시간 : </label><fmt:formatDate pattern="yyyy-MM-dd hh:mm:ss" value="${message.send_Time}"/></p>
+	<p><label>내용 : </label>${message.content}</p>
 </div>
 
 <div class="inputArea">
-	<button type="button" id="message_Btn" onclick ="rowClick('${message.send_Id}');" class="btn btn-danger">답장하기</button>
+	<button type="button" id="register_Btn" onclick ="rowClick('${message.send_Id}');">답장하기</button>
+	<button id="close_btn"  onclick ="opener.parent.location.reload();window.close();">닫기</button>
 			<script>
 				function rowClick(id){
 						var url = '/message/message_Send?n='+id;
 						window.open(url,'popupView','widt=500,height=500');
 					}
 			</script>
-	<button id="close_btn"  onclick ="opener.parent.location.reload();window.close();">닫기</button>
 	
 </div>
 </form>
-
+</div>
 </body>
 
 </html>

@@ -2,39 +2,32 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page session="false" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
 <!DOCTYPE html>
 
 <head>
-
+<script src='https://code.jquery.com/jquery-3.3.1.min.js'></script>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>받은 쪽지함</title>
+  <title>거래소(관리자)</title>
 
   <!-- Bootstrap core CSS -->
   <link href="${pageContext.request.contextPath}/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
 
   <!-- Custom styles for this template -->
   <link href="${pageContext.request.contextPath}/resources/css/modern-business.css" rel="stylesheet" type="text/css">
-   <!--  add CSS -->
-  <link href="${pageContext.request.contextPath}/resources/vendor/bootstrap/css/web.css" rel="stylesheet" type="text/css">
+
 <style>
 .card-img-top { width:418px; height:250px; }
-div p.text-content{
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  width: 120px;
-  height: 20px;
-}
+
 </style>
 
 </head>
 
 <body>
-
   <!-- Navigation -->
   <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
@@ -48,19 +41,21 @@ div p.text-content{
             <a class="nav-link" href="/move/contact">공지사항</a>
           </li>
           <li class="nav-item dropdown">
-            <a class="nav-link" href="/admin/trade_list"> 중고장터</a>
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPortfolio" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              중고장터
+            </a>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPortfolio">
+              <a class="dropdown-item" href="/admin/trade_list">중고판매</a>
+              <a class="dropdown-item" href="/admin/goodsb_list">중고구매</a>
+            </div>
           </li>
           <li class="nav-item dropdown">
                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               재능장터
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
-              <a class="dropdown-item" href="/talent/talent_S_list?n=디자인">디자인</a>
-              <a class="dropdown-item" href="/talent/talent_S_list?n=번역/외국어">번역/외국어</a>
-              <a class="dropdown-item" href="/talent/talent_S_list?n=문서작성">문서작성</a>
-              <a class="dropdown-item" href="/talent/talent_S_list?n=음악/영상">음악/영상</a>
-              <a class="dropdown-item" href="/talent/talent_S_list?n=프로그램개발">프로그램개발</a>
-              <a class="dropdown-item" href="/talent/talent_S_list?n=생활서비스">생활서비스</a>
+              <a class="dropdown-item" href="/talent/talent_S_list">재능판매</a>
+              <a class="dropdown-item" href="/talent/talent_B_list">재능구매</a>
             </div>
           </li>
           <li class="nav-item dropdown">
@@ -68,11 +63,10 @@ div p.text-content{
               마이페이지
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
-              <a class="dropdown-item" href="/move/uploaded">등록한 중고/재능</a>
-              <a class="dropdown-item" href="/move/trade">거래요청받은 중고/재능거래</a>
-              <a class="dropdown-item" href="/move/wantbuy">거래요청한 중고/재능거래</a>
-              <a class="dropdown-item" href="/move/trade_complete">거래완료(후기작성)</a>
+              <a class="dropdown-item" href="/move/uploaded">내가 등록한 물건</a>
+              <a class="dropdown-item" href="/move/wantbuy">내가 요청한 물건</a>
               <a class="dropdown-item" href="/move/review">후기관리</a>
+              <a class="dropdown-item" href="/move/trade_complete">거래완료(후기작성)</a>
             </div>
           </li>
           <li class="nav-item dropdown">
@@ -85,59 +79,99 @@ div p.text-content{
             </div>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/message/message_list">쪽지함(${num})</a>
-          </li>
-          <li class="nav-item">
             <a class="nav-link" href="/member/logout">로그아웃</a>
           </li>
         </ul>
       </div>
     </div>
   </nav>
+<div class="search">
+ <select name="searchType">
+  <option value="n"<c:out value="${scri.searchType == null ? 'selected' : ''}"/>>-----</option>
+  <option value="t"<c:out value="${scri.searchType eq 't' ? 'selected' : ''}"/>>제목</option>
+  <option value="c"<c:out value="${scri.searchType eq 't' ? 'selected' : ''}"/>>내용</option>
+
+ </select>
+ 
+ <input type="text" name="keyword" id="keywordInput" value="${scri.keyword}"/>
+
+ <button id="searchBtn">검색</button>
+ 
+ <script>
+ $(function(){
+  $('#searchBtn').click(function() {
+   self.location = "manager_sell"
+     + '${pageMaker.makeQuery(1)}'
+     + "&searchType="
+     + $("select option:selected").val()
+     + "&keyword="
+     + encodeURIComponent($('#keywordInput').val());
+    });
+ });   
+ </script>
+</div>
+
 
   <!-- Page Content -->
   <div class="container">
+      <!-- Page Heading/Breadcrumbs -->
+    <h3 id="notice_list_title" class="mt-4 mb-3">관리자 게시판
+    <a href="/move/contact_member">회원관리</a><br>
+    <a href="/move/manager_talent_S">재능판매관리</a><br>
+    <a href="/move/manager_sell">물품판매관리</a><br>
+    <a href="/move/manager_faq">1:1문의관리</a><br>
+      <small></small>
+    </h3>
 
-    <!-- Page Heading/Breadcrumbs -->
-    <h1 id ="talb_list_title" class="mt-4 mb-3">재능판매 장터</h1>
     <ol class="breadcrumb">
       <li class="breadcrumb-item">
-        <a href="talent_S_list">쪽지함</a>
+        <a href="index.html">관리자-물품판매</a>
       </li>
-      <li class="breadcrumb-item active">받은 쪽지</li>
+      <li class="breadcrumb-item active">물품판매 목록</li>
     </ol>
-    <c:forEach items="${list}" var="list">
-    <div class="card mb-4">
-      <div class="card-body">
-          <div class="col-lg-6">
-          	<c:if test="${list.read_Chk eq 1}"> 읽음</c:if>
-          	<c:if test="${list.read_Chk eq 0}"> 읽지않음</c:if>
-            <p class="card-text"><label>보낸 시간 : </label><fmt:formatDate pattern="yyyy-MM-dd hh:mm:ss" value="${list.send_Time}"/></p>
-            <p class="card-text"><label>보낸 사람 : </label>${list.send_Id}</p>
-            <p class="card-text"><label>받는 사람 : </label>${list.recv_Id}</p>
-            <p class="text-content"><label>내용 : </label>${list.content}</p>
-            <div id="btn-place"><button id="register_Btn"  onclick ="rowClick('${list.message_Num}')">상세보기 &rarr;</button></div>
-            <script language="JavaScript">
-		function rowClick(id){
-			var url = '/message/message_view?n='+id;
-			window.open(url,'popupView','widt=300,height=300');
-		}
-	</script> 
+
+
+    <div class="row">
+    	<c:forEach items="${list}" var="list">
+    	 <div class="col-lg-100">
+        <div class="card h-100 text-center">
+        <div id="trade_list_margin">
+         <a href="/manager/manager_sell_view?n=${list.goods_Code}"><img src="${list.goods_Pic}" class="card-img-top"/></a>
+         </div>
+          <div class="card-body">
+				<h4 class="card-title"><label>제목 : </label>${list.goods_Name}</h4>
+				 <p class="card-text"><label>가격 : </label><fmt:formatNumber value="${list.goods_Price}" pattern="###,###,###원"/></p>
           </div>
+          <div class="card-footer">
+          	<span>작성자:</span>
+            <a href="/manager/manager_sell_view?n=${list.goods_Code}">${list.seller_Id}</a>
+          </div>
+        </div>
       </div>
+    	
+    	</c:forEach>
     </div>
-      	
-    </c:forEach>
     </div>
     <!-- /.row -->
 
 
   
   <!-- /.container -->
-<hr />
-
+<div>
+ <ul>
+  <c:if test="${pageMaker.prev}">
+   <li><a href="manager_sell${pageMaker.makeQuery(pageMaker.startPage - 1)}">이전</a></li>
+  </c:if> 
+  
+  <c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
+   <li><a href="manager_sell${pageMaker.makeQuery(idx)}">${idx}</a></li>
+  </c:forEach>
+    
+  <c:if test="${pageMaker.next && pageMaker.endPage > 0}">
+   <li><a href="manager_sell${pageMaker.makeQuery(pageMaker.endPage + 1)}">다음</a></li>
+  </c:if> 
+ </ul>
 </div>
-
   <!-- Footer -->
   <footer class="py-5 bg-dark">
     <div class="container">

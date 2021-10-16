@@ -1,8 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page session="false" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<html lang="en">
 
 <head>
 
@@ -11,25 +12,49 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>받은 쪽지함</title>
+  <title>상품 등록</title>
 
   <!-- Bootstrap core CSS -->
   <link href="${pageContext.request.contextPath}/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
 
   <!-- Custom styles for this template -->
   <link href="${pageContext.request.contextPath}/resources/css/modern-business.css" rel="stylesheet" type="text/css">
-   <!--  add CSS -->
-  <link href="${pageContext.request.contextPath}/resources/vendor/bootstrap/css/web.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="./about2.css">
+  <link rel="stylesheet" href="./about3.css">
+  
+  
+ <style>
+ 
+ 	section#container { padding:20px 0; border-top:2px solid #eee; border-bottom:2px solid #eee; }
+	section#container::after { content:""; display:block; clear:both; }
+	div#container_box { float:right; width:calc(100% - 200px - 20px); }
+	div#wrapper {
+    position: relative;
+    height: 100%;
+    }
+</style>
+ 
 <style>
-.card-img-top { width:418px; height:250px; }
-div p.text-content{
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  width: 120px;
-  height: 20px;
+.inputArea { margin:10px 0; }
+select { width:100px; }
+label { display:inline-block; width:90px; padding:5px; }
+label[for='gdsDes'] { display:block; }
+input { width:150px; }
+textarea#gdsDes { width:400px; height:180px; }
+.step_url {    position: absolute;    top: 16px;    right: 13px;    font-size: 15px;    color: #8e8e8e;}
+.select_img img {margin:20px 0;}
+#wrapper {
+    position: relative;
+    height: 100%;
+}
+#content {
+    position: relative;
+    left: 50%;
+    transform: translate(-50%);
+    width: 800px;
 }
 </style>
+
 
 </head>
 
@@ -48,19 +73,21 @@ div p.text-content{
             <a class="nav-link" href="/move/contact">공지사항</a>
           </li>
           <li class="nav-item dropdown">
-            <a class="nav-link" href="/admin/trade_list"> 중고장터</a>
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPortfolio" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              중고장터
+            </a>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPortfolio">
+              <a class="dropdown-item" href="/admin/trade_list">중고판매</a>
+              <a class="dropdown-item" href="/admin/goodsb_list">중고구매</a>
+            </div>
           </li>
           <li class="nav-item dropdown">
                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               재능장터
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
-              <a class="dropdown-item" href="/talent/talent_S_list?n=디자인">디자인</a>
-              <a class="dropdown-item" href="/talent/talent_S_list?n=번역/외국어">번역/외국어</a>
-              <a class="dropdown-item" href="/talent/talent_S_list?n=문서작성">문서작성</a>
-              <a class="dropdown-item" href="/talent/talent_S_list?n=음악/영상">음악/영상</a>
-              <a class="dropdown-item" href="/talent/talent_S_list?n=프로그램개발">프로그램개발</a>
-              <a class="dropdown-item" href="/talent/talent_S_list?n=생활서비스">생활서비스</a>
+              <a class="dropdown-item" href="/talent/talent_S_list">재능판매</a>
+              <a class="dropdown-item" href="/talent/talent_B_list">재능구매</a>
             </div>
           </li>
           <li class="nav-item dropdown">
@@ -68,11 +95,10 @@ div p.text-content{
               마이페이지
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
-              <a class="dropdown-item" href="/move/uploaded">등록한 중고/재능</a>
-              <a class="dropdown-item" href="/move/trade">거래요청받은 중고/재능거래</a>
-              <a class="dropdown-item" href="/move/wantbuy">거래요청한 중고/재능거래</a>
-              <a class="dropdown-item" href="/move/trade_complete">거래완료(후기작성)</a>
+              <a class="dropdown-item" href="/move/uploaded">내가 등록한 물건</a>
+              <a class="dropdown-item" href="/move/wantbuy">내가 요청한 물건</a>
               <a class="dropdown-item" href="/move/review">후기관리</a>
+              <a class="dropdown-item" href="/move/trade_complete">거래완료(후기작성)</a>
             </div>
           </li>
           <li class="nav-item dropdown">
@@ -85,63 +111,63 @@ div p.text-content{
             </div>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/message/message_list">쪽지함(${num})</a>
-          </li>
-          <li class="nav-item">
             <a class="nav-link" href="/member/logout">로그아웃</a>
           </li>
         </ul>
       </div>
     </div>
   </nav>
+  
 
-  <!-- Page Content -->
-  <div class="container">
-
-    <!-- Page Heading/Breadcrumbs -->
-    <h1 id ="talb_list_title" class="mt-4 mb-3">재능판매 장터</h1>
-    <ol class="breadcrumb">
+    <!-- Team Members -->
+   <section id="container">
+   
+		<div id="wrapper"> 
+<div id="content">
+		
+			    <h1 class="mt-4 mb-3">공지사항 등록
+      <small></small>
+    </h1>
+			    <ol class="breadcrumb">
       <li class="breadcrumb-item">
-        <a href="talent_S_list">쪽지함</a>
+        <a href="contact.html">공지사항</a>
       </li>
-      <li class="breadcrumb-item active">받은 쪽지</li>
+      <li class="breadcrumb-item active">공지사항 등록</li>
     </ol>
-    <c:forEach items="${list}" var="list">
-    <div class="card mb-4">
-      <div class="card-body">
-          <div class="col-lg-6">
-          	<c:if test="${list.read_Chk eq 1}"> 읽음</c:if>
-          	<c:if test="${list.read_Chk eq 0}"> 읽지않음</c:if>
-            <p class="card-text"><label>보낸 시간 : </label><fmt:formatDate pattern="yyyy-MM-dd hh:mm:ss" value="${list.send_Time}"/></p>
-            <p class="card-text"><label>보낸 사람 : </label>${list.send_Id}</p>
-            <p class="card-text"><label>받는 사람 : </label>${list.recv_Id}</p>
-            <p class="text-content"><label>내용 : </label>${list.content}</p>
-            <div id="btn-place"><button id="register_Btn"  onclick ="rowClick('${list.message_Num}')">상세보기 &rarr;</button></div>
-            <script language="JavaScript">
-		function rowClick(id){
-			var url = '/message/message_view?n='+id;
-			window.open(url,'popupView','widt=300,height=300');
-		}
-	</script> 
-          </div>
-      </div>
-    </div>
-      	
-    </c:forEach>
-    </div>
+				
+<form role="form" method="post" autocomplete="off" enctype="multipart/form-data">
+
+
+<div class="inputArea">
+	<label for="talb_Title">제목</label>
+	<input type="text" id="notice_Title" name="notice_Title"/>
+</div>
+
+<div class="inputArea">
+	<label for="notice_Content">내용</label>
+	<textarea rows="5" cols="50" id="notice_Content" name="notice_Content"></textarea>
+</div>
+
+<div class="inputArea">
+	<button type="submit" id="register_Btn" class="btn btn-primary">등록</button>
+</div>
+</div>
+</div>
+</form>
+			
+		</div>
+	</section>
+
     <!-- /.row -->
 
 
   
   <!-- /.container -->
-<hr />
-
-</div>
 
   <!-- Footer -->
   <footer class="py-5 bg-dark">
     <div class="container">
-      <p class="m-0 text-center text-white">충대장터</p>
+      <p class="m-0 text-center text-white">충대 장터</p>
     </div>
     <!-- /.container -->
   </footer>

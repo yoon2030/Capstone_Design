@@ -2,6 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page session="false" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
 <!DOCTYPE html>
 
 <head>
@@ -11,24 +12,28 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>받은 쪽지함</title>
-
+  <title>Modern Business - Start Bootstrap Template</title>
+<script src="/resources/jquery/jquery-3.3.1.min.js"></script>
   <!-- Bootstrap core CSS -->
   <link href="${pageContext.request.contextPath}/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
 
   <!-- Custom styles for this template -->
   <link href="${pageContext.request.contextPath}/resources/css/modern-business.css" rel="stylesheet" type="text/css">
-   <!--  add CSS -->
-  <link href="${pageContext.request.contextPath}/resources/vendor/bootstrap/css/web.css" rel="stylesheet" type="text/css">
+
 <style>
-.card-img-top { width:418px; height:250px; }
-div p.text-content{
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  width: 120px;
-  height: 20px;
-}
+.inputArea { margin:10px 0; }
+select { width:100px; }
+label { display:inline-block; width:110px; padding:5px; }
+label[for='gdsDes'] { display:block; }
+input { width:150px; }
+.gdsDes { marigin:10px 0;width:400px; height:180px; }
+.card-img-top{width:418px; height:250px; }
+.star{background-image:url(/resources/image/star.jpg);}
+.thumbImg {}
+#com_Btn {border : 0; width:100px; height:30px;;  position: relative; left:70%;}
+#rej_Btn {border : 0; width:100px; height:30px;;  position: relative; left:70%;}
+#cancel_Btn {border : 0; width:100px; height:30px;;  position: relative; left:70%;}
+#req_Btn {border : 0; width:100px; height:30px;;  position: relative; left:70%;}
 </style>
 
 </head>
@@ -85,9 +90,6 @@ div p.text-content{
             </div>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/message/message_list">쪽지함(${num})</a>
-          </li>
-          <li class="nav-item">
             <a class="nav-link" href="/member/logout">로그아웃</a>
           </li>
         </ul>
@@ -99,49 +101,78 @@ div p.text-content{
   <div class="container">
 
     <!-- Page Heading/Breadcrumbs -->
-    <h1 id ="talb_list_title" class="mt-4 mb-3">재능판매 장터</h1>
-    <ol class="breadcrumb">
-      <li class="breadcrumb-item">
-        <a href="talent_S_list">쪽지함</a>
-      </li>
-      <li class="breadcrumb-item active">받은 쪽지</li>
-    </ol>
-    <c:forEach items="${list}" var="list">
-    <div class="card mb-4">
-      <div class="card-body">
-          <div class="col-lg-6">
-          	<c:if test="${list.read_Chk eq 1}"> 읽음</c:if>
-          	<c:if test="${list.read_Chk eq 0}"> 읽지않음</c:if>
-            <p class="card-text"><label>보낸 시간 : </label><fmt:formatDate pattern="yyyy-MM-dd hh:mm:ss" value="${list.send_Time}"/></p>
-            <p class="card-text"><label>보낸 사람 : </label>${list.send_Id}</p>
-            <p class="card-text"><label>받는 사람 : </label>${list.recv_Id}</p>
-            <p class="text-content"><label>내용 : </label>${list.content}</p>
-            <div id="btn-place"><button id="register_Btn"  onclick ="rowClick('${list.message_Num}')">상세보기 &rarr;</button></div>
-            <script language="JavaScript">
-		function rowClick(id){
-			var url = '/message/message_view?n='+id;
-			window.open(url,'popupView','widt=300,height=300');
-		}
-	</script> 
-          </div>
+    <h1 class="mt-4 mb-3">재능 판매 상세</h1>
+
+	<form role="form" method="post" autocomplete="off">
+			
+	<input type="hidden" name="n" value="${talent.tals_Code}"/>
+
+    <!-- Intro Content -->
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="inputArea">
+				<label for="tals_Title">제목</label>
+				<span>${talent.tals_Title}</span>
+		</div>
+		 <div class="inputArea">
+				<label for="tals_Kinds">재능1차분류</label>
+				<span>${talent.tals_Kinds}</span>
+		</div>
+		 <div class="inputArea">
+				<label for="tals_Kinds_2">재능2차분류</label>
+				<span>${talent.tals_Kinds_2}</span>
+		</div>
+		<div class="inputArea">
+				<label>작성자</label>
+				<span>${talent.tals_Id}</span>
+		</div>
+		<div class="inputArea">
+				<label for="tals_Price">가격</label>
+				<span><fmt:formatNumber value="${talent.tals_Price}" pattern="###,###,###원"/></span>
+		</div>
+		<div class="inputArea">
+				<label for="tals_Term">작업기간</label>
+				<span>${talent.tals_Term}</span>
+		</div>
+		<div class="inputArea">
+				<label for="phone_Num">연락처</label>
+				<span>${talent.phone_Num}</span>
+		</div>
+				<div class="inputArea">
+				<label for="tals_Content">내용</label>
+				<div class="gdsDes">${talent.tals_Content}</div>
+		</div>
       </div>
     </div>
-      	
-    </c:forEach>
-    </div>
-    <!-- /.row -->
+    
+      </div>
 
-
-  
-  <!-- /.container -->
-<hr />
-
-</div>
+	<button type="button" id="delete_Btn" class="btn btn-danger">삭제</button>
+			<script>
+					var formObj = $("form[role='form']");
+					
+					$("#modify_Btn").click(function(){
+						formObj.attr("action", "/talent/talent_S_modify");
+						formObj.attr("method", "get")
+						formObj.submit();
+					});
+					
+					$("#delete_Btn").click(function(){
+						
+						var con = confirm("정말로 삭제하시겠습니까?");
+						
+						if(con) {						
+							formObj.attr("action", "/talent/talent_S_delete");
+							formObj.submit();
+						}
+					});
+				</script>	
+  </div>
 
   <!-- Footer -->
   <footer class="py-5 bg-dark">
     <div class="container">
-      <p class="m-0 text-center text-white">충대장터</p>
+      <p class="m-0 text-center text-white">충대 장터</p>
     </div>
     <!-- /.container -->
   </footer>

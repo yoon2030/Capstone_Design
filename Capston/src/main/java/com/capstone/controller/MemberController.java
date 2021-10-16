@@ -216,8 +216,13 @@ private static final String String = null;
 				model.addAttribute("msg","ID나PW가 틀립니다.");
 				return "member/signin";
 			}else{
-				session.setAttribute("member", login);
 				
+				if(login.getVerify()==9) {
+					session.setAttribute("member", login);
+					return "/manager/managerpage";
+				}
+				session.setAttribute("member", login);
+
 				List<TradeVO> list = service.tradeView(login.getId());
 				response.setContentType("text/html; charset=UTF-8");
 				 

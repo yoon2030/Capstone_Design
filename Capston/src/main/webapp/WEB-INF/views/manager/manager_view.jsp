@@ -2,6 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page session="false" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
 <!DOCTYPE html>
 
 <head>
@@ -11,24 +12,28 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>받은 쪽지함</title>
-
+  <title>Modern Business - Start Bootstrap Template</title>
+<script src="/resources/jquery/jquery-3.3.1.min.js"></script>
   <!-- Bootstrap core CSS -->
   <link href="${pageContext.request.contextPath}/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
 
   <!-- Custom styles for this template -->
   <link href="${pageContext.request.contextPath}/resources/css/modern-business.css" rel="stylesheet" type="text/css">
-   <!--  add CSS -->
-  <link href="${pageContext.request.contextPath}/resources/vendor/bootstrap/css/web.css" rel="stylesheet" type="text/css">
+
 <style>
-.card-img-top { width:418px; height:250px; }
-div p.text-content{
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  width: 120px;
-  height: 20px;
-}
+.inputArea { margin:10px 0; }
+select { width:100px; }
+label { display:inline-block; width:110px; padding:5px; }
+label[for='gdsDes'] { display:block; }
+input { width:150px; }
+.gdsDes { marigin:10px 0;width:400px; height:180px; }
+.card-img-top{width:418px; height:250px; }
+.star{background-image:url(/resources/image/star.jpg);}
+.thumbImg {}
+#com_Btn {border : 0; width:100px; height:30px;;  position: relative; left:70%;}
+#rej_Btn {border : 0; width:100px; height:30px;;  position: relative; left:70%;}
+#cancel_Btn {border : 0; width:100px; height:30px;;  position: relative; left:70%;}
+#req_Btn {border : 0; width:100px; height:30px;;  position: relative; left:70%;}
 </style>
 
 </head>
@@ -48,19 +53,21 @@ div p.text-content{
             <a class="nav-link" href="/move/contact">공지사항</a>
           </li>
           <li class="nav-item dropdown">
-            <a class="nav-link" href="/admin/trade_list"> 중고장터</a>
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPortfolio" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              중고장터
+            </a>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPortfolio">
+              <a class="dropdown-item" href="/admin/trade_list">중고판매</a>
+              <a class="dropdown-item" href="/admin/goodsb_list">중고구매</a>
+            </div>
           </li>
           <li class="nav-item dropdown">
                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               재능장터
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
-              <a class="dropdown-item" href="/talent/talent_S_list?n=디자인">디자인</a>
-              <a class="dropdown-item" href="/talent/talent_S_list?n=번역/외국어">번역/외국어</a>
-              <a class="dropdown-item" href="/talent/talent_S_list?n=문서작성">문서작성</a>
-              <a class="dropdown-item" href="/talent/talent_S_list?n=음악/영상">음악/영상</a>
-              <a class="dropdown-item" href="/talent/talent_S_list?n=프로그램개발">프로그램개발</a>
-              <a class="dropdown-item" href="/talent/talent_S_list?n=생활서비스">생활서비스</a>
+              <a class="dropdown-item" href="/talent/talent_S_list">재능판매</a>
+              <a class="dropdown-item" href="/talent/talent_B_list">재능구매</a>
             </div>
           </li>
           <li class="nav-item dropdown">
@@ -68,11 +75,10 @@ div p.text-content{
               마이페이지
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
-              <a class="dropdown-item" href="/move/uploaded">등록한 중고/재능</a>
-              <a class="dropdown-item" href="/move/trade">거래요청받은 중고/재능거래</a>
-              <a class="dropdown-item" href="/move/wantbuy">거래요청한 중고/재능거래</a>
-              <a class="dropdown-item" href="/move/trade_complete">거래완료(후기작성)</a>
+              <a class="dropdown-item" href="/move/uploaded">내가 등록한 물건</a>
+              <a class="dropdown-item" href="/move/wantbuy">내가 요청한 물건</a>
               <a class="dropdown-item" href="/move/review">후기관리</a>
+              <a class="dropdown-item" href="/move/trade_complete">거래완료(후기작성)</a>
             </div>
           </li>
           <li class="nav-item dropdown">
@@ -83,9 +89,6 @@ div p.text-content{
               <a class="dropdown-item" href="/move/faq1">자주찾는 질문</a>
               <a class="dropdown-item" href="/move/faq2">1:1문의</a>
             </div>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/message/message_list">쪽지함(${num})</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/member/logout">로그아웃</a>
@@ -99,49 +102,62 @@ div p.text-content{
   <div class="container">
 
     <!-- Page Heading/Breadcrumbs -->
-    <h1 id ="talb_list_title" class="mt-4 mb-3">재능판매 장터</h1>
-    <ol class="breadcrumb">
-      <li class="breadcrumb-item">
-        <a href="talent_S_list">쪽지함</a>
-      </li>
-      <li class="breadcrumb-item active">받은 쪽지</li>
-    </ol>
-    <c:forEach items="${list}" var="list">
-    <div class="card mb-4">
-      <div class="card-body">
-          <div class="col-lg-6">
-          	<c:if test="${list.read_Chk eq 1}"> 읽음</c:if>
-          	<c:if test="${list.read_Chk eq 0}"> 읽지않음</c:if>
-            <p class="card-text"><label>보낸 시간 : </label><fmt:formatDate pattern="yyyy-MM-dd hh:mm:ss" value="${list.send_Time}"/></p>
-            <p class="card-text"><label>보낸 사람 : </label>${list.send_Id}</p>
-            <p class="card-text"><label>받는 사람 : </label>${list.recv_Id}</p>
-            <p class="text-content"><label>내용 : </label>${list.content}</p>
-            <div id="btn-place"><button id="register_Btn"  onclick ="rowClick('${list.message_Num}')">상세보기 &rarr;</button></div>
-            <script language="JavaScript">
-		function rowClick(id){
-			var url = '/message/message_view?n='+id;
-			window.open(url,'popupView','widt=300,height=300');
-		}
-	</script> 
-          </div>
+    <h1 class="mt-4 mb-3">공지사항 상세(관리자 전용)</h1>
+
+	<form role="form" method="post" autocomplete="off">
+			
+	<input type="hidden" name="n" value="${notice.notice_Num}"/>
+
+    <!-- Intro Content -->
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="inputArea">
+				<label for="gdsName">제목</label>
+				<span>${notice.notice_Title}</span>
+		</div>
+        <div class="inputArea">
+				<label for="gdsDes">내용</label>	
+				<div class="gdsDes">${notice.notice_Content}</div>
+			</div>
       </div>
     </div>
-      	
-    </c:forEach>
-    </div>
+
     <!-- /.row -->
+  </div>
+  <c:choose>
+  <c:when test = "${member.id eq talent.tals_Id || member.id=='manager'}">
+  <div id = "tradebtn">
+    <button type="button" id="modify_Btn" class="btn btn-warning">수정</button>
+	<button type="button" id="delete_Btn" class="btn btn-danger">삭제</button>
+			<script>
+					var formObj = $("form[role='form']");
+					
+					$("#modify_Btn").click(function(){
+						formObj.attr("action", "/manager/manager_modify");
+						formObj.attr("method", "get")
+						formObj.submit();
+					});
+					
+					$("#delete_Btn").click(function(){
+						
+						var con = confirm("정말로 삭제하시겠습니까?");
+						
+						if(con) {						
+							formObj.attr("action", "/manager/manager_delete");
+							formObj.submit();
+						}
+					});
+				</script>	
+  </div>
+</c:when>
 
-
-  
+</c:choose>
   <!-- /.container -->
-<hr />
-
-</div>
 
   <!-- Footer -->
   <footer class="py-5 bg-dark">
     <div class="container">
-      <p class="m-0 text-center text-white">충대장터</p>
+      <p class="m-0 text-center text-white">충대 장터</p>
     </div>
     <!-- /.container -->
   </footer>
