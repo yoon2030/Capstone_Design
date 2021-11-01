@@ -32,6 +32,7 @@ import com.capstone.domain.TradeVO;
 import com.capstone.domain.Trade_T_VO;
 import com.capstone.service.AdminService;
 import com.capstone.service.EmailService;
+import com.capstone.service.MemberService;
 import com.capstone.service.MessageService;
 import com.capstone.service.TalentService;
 
@@ -49,6 +50,9 @@ public class TalentController {
     
 	@Inject
 	MessageService messageService;
+	
+	@Inject
+	MemberService memberService;
 	
 	//재능 판매 등록 get
 	@RequestMapping(value="/talent_S_reg", method=RequestMethod.GET)
@@ -175,9 +179,11 @@ public class TalentController {
 		int num = messageService.message_Count(member.getId());
 		model.addAttribute("num", num);
 		Talent_S_VO talent = talentService.talentSview(Tals_Code);
+		MemberVO member1 = memberService.member_check(talent.getTals_Id());
 		List<Review_T_VO> list = talentService.talsReview(talent.getTals_Id());
 		model.addAttribute("talent", talent);
 		model.addAttribute("member", member);
+		model.addAttribute("member1", member1);
 		model.addAttribute("list", list);
 	}
 	
@@ -210,12 +216,32 @@ public class TalentController {
 		out.println("</script>");
 		out.flush();
 		try {
+			MemberVO mem = memberService.member_check(talent_s.getTals_Id());
 			EmailVO vo = new EmailVO();
+			String receive=mem.getEmail_2();
 			vo.setSenderName("충대장터");
 			vo.setSenderMail("alsghwhro39@gmail.com");
-			vo.setReceiveMail("alsghwhro@naver.com");
+			vo.setReceiveMail(receive);
 			vo.setSubject("등록하신 재능장터의 거래에 대한 요청이 있습니다.");
-			vo.setMessage("재능장터에 등록하신 재능 거래에 대한 요청이 있습니다. 충대장터에 들어가 확인해주시기 바랍니다.");
+			String content = 
+			        System.getProperty("line.separator")+ //한줄씩 줄간격을 두기위해 작성
+			        
+			        System.getProperty("line.separator")+
+			                
+			        "안녕하세요 회원님 저희 홈페이지를 찾아주셔서 감사합니다"
+			        
+			        +System.getProperty("line.separator")+
+			        
+			        System.getProperty("line.separator")+
+
+			        "재능장터에 등록하신 재능 거래에 대한 요청이 있습니다. "
+			        
+			        +System.getProperty("line.separator")+
+			        
+			        System.getProperty("line.separator")+
+			        
+			        "충대장터에 들어가 확인해주시기 바랍니다."; // 내용
+			vo.setMessage(content);
             emailService.sendMail(vo);  
         } catch (Exception e) {
             e.printStackTrace();     
@@ -249,11 +275,30 @@ public class TalentController {
 			
 			try {
 				EmailVO vo = new EmailVO();
+				MemberVO mem = memberService.member_check(trade.getBuyer_Id());
 				vo.setSenderName("충대장터");
 				vo.setSenderMail("alsghwhro39@gmail.com");
-				vo.setReceiveMail("alsghwhro@naver.com");		//판매자 이메일 적을것
+				vo.setReceiveMail(mem.getEmail_2());		//판매자 이메일 적을것
 				vo.setSubject("요청하신 재능장터의 거래가 완료되었습니다.");
-				vo.setMessage("요청하신 재능 거래가 완료되었습니다. 충대장터에 들어가 리뷰를 작성해주시기 바랍니다.");
+				String content = 
+				        System.getProperty("line.separator")+ //한줄씩 줄간격을 두기위해 작성
+				        
+				        System.getProperty("line.separator")+
+				                
+				        "안녕하세요 회원님 저희 홈페이지를 찾아주셔서 감사합니다"
+				        
+				        +System.getProperty("line.separator")+
+				        
+				        System.getProperty("line.separator")+
+
+				        "요청하신 재능 거래가 완료되었습니다."
+				        
+				        +System.getProperty("line.separator")+
+				        
+				        System.getProperty("line.separator")+
+				        
+				        "충대장터에 들어가 확인해주시기 바랍니다."; // 내용
+				vo.setMessage(content);
 	            emailService.sendMail(vo);  
 	        } catch (Exception e) {
 	            e.printStackTrace();     

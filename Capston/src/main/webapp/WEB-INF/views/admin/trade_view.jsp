@@ -12,10 +12,10 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Modern Business - Start Bootstrap Template</title>
+  <title>중고장터 상세페이지</title>
 <script src="/resources/jquery/jquery-3.3.1.min.js"></script>
   <!-- Bootstrap core CSS -->
-  <link href="${pageContext.request.contextPath}/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+  <link href="${pageContext.request.contextPath}/resources/vendor/bootstrap/css/bootstrap.min.css?after" rel="stylesheet" type="text/css">
 
   <!-- Custom styles for this template -->
   <link href="${pageContext.request.contextPath}/resources/css/modern-business.css" rel="stylesheet" type="text/css">
@@ -26,14 +26,19 @@ select { width:100px; }
 label { display:inline-block; width:90px; padding:5px; }
 label[for='gdsDes'] { display:block; }
 input { width:150px; }
-.gdsDes { marigin:10px 0;width:400px; height:180px; }
+.gdsDes { marigin:10px 0;width:400px; height:180px; border:1px solid; }
 .card-img-top{width:418px; height:250px; }
 .star{background-image:url(/resources/image/star.jpg);}
 .thumbImg {}
-#com_Btn {border : 0; width:100px; height:30px;;  position: relative; left:70%;}
-#rej_Btn {border : 0; width:100px; height:30px;;  position: relative; left:70%;}
-#cancel_Btn {border : 0; width:100px; height:30px;;  position: relative; left:70%;}
-#req_Btn {border : 0; width:100px; height:30px;;  position: relative; left:70%;}
+#com_Btn {border : 0; width:100px; height:30px;;  position: relative;}
+#rej_Btn {border : 0; width:100px; height:30px;;  position: relative; left: 45%;}
+#cancel_Btn {border : 0; width:100px; height:30px;;  position: relative; left: 83%;}
+#req_Btn {border : 0; width:100px; height:30px;;  position: relative; left: 81%;}
+.container{width:900px;}
+#trade_title{border-bottom:1px solid;}
+.btn{left:0;}
+#after li{border:1px solid gray; border-radius:15px;}
+#message_Btn{top: -47px; left:574px;}
 </style>
 
 </head>
@@ -101,11 +106,17 @@ input { width:150px; }
   </nav>
 
 
-  <!-- Page Content -->
+ <!-- Page Content -->
   <div class="container">
 
     <!-- Page Heading/Breadcrumbs -->
-    <h1 class="mt-4 mb-3">중고판매 상세</h1>
+    <h1 id= "trade_title" class="mt-4 mb-3">중고장터 상세</h1>
+        <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <a href="talent_S_list">중고장터</a>
+      </li>
+      <li class="breadcrumb-item active">중고장터 상세</li>
+    </ol>
 
 	<form role="form" method="post" autocomplete="off">
 			
@@ -129,6 +140,10 @@ input { width:150px; }
 				<label >작성자</label>
 				<span>${goods.seller_Id}</span>
 		</div>
+				<div class="inputArea">
+				<label for="goods_Sta">신뢰온도</label>
+				<span>${member1.goods_Sta}℃</span>
+		</div>
 		<div class="inputArea">
 				<label for="gdsCategory">연락처</label>
 				<span>${goods.phone_Num}</span>
@@ -149,7 +164,7 @@ input { width:150px; }
     </div>
 
     <!-- /.row -->
-  </div>
+ 
   <c:choose>
   <c:when test = "${member.id eq goods.seller_Id}">
   <div id = "tradebtn">
@@ -175,6 +190,7 @@ input { width:150px; }
 					});
 				</script>	
   </div>
+  
 </c:when>
 <c:otherwise>
   <div id = "tradebtn">
@@ -202,8 +218,9 @@ input { width:150px; }
 </c:otherwise>
 
 </c:choose>
+
   <div id = "after">
-    <h4>최근 거래 후기</h2>
+    <h3>최근 거래 후기</h3>
     <ul>
    	 <li><label>별점</label><label>후기내용</label></li>
     	<c:forEach items="${list}" var="list">
@@ -211,6 +228,7 @@ input { width:150px; }
      	</c:forEach>
     </ul>
   </div>
+   </div>
 
    
   <!-- /.container -->

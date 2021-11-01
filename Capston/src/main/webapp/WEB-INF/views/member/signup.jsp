@@ -82,16 +82,16 @@
                  <div>
                     <h3 class="join_title"><label for="Student_Num">학번</label></h3>
                     <span class="box int_name">
-                        <input type="text" id="Student_Num" name="Student_Num" placeholder="ex)2021040001" class="int" required="required">
+                        <input type="number" id="Student_Num" name="Student_Num" placeholder="ex)2021040001" class="int" required="required">
                     </span>
                     <span class="error_next_box"></span>
                 </div>
 
                 <!-- EMAIL -->
-                <div class="int_email_area">
+                <div>
                     <h3 class="join_title"><label for="Email_2">알림용 이메일<span class="optional"></span></label></h3>
                     <span class="box int_email">
-                        <input type="text" id="Email_2" name="Email_2" class="int" maxlength="100" placeholder="알림용이메일을 입력해주세요" required="required">
+                        <input type="email" id="Email_2" name="Email_2" class="int" maxlength="100" placeholder="ex)aaaaa@naver.com" required="required">
                     </span>  
                     <span class="error_next_box"></span>
                 </div>
@@ -100,7 +100,7 @@
                 <div>
                     <h3 class="join_title"><label for="Phone_Num">휴대전화</label></h3>
                     <span class="box int_mobile">
-                        <input type="text" id="Phone_Num" name="Phone_Num" placeholder="ex)010-1234-5678 (-포함)" required="required" class="int">
+                        <input type="text" id="Phone_Num" name="Phone_Num" placeholder="ex)010-1234-5678 (-포함)" required="required" class="int" required="required">
                     </span>
                     <span class="error_next_box"></span>    
                 </div>

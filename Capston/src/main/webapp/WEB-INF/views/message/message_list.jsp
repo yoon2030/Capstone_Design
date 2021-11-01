@@ -29,6 +29,7 @@ div p.text-content{
   width: 120px;
   height: 20px;
 }
+.btn{width:20%;}}
 </style>
 
 </head>

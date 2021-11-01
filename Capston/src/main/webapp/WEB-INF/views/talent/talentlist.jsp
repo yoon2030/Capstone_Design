@@ -12,7 +12,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>재능판매 리스트 검색 결과</title>
+  <title>재능장터 리스트 검색 결과</title>
 
   <!-- Bootstrap core CSS -->
   <link href="${pageContext.request.contextPath}/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
@@ -94,7 +94,7 @@
   <div class="container">
 
     <!-- Page Heading/Breadcrumbs -->
-    <h1 id ="talb_list_title" class="mt-4 mb-3">재능판매 장터
+    <h1 id ="talb_list_title" class="mt-4 mb-3">재능장터
     <button id = "reg" onclick="location.href='/talent/talent_S_reg'">등록</button>
     
       <small></small>
@@ -102,9 +102,9 @@
 
     <ol class="breadcrumb">
       <li class="breadcrumb-item">
-        <a href="talent_S_list">재능판매</a>
+        <a href="talent_S_list">재능장터</a>
       </li>
-      <li class="breadcrumb-item active">재능판매 리스트</li>
+      <li class="breadcrumb-item active">재능장터 리스트</li>
     </ol>
   
 

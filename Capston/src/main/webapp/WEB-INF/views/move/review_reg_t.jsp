@@ -11,7 +11,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Modern Business - Start Bootstrap Template</title>
+  <title>재능마켓 후기작성</title>
 
   <!-- Bootstrap core CSS -->
   <link href="${pageContext.request.contextPath}/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
@@ -172,14 +172,14 @@ textarea#gdsDes { width:400px; height:180px; }
 		<div id="wrapper"> 
 <div id="content">
 		
-			    <h1 class="mt-4 mb-3">재능거래 후기작성
+			    <h1 class="mt-4 mb-3">재능마켓 후기작성
       <small></small>
     </h1>
 			    <ol class="breadcrumb">
       <li class="breadcrumb-item">
         <a href="index.html">마이페이지</a>
       </li>
-      <li class="breadcrumb-item active">후기관리 / 재능거래 후기작성</li>
+      <li class="breadcrumb-item active">후기관리 / 재능마켓 후기작성</li>
     </ol>
 			
 <form role="form" method="post" autocomplete="off" enctype="multipart/form-data">
@@ -209,7 +209,7 @@ textarea#gdsDes { width:400px; height:180px; }
 
 <div class="inputArea">
 	<label for="gdsDes">후기 작성</label>
-	<textarea rows="5" cols="70" id="rev_T_Content" name="rev_T_Content"></textarea>
+	<textarea rows="5" cols="70" id="rev_T_Content" name="rev_T_Content" required="required"></textarea>
 
  
  

@@ -28,7 +28,7 @@
 <!-- 내가 등록한 중고거래 -->
 <select id="goodslist" resultType="com.capstone.domain.GoodsVO">
 	select
-		goods_Code, goods_Name, goods_Des, goods_Pic, goods_Date
+		goods_Code, goods_Name, goods_Des, goods_Pic, goods_Date, goods_State
 	from goods
 		where seller_Id = #{seller_Id} 
 		order by goods_Code desc

@@ -13,20 +13,18 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Modern Business - Start Bootstrap Template</title>
+  <title>공지사항</title>
 
   <!-- Bootstrap core CSS -->
   <link href="${pageContext.request.contextPath}/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
 
   <!-- Custom styles for this template -->
   <link href="${pageContext.request.contextPath}/resources/css/modern-business.css" rel="stylesheet" type="text/css">
-  <style>
+<style>
   * {
     margin: 0;
     padding: 0;
 }
-
-
 
 body {
     font: 17px 'Nanum Gothic', sans-serif;
@@ -80,6 +78,7 @@ li {
 #notice ul li {
     line-height: 30px; /*li 세로 간격*/
     padding-left: 20px;
+     line-height: 47px;
 }
 
 
@@ -88,12 +87,14 @@ li {
     border-top: 2px solid #6a6a6a;
     border-bottom: 2px solid #6a6a6a;
     padding-left: 150px;
+     line-height: 47px;
 }
 
 
 
 #notice ul li:last-child {
     border-bottom: 1px solid #000;
+     line-height: 47px;
 }
 
 

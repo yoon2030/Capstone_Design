@@ -33,6 +33,7 @@ import com.capstone.domain.SearchCriteria;
 import com.capstone.domain.TradeVO;
 import com.capstone.service.AdminService;
 import com.capstone.service.EmailService;
+import com.capstone.service.MemberService;
 import com.capstone.service.MessageService;
 import com.capstone.utils.UploadFileUtils;
 
@@ -47,6 +48,9 @@ public class AdminController {
 	
 	@Inject
 	MessageService messageService;
+	
+	@Inject
+	MemberService memberService;
 	
     @Inject
     EmailService emailService;
@@ -93,9 +97,8 @@ public class AdminController {
 			
 
 								
-			adminService.register(vo);
-			
-			return "redirect:/admin/trade_list";
+		adminService.register(vo);
+		return "redirect:/admin/trade_list";
 	}
 	
 	// 판매상품 수정 
@@ -145,7 +148,9 @@ public class AdminController {
 	// @RequestParam("n")으로 인해, URL주소에 있는 n의 값을 가져와 gdsNum에 저장
 		TradeVO trade = adminService.trade_view(goods_Code);
 		logger.info("post goods delete");
+		if(trade!=null) {
 		adminService.trade_cancel(trade);
+		}
 		adminService.goodsDelete(goods_Code);
 			
 		return "redirect:/admin/trade_list";
@@ -179,9 +184,11 @@ public class AdminController {
 		int num = messageService.message_Count(member.getId());
 		model.addAttribute("num", num);	
 		GoodsVO goods = adminService.goodsView(goods_Code);
+		MemberVO member1 = memberService.member_check(goods.getSeller_Id());
 		List<ReviewVO> list = adminService.goodsReview(goods.getSeller_Id());
 		model.addAttribute("goods", goods);
 		model.addAttribute("member", member);
+		model.addAttribute("member1", member1);
 		model.addAttribute("list", list);
 	}
 	
@@ -218,11 +225,30 @@ public class AdminController {
 		
 		try {
 			EmailVO vo = new EmailVO();
+			MemberVO mem = memberService.member_check(goods.getSeller_Id());
 			vo.setSenderName("충대장터");
 			vo.setSenderMail("alsghwhro39@gmail.com");
-			vo.setReceiveMail("alsghwhro@naver.com");
+			vo.setReceiveMail(mem.getEmail_2());
 			vo.setSubject("등록하신 중고장터의 거래에 대한 요청이 있습니다.");
-			vo.setMessage("재능장터에 등록하신 중고 거래에 대한 요청이 있습니다. 충대장터에 들어가 확인해주시기 바랍니다.");
+			String content = 
+			        System.getProperty("line.separator")+ //한줄씩 줄간격을 두기위해 작성
+			        
+			        System.getProperty("line.separator")+
+			                
+			        "안녕하세요 회원님 저희 홈페이지를 찾아주셔서 감사합니다"
+			        
+			        +System.getProperty("line.separator")+
+			        
+			        System.getProperty("line.separator")+
+
+			        "중고장터에 등록하신 중고 거래에 대한 요청이 있습니다. "
+			        
+			        +System.getProperty("line.separator")+
+			        
+			        System.getProperty("line.separator")+
+			        
+			        "충대장터에 들어가 확인해주시기 바랍니다."; // 내용
+			vo.setMessage(content);
             emailService.sendMail(vo);  
         } catch (Exception e) {
             e.printStackTrace();     
@@ -287,11 +313,30 @@ public class AdminController {
 			adminService.goods_set(goods);
 			try {
 				EmailVO vo = new EmailVO();
+				MemberVO mem = memberService.member_check(trade.getBuyer_Id());
 				vo.setSenderName("충대장터");
 				vo.setSenderMail("alsghwhro39@gmail.com");
-				vo.setReceiveMail("alsghwhro@naver.com");		//판매자 이메일 적을것
+				vo.setReceiveMail(mem.getEmail_2());		//판매자 이메일 적을것
 				vo.setSubject("요청하신 중고장터의 거래가 완료되었습니다.");
-				vo.setMessage("요청하신 중고 거래가 완료되었습니다. 충대장터에 들어가 리뷰를 작성해주시기 바랍니다.");
+				String content = 
+				        System.getProperty("line.separator")+ //한줄씩 줄간격을 두기위해 작성
+				        
+				        System.getProperty("line.separator")+
+				                
+				        "안녕하세요 회원님 저희 홈페이지를 찾아주셔서 감사합니다"
+				        
+				        +System.getProperty("line.separator")+
+				        
+				        System.getProperty("line.separator")+
+
+				        "요청하신 중고 거래가 완료되었습니다."
+				        
+				        +System.getProperty("line.separator")+
+				        
+				        System.getProperty("line.separator")+
+				        
+				        "충대장터에 들어가 확인해주시기 바랍니다."; // 내용
+				vo.setMessage(content);
 	            emailService.sendMail(vo);  
 	        } catch (Exception e) {
 	            e.printStackTrace();     

@@ -11,15 +11,13 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>재능판매 등록</title>
+  <title>재능장터 등록</title>
 
   <!-- Bootstrap core CSS -->
   <link href="${pageContext.request.contextPath}/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
 
   <!-- Custom styles for this template -->
   <link href="${pageContext.request.contextPath}/resources/css/modern-business.css" rel="stylesheet" type="text/css">
-  <link rel="stylesheet" href="./about2.css">
-  <link rel="stylesheet" href="./about3.css">
   
   
  <style>
@@ -31,11 +29,11 @@
     position: relative;
     height: 100%;
     }
+    .btn{width:12%;}
 </style>
- 
 <style>
 .inputArea { margin:10px 0; }
-select { width:100px; }
+select { width:193px; }
 label { display:inline-block; width:90px; padding:5px; }
 label[for='gdsDes'] { display:block; }
 input { width:150px; }
@@ -151,17 +149,17 @@ function categoryChange(e) {
 <div id="wrapper"> 
 <div id="content">
 		
-	  <h1 class="mt-4 mb-3">재능판매
+	  <h1 class="mt-4 mb-3">재능장터 등록
       <small></small>
     </h1>
 	<ol class="breadcrumb">
       <li class="breadcrumb-item">
-        <a href="talent_B_list.html">재능판매 장터</a>
+        <a href="talent_B_list.html">재능장터</a>
       </li>
-      <li class="breadcrumb-item active">재능판매 등록</li>
+      <li class="breadcrumb-item active">재능장터 등록</li>
     </ol>
 				
-<form role="form" method="post" autocomplete="off" enctype="multipart/form-data">
+<form role="form" method="post" autocomplete="off"  action="/talent/talent_S_reg">
 
 
 <div class="inputArea">
@@ -197,7 +195,7 @@ function categoryChange(e) {
 	<label for="tals_Term">작업기간</label>
 	<input type="text" id="tals_Term" name="tals_Term"/>
 </div>
-
+<hr>
 <div class="inputArea">
 	<button type="submit" id="register_Btn" class="btn btn-primary">등록</button>
 </div>

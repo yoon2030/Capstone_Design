@@ -98,7 +98,7 @@
       <li class="breadcrumb-item">
         <a href="index.html">후기관리</a>
       </li>
-      <li class="breadcrumb-item active">중고거래 후기관리</li>
+      <li class="breadcrumb-item active">중고마켓 후기관리</li>
     </ol>
 	<c:forEach items="${list}" var="list">
     <div class="card mb-4">
@@ -126,7 +126,7 @@
       <li class="breadcrumb-item">
         <a href="index.html">후기관리</a>
       </li>
-      <li class="breadcrumb-item active">재능거래 후기관리</li>
+      <li class="breadcrumb-item active">재능마켓 후기관리</li>
     </ol>
 	<c:forEach items="${list2}" var="list2">
     <div class="card mb-4">

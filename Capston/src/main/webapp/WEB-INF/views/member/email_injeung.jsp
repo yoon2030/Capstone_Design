@@ -4,7 +4,17 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+ <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  
+  
+<title>이메일 인증</title>
+  <!-- Bootstrap core CSS -->
+  <link href="${pageContext.request.contextPath}/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+  <!-- Custom styles for this template -->
+  <link href="${pageContext.request.contextPath}/resources/css/modern-business.css" rel="stylesheet" type="text/css">
 </head>
 <body>
  
@@ -18,12 +28,14 @@
             <tr>        
                 <td>
                 <center>
-                    <form action="join_injeung.do${dice}" method="post"> //받아온 인증코드를 컨트롤러로 넘겨서 일치하는지 확인 
+                                    <div id = "email_logo">
+                    </div>
+                    <form action="join_injeung.do${dice}" method="post"> 
                     <input type="hidden" id="email" name="email" value="${email}">                 
                     <center>
                         <br>
                         <div>
-                            인증번호 입력 : <input type="number" name="email_injeung" placeholder="  인증번호를 입력하세요. ">
+                            인증번호 입력 : <input type="number" name="email_injeung" placeholder="  인증번호 입력. ">
                         </div>                                        
  
                         <br> <br>
@@ -35,6 +47,9 @@
                     </center>
             </table>
         </form>
+              <div id="email_img2">
+
+      </div>
 </center>
  
  

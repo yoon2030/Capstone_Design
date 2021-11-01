@@ -20,18 +20,32 @@
 
   <!-- Custom styles for this template -->
   <link href="${pageContext.request.contextPath}/resources/css/modern-business.css" rel="stylesheet" type="text/css">
+<style>
+    #message-container{
+        width: 400px;
+        height: 600px;
+        position: relative;
+        left:35%;
+        border:1px solid;
+    }
+    #message-title{ padding-top: 37px;  }
+    #message-content{text-align:left; padding-left:70px; border-top: 1px solid;}
+    #email_logo {left:142px;}
+    p{display: inline-block;}
+    .inputArea{position:  relative; top:125px; }
 
+</style>
 </head>
 
 <body style = "text-align: center;">
 <div id="message-container"> 
 <form role="form" method="post" autocomplete="off" enctype="multipart/form-data">
-
 <h1 id="message-title" class="mt-4 mb-3">쪽지 확인</h1>
+<div id = "email_logo"></div>
 <div id ="message-content">
 	<p><label>받는 사람 : </label>${message.recv_Id}</p>
-	<p><label>보낸 사람 : </label>${message.send_Id}</p>
-	<p><label>보낸 시간 : </label><fmt:formatDate pattern="yyyy-MM-dd hh:mm:ss" value="${message.send_Time}"/></p>
+	<p><label>보낸 사람 : </label>${message.send_Id}</p><br>
+	<p><label>보낸 시간 : </label><fmt:formatDate pattern="yyyy-MM-dd hh:mm:ss" value="${message.send_Time}"/></p> <br>
 	<p><label>내용 : </label>${message.content}</p>
 </div>
 

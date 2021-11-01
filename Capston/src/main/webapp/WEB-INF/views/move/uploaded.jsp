@@ -16,14 +16,18 @@
   <title>마이 페이지 - 등록한 목록</title>
 
   <!-- Bootstrap core CSS -->
-  <link href="${pageContext.request.contextPath}/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+  <link href="${pageContext.request.contextPath}/resources/vendor/bootstrap/css/bootstrap.min.css?after" rel="stylesheet" type="text/css">
 
   <!-- Custom styles for this template -->
   <link href="${pageContext.request.contextPath}/resources/css/modern-business.css" rel="stylesheet" type="text/css">
 
 	<!--  add CSS -->
   <link href="${pageContext.request.contextPath}/resources/vendor/bootstrap/css/web.css" rel="stylesheet" type="text/css">
+   <style>
   
+  .card-img-top{width: 220px; height: 220px;}
+  
+  </style> 
 </head>
 
 <body>
@@ -110,15 +114,17 @@
         <div class="row">
           <div class="col-lg-6">
             <a href="/admin/trade_view?n=${list.goods_Code}">
-            <div class="col-lg-6">
+                        <div class="col-lg-6">
               <img src="${list.goods_Pic}" class="card-img-top"/>
               </div>
             </a>
           </div>
-          <div class="col-lg-6">
-            <h2 class="card-title">${list.goods_Name}</h2>
-            <p class="card-text">${list.goods_Des}</p>
-            <a href="/admin/trade_view?n=${list.goods_Code}" class="btn btn-primary">상세한 정보 확인하기 &rarr;</a>
+          <div class="view-img">
+            <h2 class="card-title"><span>상품제목 :</span>${list.goods_Name}</h2>
+            <p class="card-text"><span>진행상태 :</span>${list.goods_State}</p>
+            <p class="card-text"><span>상품설명 :</span>${list.goods_Des}</p>
+             <a style="height: 33px;position: absolute;left: 254px; bottom: -81px;width: 222px;"
+              href="/admin/trade_view?n=${list.goods_Code}" class="btn btn-primary" >상세한 정보 확인하기 &rarr;</a>
           </div>
         </div>
       </div>
@@ -138,12 +144,13 @@
       <div class="card-body">
         <div class="row">
           <div class="col-lg-6">
-            <h2 class="card-title">${list2.tals_Title}</h2>
-            <p class="card-text">${list2.tals_Kinds}</p>
-            <p class="card-text">${list2.tals_Kinds_2}</p>
-            <p class="card-text">${list2.tals_Price}</p>
-            <p class="card-text">${list2.tals_Term}</p>
-            <a id="wantbuy_btn" href="/talent/talent_S_view?n=${list2.tals_Code}" class="btn btn-primary">상세한 정보 확인하기 &rarr;</a>
+            <h2 class="card-title"><span>재능제목 :</span>${list2.tals_Title}</h2>
+            <p class="card-text"><span>재능 1차분류 :</span>${list2.tals_Kinds}</p>
+            <p class="card-text"><span>재능 2차분류 :</span>${list2.tals_Kinds_2}</p>
+            <p class="card-text"><span>가격 :</span>${list2.tals_Price}<span>원</span></p>
+            <p class="card-text"><span>제작 기간 :</span>${list2.tals_Term}<span>일</span></p>
+            <a style="position: relative; left: 419px;"
+            id="wantbuy_btn" href="/talent/talent_S_view?n=${list2.tals_Code}" class="btn btn-primary">상세한 정보 확인하기 &rarr;</a>
           </div>
         </div>
       </div>

@@ -12,7 +12,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>거래소</title>
+  <title>중고장터</title>
 
   <!-- Bootstrap core CSS -->
   <link href="${pageContext.request.contextPath}/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
@@ -22,6 +22,14 @@
 
 <style>
 .card-img-top { width:418px; height:250px; }
+.col-lg-100{margin-left : 100px; margin-bottom:50px;}
+li{text-align : center;}
+.search{text-align : center; margin: 20px; margin-top: 40px;}
+.button{bottom: 30px;position: relative;right: 24px;font-size: 20px;}
+.row{margin-left: -66px;}
+#paging li{display : inline;}
+#market_goods{position: relative;left: 0%;width: 1500px;text-align: center; display: inline-block;}
+
 
 </style>
 
@@ -90,12 +98,14 @@
   
 
 
-    <!-- Team Members -->
+   <!-- Team Members -->
     <div id = "title">
-    <h2>중고판매 장터</h2> 
+    <h2>중고장터</h2> 
     <div id = "Product_reg">
-      <button id = "reg" onclick="location.href='/admin/register'">등록</button>
-      </div>
+       <div id="design-btn" onclick="location.href='/admin/register'" >
+<button class="button">
+등록
+</button></div>
   	</div>
 <div class="search">
  <select name="searchType">
@@ -121,6 +131,7 @@
  });   
  </script>
 </div>
+<div id="market_goods">
     <div class="row">
     	<c:forEach items="${list}" var="list">
     	 <div class="col-lg-100">
@@ -129,9 +140,9 @@
          <a href="/admin/trade_view?n=${list.goods_Code}"><img src="${list.goods_Pic}" class="card-img-top"/></a>
          </div>
           <div class="card-body">
-				<h4 class="card-title"><label>제목 : </label>${list.goods_Name}</h4>
+				<h4 class="card-title"><label>상품제목 : </label>${list.goods_Name}</h4>
 				 <p class="card-text"><label>가격 : </label><fmt:formatNumber value="${list.goods_Price}" pattern="###,###,###원"/></p>
-				 <p class="card-text"><label>상태 : </label>${list.goods_State}</p>
+				 <p class="card-text"><label>진행상태 : </label>${list.goods_State}</p>
           </div>
           <div class="card-footer">
           	<span>작성자:</span>
@@ -142,12 +153,14 @@
     	
     	</c:forEach>
     </div>
+    </div>
     <!-- /.row -->
 
 
   
   <!-- /.container -->
-<div>
+  <hr>
+<div id ="paging">
  <ul>
   <c:if test="${pageMaker.prev}">
    <li><a href="trade_list${pageMaker.makeQuery(pageMaker.startPage - 1)}">이전</a></li>

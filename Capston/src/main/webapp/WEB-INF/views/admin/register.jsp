@@ -1,7 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page session="false" %>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,15 +11,13 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>상품 등록</title>
+  <title>중고장터 등록</title>
 
   <!-- Bootstrap core CSS -->
-  <link href="${pageContext.request.contextPath}/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+  <link href="${pageContext.request.contextPath}/resources/vendor/bootstrap/css/bootstrap.min.css?after" rel="stylesheet" type="text/css">
 
   <!-- Custom styles for this template -->
   <link href="${pageContext.request.contextPath}/resources/css/modern-business.css" rel="stylesheet" type="text/css">
-  <link rel="stylesheet" href="./about2.css">
-  <link rel="stylesheet" href="./about3.css">
   
   
  <style>
@@ -32,11 +29,12 @@
     position: relative;
     height: 100%;
     }
+    .btn{width: 9%;}
 </style>
  
 <style>
 .inputArea { margin:10px 0; }
-select { width:100px; }
+select { width:150px; }
 label { display:inline-block; width:90px; padding:5px; }
 label[for='gdsDes'] { display:block; }
 input { width:150px; }
@@ -122,41 +120,47 @@ textarea#gdsDes { width:400px; height:180px; }
 
   
 
-    <!-- Team Members -->
+   <!-- Team Members -->
    <section id="container">
    
 		<div id="wrapper"> 
 <div id="content">
 		
-			    <h1 class="mt-4 mb-3">중고판매 등록
+			    <h1 class="mt-4 mb-3">중고장터 등록
       <small></small>
     </h1>
 			    <ol class="breadcrumb">
       <li class="breadcrumb-item">
-        <a href="index.html">중고판매 장터</a>
+        <a href="index.html">중고장터</a>
       </li>
-      <li class="breadcrumb-item active">중고판매 등록</li>
+      <li class="breadcrumb-item active">중고장터 등록</li>
     </ol>
 				
-<form role="form" method="post" autocomplete="off" enctype="multipart/form-data">
+<form role="form" method="post" action ="/admin/register" enctype="multipart/form-data">
 
 
 <div class="inputArea">
 	<label for="goods_Name">상품명</label>
-	<input type="text" id="goods_Name" name="goods_Name"/>
+	<input type="text" id="goods_Name" name="goods_Name" maxlength='11'/>
 </div>
 <div class="inputArea">
 	<label for="goods_Cate">상품분류</label>
 	<select id="goods_Cate" name="goods_Cate" >
-		<option value="서적" selected="selected">서적</option>
-  		<option value="기계">기계</option>
- 	 	<option value="옷" >옷</option>
+ 	 	<option value="의류/액세서리" selected="selected">의류/액세서리</option>
+  		<option value="디지털/가전">디지털/가전</option>
+ 	 	<option value="도서/문구/티켓">도서/문구/티켓</option>
+ 	 	<option value="뷰티/미용">뷰티/미용</option>
+ 	 	<option value="음반/악기">음반/악기</option>
+ 	 	<option value="생활/식품">생활/식품</option>
+ 	 	<option value="가구/인테리어">가구/인테리어</option>
+ 	 	<option value="충대나눔">충대나눔</option>
+ 	 	<option value="기타">기타</option>
 	</select>
 </div>
 
 <div class="inputArea">
 	<label for="goods_Price">상품가격</label>
-	<input type="text" id="goods_Price" name="goods_Price" />
+	<input type="number" id="goods_Price" name="goods_Price" />
 </div>
 <div class="inputArea">
 	<label for="goods_Sta">상품상태</label>
@@ -189,15 +193,14 @@ textarea#gdsDes { width:400px; height:180px; }
    }
   });
  </script>
- <!-- <%=request.getRealPath("/") %>  -->
+  <!-- <%=request.getRealPath("/") %>--> 
 </div>
+<hr>
 <div class="inputArea">
-	<button type="submit" id="register_Btn" class="btn btn-primary">등록</button>
-</div>
-</div>
+<button type="submit" id="register_Btn" class="btn btn-primary">등록</button>
 </div>
 </form>
-			
+			</div>
 		</div>
 	</section>
 

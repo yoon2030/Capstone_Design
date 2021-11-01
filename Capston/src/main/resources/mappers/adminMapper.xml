@@ -7,9 +7,9 @@
 <!-- Paging -->
 <select id="listPage" resultType="com.capstone.domain.GoodsVO"
 parameterType="com.capstone.domain.Criteria">
-    select goods_Code, seller_Id, goods_Name, goods_Cate, goods_Sta,goods_Price, goods_Des, goods_Pic, goods_Date, phone_Num
+    select goods_Code, seller_Id, goods_Name, goods_Cate, goods_Sta,goods_Price, goods_Des, goods_Pic, goods_Date, phone_Num, goods_State
        from (
-           select goods_Code, seller_Id, goods_Name, goods_Cate, goods_Sta,goods_Price, goods_Des, goods_Pic, goods_Date, phone_Num,
+           select goods_Code, seller_Id, goods_Name, goods_Cate, goods_Sta,goods_Price, goods_Des, goods_Pic, goods_Date, phone_Num,goods_State,
                row_number() over(order by goods_Code desc) as rNum
            from goods
      ) mb
@@ -20,14 +20,14 @@ parameterType="com.capstone.domain.Criteria">
 <!-- 검색 -->
 <select id="listSearch" resultType="com.capstone.domain.GoodsVO"
 parameterType="com.capstone.domain.SearchCriteria">
-select goods_Code, seller_Id, goods_Name, goods_Cate, goods_Sta,goods_Price, goods_Des, goods_Pic, goods_Date, phone_Num
+select goods_Code, seller_Id, goods_Name, goods_Cate, goods_Sta,goods_Price, goods_Des, goods_Pic, goods_Date, phone_Num, goods_State
        from (
-           select goods_Code, seller_Id, goods_Name, goods_Cate, goods_Sta,goods_Price, goods_Des, goods_Pic, goods_Date, phone_Num,
+           select goods_Code, seller_Id, goods_Name, goods_Cate, goods_Sta,goods_Price, goods_Des, goods_Pic, goods_Date, phone_Num,goods_State,
                row_number() over(order by goods_Code desc) as rNum
            from goods
       <include refid="search"></include>
      ) mb
-    where rNum between #{rowStart} and #{rowEnd}
+    where (rNum between #{rowStart} and #{rowEnd}) and  (goods_State='대기중' OR goods_State = '거래중')
         order by goods_Code desc
 </select>
 

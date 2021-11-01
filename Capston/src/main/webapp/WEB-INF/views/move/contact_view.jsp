@@ -49,8 +49,10 @@ li {
     list-style: none;
 }
 
+#noice-subject{display:block; width:300px; height:106px; padding: 76px 40px 0 0; font-size: 18px; vertical-align: top; }
+#notice_content{ width:860px; height:783px; padding: 0 0 0 100px;bottom: 70px;left: 300px; position: relative;}
 
-
+#container{ width:900px;}
 
 
   </style>
@@ -119,7 +121,7 @@ li {
     </div>
   </nav>
 
-  <!-- Page Content -->
+ <!-- Page Content -->
   <div class="container">
       <!-- Page Heading/Breadcrumbs -->
     <h1 class="mt-4 mb-3">공지사항
@@ -136,13 +138,13 @@ li {
 <div id=noice-subject>
 	<div id="notice-title">
  		<h2>${notice.notice_Title}</h2>
-	</div>
-	<div>
-		<fmt:formatDate pattern="yyyy/MM/dd" value="${notice.notice_Date}"/>
-
+ 		<fmt:formatDate pattern="yyyy/MM/dd" value="${notice.notice_Date}"/>
 	</div>
 
-	<div>
+
+
+
+	<div id ="notice_content">
 		<span id="notice-content">${notice.notice_Content}</span>
 	</div>
 </div>

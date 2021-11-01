@@ -11,7 +11,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Modern Business - Start Bootstrap Template</title>
+  <title>중고장터 수정</title>
 
   <!-- Bootstrap core CSS -->
   <link href="${pageContext.request.contextPath}/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
@@ -125,14 +125,14 @@ textarea#gdsDes { width:400px; height:180px; }
 		<div id="wrapper"> 
 <div id="content">
 		
-			    <h1 class="mt-4 mb-3">중고판매 수정
+			    <h1 class="mt-4 mb-3">중고장터 수정
       <small></small>
     </h1>
 			    <ol class="breadcrumb">
       <li class="breadcrumb-item">
-        <a href="index.html">중고판매 장터</a>
+        <a href="index.html">중고장터</a>
       </li>
-      <li class="breadcrumb-item active">중고판매 수정</li>
+      <li class="breadcrumb-item active">중고장터 수정</li>
     </ol>
 			
 <form role="form" method="post" autocomplete="off" enctype="multipart/form-data">
@@ -142,19 +142,25 @@ textarea#gdsDes { width:400px; height:180px; }
 
 <div class="inputArea">
  <label for="goods_Name">상품명</label>
- <input type="text" id="goods_Name" name="goods_Name" value="${goods.goods_Name}"/>
+ <input type="text" id="goods_Name" name="goods_Name" value="${goods.goods_Name}" required="required"/>
 </div>
 <div class="inputArea">
 	<label for="goods_Cate">상품분류</label>
-	<select id="goods_Cate" name="goods_Cate" >
-		<option value="서적" <c:if test='${goods.goods_Cate == "서적"}'>selected</c:if>>서적</option>
-  		<option value="기계" <c:if test='${goods.goods_Cate == "기계"}'>selected</c:if>>기계</option>
- 	 	<option value="옷"  <c:if test='${goods.goods_Cate == "옷"}'>selected</c:if>>옷</option>
+	<select id="goods_Cate" name="goods_Cate" >	 	
+ 	 	<option value="의류/액세서리" <c:if test='${goods.goods_Cate == "의류/액세서리"}'>selected</c:if>>의류/액세서리</option>
+  		<option value="디지털/가전"<c:if test='${goods.goods_Cate == "디지털/가전"}'>selected</c:if>>디지털/가전</option>
+ 	 	<option value="도서/문구/티켓"<c:if test='${goods.goods_Cate == "도서/문구/티켓"}'>selected</c:if>>도서/문구/티켓</option>
+ 	 	<option value="뷰티/미용" <c:if test='${goods.goods_Cate == "뷰티/미용"}'>selected</c:if>>뷰티/미용</option>
+ 	 	<option value="음반/악기" <c:if test='${goods.goods_Cate == "음반/악기"}'>selected</c:if>>음반/악기</option>
+ 	 	<option value="생활/식품" <c:if test='${goods.goods_Cate == "생활/식품"}'>selected</c:if>>생활/식품</option>
+ 	 	<option value="가구/인테리어" <c:if test='${goods.goods_Cate == "가구/인테리어"}'>selected</c:if>>가구/인테리어</option>
+ 	 	<option value="충대나눔" <c:if test='${goods.goods_Cate == "충대나눔"}'>selected</c:if>>충대나눔</option>
+ 	 	<option value="기타" <c:if test='${goods.goods_Cate == "기타"}'>selected</c:if>>기타</option>
 	</select>
 </div>
 <div class="inputArea">
  <label for="goods_Price">상품가격</label>
- <input type="text" id="goods_Price" name="goods_Price" value="${goods.goods_Price}"/>
+ <input type="number" id="goods_Price" name="goods_Price" value="${goods.goods_Price}" required="required"/>
 </div>
 <div class="inputArea">
  <label for="goods_Sta">상품상태</label>

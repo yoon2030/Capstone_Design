@@ -16,7 +16,7 @@
   <title>마이 페이지 - 거래 목록</title>
 <script src="/resources/jquery/jquery-3.3.1.min.js"></script>
   <!-- Bootstrap core CSS -->
-  <link href="${pageContext.request.contextPath}/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+  <link href="${pageContext.request.contextPath}/resources/vendor/bootstrap/css/bootstrap.min.css?after" rel="stylesheet" type="text/css">
 
   <!-- Custom styles for this template -->
   <link href="${pageContext.request.contextPath}/resources/css/modern-business.css" rel="stylesheet" type="text/css">
@@ -115,9 +115,9 @@
               </div>
             </a>
           </div>
-          <div class="col-lg-6">
-            <h2 class="card-title">${list.goods_Name}</h2>
-            <p class="card-text">${list.goods_Des}</p>
+          <div class="view-img">
+            <h2 class="card-title"><label>상품제목 : </label>${list.goods_Name}</h2>
+            <p class="card-text"><label>상품설명 : </label>${list.goods_Des}</p>
             <a href="/admin/complete?n=${list.goods_Code}" class="btn btn-primary">거래완료 &rarr;</a>
             <a href="/admin/reject?n=${list.goods_Code}" class="btn btn-primary">거래취소 &rarr;</a>
           </div>
@@ -139,9 +139,9 @@
       <div class="card-body">
         <div class="row">
           <div class="col-lg-6">
-            <h2 class="card-title">${list2.talent_Title}</h2>
-            <p class="card-text">${list2.buyer_Id}</p>
-            <p class="card-text">${list2.buyer_Phone}</p>
+            <h2 class="card-title"><label>재능제목 : </label>${list2.talent_Title}</h2>
+            <p class="card-text"><label>구매자 : </label>${list2.buyer_Id}</p>
+            <p class="card-text"><label>구매자 전화번호 : </label>${list2.buyer_Phone}</p>
             <a href="/talent/complete?n=${list2.trade_T_Code}" class="btn btn-primary">거래완료 &rarr;</a>
             <a href="/talent/reject?n=${list2.trade_T_Code}" class="btn btn-primary">거래취소 &rarr;</a>
           </div>

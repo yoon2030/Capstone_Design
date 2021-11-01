@@ -15,7 +15,7 @@
   <title>충대장터 -거래완료(후기작성)</title>
 
   <!-- Bootstrap core CSS -->
-  <link href="${pageContext.request.contextPath}/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+  <link href="${pageContext.request.contextPath}/resources/vendor/bootstrap/css/bootstrap.min.css?after" rel="stylesheet" type="text/css">
 
   <!-- Custom styles for this template -->
   <link href="${pageContext.request.contextPath}/resources/css/modern-business.css" rel="stylesheet" type="text/css">
@@ -107,23 +107,23 @@
     <div class="card mb-4">
       <div class="card-body">
         <div class="row">
-           <div class="col-lg-6">
-            <a href="#">
             <div class="col-lg-6">
-              <img class="img-fluid rounded" src="${list.goods_Pic}" alt="">
-             </div>
+            <a href="/admin/trade_view?n=${list.goods_Code}">
+            <div class="col-lg-6">
+              <img src="${list.goods_Pic}" class="card-img-top"/>
+              </div>
             </a>
           </div>
-          <div class="col-lg-6">
-            <h2 class="card-title"><label>제목 : </label>${list.goods_Name}</h2>
+          <div class="view-img">
+            <h2 class="card-title"><label>상품제목 : </label>${list.goods_Name}</h2>
             <p class="card-text"><label>판매자 : </label>${list.seller_Id}</p>
-            <p class="card-text"><label>내용 : </label>${list.goods_Des}</p>                     
-            <a href="/move/review_reg?n=${list.goods_Code}" class="btn btn-primary">후기 작성 &rarr;</a>
+            <p class="card-text"><label>상품내용 : </label>${list.goods_Des}</p>                     
+            <a style = "position: relative;  left: 0;" href="/move/review_reg?n=${list.goods_Code}" class="btn btn-primary">후기 작성 &rarr;</a>
           </div>
         </div>
       </div>
       <div class="card-footer text-muted">
-        <p>${list.phone_Num}</p>
+        <p><label>판매자 전화번호 : </label>${list.phone_Num}</p>
         <a href="#"></a>
       </div>
     </div>
@@ -142,10 +142,10 @@
       <div class="card-body">
         <div class="row">
           <div class="col-lg-6">
-            <h2 class="card-title"><label>제목 : </label>${list2.talent_Title}</h2>
+            <h2 class="card-title"><label>재능제목 : </label>${list2.talent_Title}</h2>
             <p class="card-text"><label>판매자 : </label>${list2.seller_Id}</p>
-            <p class="card-text"><label>1차 재능분류 : </label>${list2.talent_Kinds}</p>
-            <p class="card-text"><label>2차 재능분류 : </label>${list2.talent_Kinds_2}</p>
+            <p class="card-text"><label>재능 1차분류 : </label>${list2.talent_Kinds}</p>
+            <p class="card-text"><label>재능 2차분류 : </label>${list2.talent_Kinds_2}</p>
             <a href="/move/review_reg_t?n=${list2.trade_T_Code}" class="btn btn-primary">후기 작성 &rarr;</a>
           </div>
         </div>
@@ -154,18 +154,6 @@
       </div>
     </div>
     </c:forEach>
-
-
-
-    <!-- Pagination -->
-    <ul class="pagination justify-content-center mb-4">
-      <li class="page-item">
-        <a class="page-link" href="#">&larr; Older</a>
-      </li>
-      <li class="page-item disabled">
-        <a class="page-link" href="#">Newer &rarr;</a>
-      </li>
-    </ul>
 
   </div>
   <!-- /.container -->

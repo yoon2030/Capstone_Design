@@ -19,7 +19,17 @@
 
   <!-- Custom styles for this template -->
   <link href="${pageContext.request.contextPath}/resources/css/modern-business.css" rel="stylesheet" type="text/css">
-
+<style>
+  
+  .text-center{text-align: center;
+  }
+  
+  #email_logo{
+      left: 50%;}
+  
+	#headingOne{    border-top-left-radius: 33px;border-top-right-radius: 33px;}  
+  
+  </style>
 </head>
 
 <body>
@@ -83,7 +93,7 @@
       </div>
     </div>
   </nav>
-  <!-- Page Content -->
+ <!-- Page Content -->
   <div class="container">
 
     <!-- Page Heading/Breadcrumbs -->
@@ -102,41 +112,60 @@
       <div class="card">
         <div class="card-header" role="tab" id="headingOne">
           <h5 class="mb-0">
-            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">자주 묻는 질문1 : 거래소에 사고 싶은 물품은 어디서 볼 수 있어요?</a>
+            <a class = "text-center"data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne"><div style="color:red; display:inline;">Q.</div> <div style="display:inline;">거래소에 사고 싶은 물품은 어디서 볼 수 있어요?</div></a>
           </h5>
         </div>
 
         <div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne">
-          <div class="card-body">
-            상단 메뉴의 거래소 탭에 마우스를 올려보시고 판매 메뉴를 클릭하시면 등록된 물품들을 보실 수 있습니다.
+          <div class="card-body text-center"><div id="email_logo"></div>
+            A. 상단 메뉴의 거래소 탭에 마우스를 올려보시고 판매 메뉴를 클릭하시면 등록된 물품들을 보실 수 있습니다.
           </div>
         </div>
       </div>
       <div class="card">
-        <div class="card-header" role="tab" id="headingTwo">
+        <div class="card-header" role="tab" id="headingOne">
           <h5 class="mb-0">
-            <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">자주 묻는 질문2 : 제가 올린 물건을 수정하고 싶어요.
+            <a class="collapsed text-center" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo"><div style="color:red; display:inline;">Q.</div>.<div style="display:inline;"> 제가 올린 물건을 수정하고 싶어요.</div>
             </a>
           </h5>
         </div>
         <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo">
-          <div class="card-body">
-          상단 메뉴의 마이페이지 탭에서 '내가 등록한 물건'을 클릭하셔서 등록한 물품의 상세 정보 확인과 수정이 가능합니다.
+          <div class="card-body text-center"><div id="email_logo"></div>
+          A. 상단 메뉴의 마이페이지 탭에서 '내가 등록한 물건'을 클릭하셔서 등록한 물품의 상세 정보 확인과 수정이 가능합니다.
           </div>
         </div>
       </div>
       <div class="card">
-        <div class="card-header" role="tab" id="headingThree">
+        <div class="card-header" role="tab" id="headingOne">
           <h5 class="mb-0">
-            <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">자주묻는질문3</a>
+            <a class="collapsed text-center" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree"><div style="color:red; display:inline;">Q.</div> <div style="display:inline;">고객상담 시간은 언제부터 언제까지 인가요?</div></a>
           </h5>
         </div>
         <div id="collapseThree" class="collapse" role="tabpanel" aria-labelledby="headingThree">
-          <div class="card-body">
-          내용3
+          <div class="card-body text-center"><div id="email_logo"></div>
+          A. 충대마켓은 자동화 운영 서비스를 제공하고 있습니다.
+
+그에 따라 고객센터 전화 상담은 제공하지 않으며, 1:1 문의 게시판을 운영중에 있습니다.
+
+1:1 문의 게시판 상담 답변은 영업일 기준 48시간내에 답변을 드리고 있습니다.(문의량이 많을 경우 답변이 지연될 수 있습니다.)
           </div>
         </div>
       </div>
+      
+            <div class="card">
+        <div class="card-header" role="tab" id="headingOne">
+          <h5 class="mb-0">
+            <a class="collapsed text-center" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseTwo"><div style="color:red; display:inline;">Q.</div><div style="display:inline;"> 회원가입 시 인증번호가 오지 않습니다.</div>
+            </a>
+          </h5>
+        </div>
+        <div id="collapseFour" class="collapse" role="tabpanel" aria-labelledby="headingFour">
+          <div class="card-body text-center"><div id="email_logo"></div>
+          A. 스팸차단 대상 문구, 발신번호 등 그 유형을 외부에서는 알 수 없기 때문에 대량 전송의 경우 반드시 본인 이메일으로 확인 후 이상없을 때 발송하여 주시기 바랍니다.
+          </div>
+        </div>
+      </div>
+      
     </div>
 
   </div>

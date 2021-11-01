@@ -12,7 +12,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Modern Business - Start Bootstrap Template</title>
+  <title>재능장터 상세페이지</title>
 <script src="/resources/jquery/jquery-3.3.1.min.js"></script>
   <!-- Bootstrap core CSS -->
   <link href="${pageContext.request.contextPath}/resources/vendor/bootstrap/css/bootstrap.min.css?after" rel="stylesheet" type="text/css">
@@ -26,7 +26,7 @@ select { width:100px; }
 label { display:inline-block; width:110px; padding:5px; }
 label[for='gdsDes'] { display:block; }
 input { width:150px; }
-.gdsDes { marigin:10px 0;width:400px; height:180px; }
+.gdsDes { marigin:10px 0;width:400px; height:180px; border : 1px solid; }
 .card-img-top{width:418px; height:250px; }
 .star{background-image:url(/resources/image/star.jpg);}
 .thumbImg {}
@@ -34,6 +34,9 @@ input { width:150px; }
 #rej_Btn {border : 0; width:100px; height:30px;;  position: relative; left:70%;}
 #cancel_Btn {border : 0; width:100px; height:30px;;  position: relative; left:70%;}
 #req_Btn {border : 0; width:100px; height:30px;;  position: relative; left:70%;}
+.container{width:900px;}
+#talent_view_title{border-bottom : 1px solid;}
+
 </style>
 
 </head>
@@ -104,7 +107,7 @@ input { width:150px; }
   <div class="container">
 
     <!-- Page Heading/Breadcrumbs -->
-    <h1 class="mt-4 mb-3">재능 판매 상세</h1>
+    <h1 id= "talent_view_title" class="mt-4 mb-3">재능장터 상세</h1>
 
 	<form role="form" method="post" autocomplete="off">
 			
@@ -128,6 +131,10 @@ input { width:150px; }
 		<div class="inputArea">
 				<label>작성자</label>
 				<span>${talent.tals_Id}</span>
+		</div>
+		<div class="inputArea">
+				<label>신뢰온도</label>
+				<span>${member1.tal_Sta}℃</span>
 		</div>
 		<div class="inputArea">
 				<label for="tals_Price">가격</label>

@@ -36,7 +36,7 @@
 
 <!-- 멤버 조회 -->
 <select id="member_check" resultType="com.capstone.domain.MemberVO">
-	select Id, Pw, Name, Major, Email, Phone_Num, tal_Sta, goods_Sta, Student_Num, Email_2;
+	select Name, Id, Pw, Major, Student_Num, Email, Phone_Num, tal_Sta, goods_Sta, Email_2, Verify
 	from member where Id = #{Id}
 </select>
 </mapper>

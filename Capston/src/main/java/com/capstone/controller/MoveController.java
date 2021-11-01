@@ -28,6 +28,7 @@ import com.capstone.domain.Talent_S_VO;
 import com.capstone.domain.TradeVO;
 import com.capstone.domain.Trade_T_VO;
 import com.capstone.service.AdminService;
+import com.capstone.service.MemberService;
 import com.capstone.service.MessageService;
 import com.capstone.service.MoveService;
 import com.capstone.utils.UploadFileUtils;
@@ -43,6 +44,9 @@ public class MoveController {
 
 	@Inject
 	MessageService messageService;
+	
+	@Inject
+	MemberService memberService;
 
 	//메인화면 get
 	@RequestMapping(value = "/index", method = RequestMethod.GET)
@@ -213,9 +217,10 @@ public class MoveController {
 	public String postReviewReg(@RequestParam("n") int goods_Code, Model model, HttpServletRequest req, ReviewVO vo) throws Exception {
 		logger.info("post review register");
 		HttpSession session = req.getSession();
-		MemberVO member = (MemberVO) session.getAttribute("member");
 		GoodsVO res = moveService.goodsView(goods_Code);
-		vo.setReview_Writer(member.getId());
+		MemberVO member1 = (MemberVO) session.getAttribute("member");
+		MemberVO member = memberService.member_check(res.getSeller_Id());
+		vo.setReview_Writer(member1.getId());
 		vo.setReview_Trader(res.getSeller_Id());
 		vo.setReview_Goods(res.getGoods_Name());
 		
@@ -287,7 +292,7 @@ public class MoveController {
 		moveService.reviewModify(vo);
 
 		HttpSession session = req.getSession();
-		MemberVO member = (MemberVO) session.getAttribute("member");
+		MemberVO member = memberService.member_check(vo.getReview_Trader());
 		member.setGoods_Sta((member.getGoods_Sta()-sta)+vo.getReview_Sta());
 		moveService.goods_Sta(member);
 		
@@ -313,8 +318,8 @@ public class MoveController {
 	public String postReviewReg_T(@RequestParam("n") String trade_T_Code, Model model, HttpServletRequest req, Review_T_VO vo) throws Exception {
 		logger.info("post review register");
 		HttpSession session = req.getSession();
-		MemberVO member = (MemberVO) session.getAttribute("member");
 		Trade_T_VO res = moveService.trade_T_View(trade_T_Code);
+		MemberVO member = memberService.member_check(res.getSeller_Id());
 		vo.setRev_T_Writer(member.getId());
 		vo.setRev_T_Trader(res.getSeller_Id());
 		vo.setRev_T_Kinds(res.getTalent_Kinds());
@@ -367,7 +372,7 @@ public class MoveController {
 		int sta = t.getRev_T_Sta();
 		moveService.review_t_Modify(vo);
 		HttpSession session = req.getSession();
-		MemberVO member = (MemberVO) session.getAttribute("member");
+		MemberVO member = memberService.member_check(vo.getRev_T_Trader());
 		member.setTal_Sta((member.getTal_Sta()-sta)+vo.getRev_T_Sta());
 		moveService.tal_Sta(member);
 			

@@ -16,7 +16,7 @@
   <title>충대장터</title>
 
   <!-- Bootstrap core CSS -->
-  <link href="${pageContext.request.contextPath}/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+  <link href="${pageContext.request.contextPath}/resources/vendor/bootstrap/css/bootstrap.min.css?after" rel="stylesheet" type="text/css">
 
   <!-- Custom styles for this template -->
   <link href="${pageContext.request.contextPath}/resources/css/modern-business.css" rel="stylesheet" type="text/css">
@@ -114,27 +114,46 @@
   </header>
 
   <!-- Page Content -->
-  <div class="container">
+<div class="home", style="background-color: #FBF7F2;">
 
-    <h1 class="my-4">충대 장터에 오신 것을 환영합니다.</h1>
+<div id = "home-left">
 
-<div class="row">
-      <div class="col-lg-6">
+<div id="main-text">
+      
+      <br>
         <ul>
-        <h2>충대 장터 소개</h2>
-        <p>충대 장터의 장점</p>
-          <li>
-            <strong>신뢰성이 높습니다!!</strong>
-          </li>
-          <li>충북대 관계자들끼리 자유로운 거래 가능!</li>
-          <li>후기 시스템으로 친절한 쿨거래 유도!</li>
+        <p class= "font2">
+        <h2>충북대인이라면 <br>편리한 충대장터</h2></p>
+    
+        <br><br>
+       <p class="font1">충북대생을 위한<br>충대장터<br>중고 거래부터 재능 거래까지,<br><br> 재학생과 졸업생이 함께 해 <br><br>가깝고 따듯한 <br>당신의 충대장터를 만들어요.</p>
+<br>
+
+
+</p>
         </ul>
         <p></p>
+   
       </div>
-      <div class="col-lg-6">
-        <img class="img-fluid rounded" src="<spring:url value='/resources/image/mark.png'/>" alt="">
+
+
+</div>
+
+
+
+<div id = "home-right">  
+
+
+      
+
+            <div id="cow2"> 
+      	<img     style = "position: relative; top: 18px;" class="img-fluid rounded" src="<spring:url value='/resources/image/mark5.png'/>" alt="">
       </div>
-    </div>
+  </div>
+
+
+  
+
     <!-- /.row -->
 
     <hr>
@@ -159,3 +178,4 @@
 </body>
 
 </jsp>
+

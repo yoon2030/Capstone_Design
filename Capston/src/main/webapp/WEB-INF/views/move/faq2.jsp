@@ -161,14 +161,14 @@ textarea#faqDes { width:600px; height:300px; }
 
 <div class="inputArea">
 	<label for="faq_Title">글제목</label>
-	<input type="text" id="faq_Title" name="faq_Title" />
+	<input type="text" id="faq_Title" name="faq_Title" required="required"/>
 </div>
 
 <div class="inputArea">
 	<label id = "faq_Content" for="faq_Content">
 	문의내용
 	</label><br>
-	<textarea rows="5" cols="80" id="faq_Content" name="faq_Content"></textarea>
+	<textarea rows="5" cols="80" id="faq_Content" name="faq_Content" required="required"></textarea>
 </div>
 <br></br><br></br>
 <div class="inputArea">

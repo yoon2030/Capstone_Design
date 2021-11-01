@@ -1,4 +1,4 @@
-e<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page session="false" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -15,14 +15,20 @@ e<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
   <title>마이페이지 - 구매 요청 목록</title>
 
   <!-- Bootstrap core CSS -->
-  <link href="${pageContext.request.contextPath}/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+  <link href="${pageContext.request.contextPath}/resources/vendor/bootstrap/css/bootstrap.min.css?after" rel="stylesheet" type="text/css">
 
   <!-- Custom styles for this template -->
   <link href="${pageContext.request.contextPath}/resources/css/modern-business.css" rel="stylesheet" type="text/css">
 
   <!--  add CSS -->
   <link href="${pageContext.request.contextPath}/resources/vendor/bootstrap/css/web.css" rel="stylesheet" type="text/css">
+  <style>
+  
+	#card-img-top{width:220px; height:220px;}
+	#wantbuy_btn{position: absolute; height: 35px;left: 212px;top: 190px;}
+	#wantbuy_talentbtn{ position: absolute; height: 35px;left: 618px;top: 190px; width:200px;}
 
+  </style>
 </head>
 
 <body>
@@ -106,11 +112,18 @@ e<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
     <c:forEach items="${list}" var="list">
     <div class="card mb-4">
       <div class="card-body">
-        <div class="row">
-          <div class="col-lg-6">
-            <h2 class="card-title"><label>제목 : </label>${list.goods_Name}</h2>
+        <div class="row">  
+        <div class="col-lg-6">
+            <a href="/admin/trade_view?n=${list.goods_Code}">
+            <div class="col-lg-6">
+              <img src="${list.goods_Pic}" class="card-img-top"/>
+              </div>
+            </a>
+          </div>
+          <div class="view-img">
+            <h2 class="card-title"><label>상품제목 : </label>${list.goods_Name}</h2>
             <p class="card-text"><label>판매자 : </label>${list.seller_Id}</p>
-            <p class="card-text"><label>내용 : </label>${list.goods_Des}</p>
+            <p class="card-text"><label>상품설명 : </label>${list.goods_Des}</p>
             <a id="wantbuy_btn" href="/admin/trade_view?n=${list.goods_Code}" class="btn btn-primary">상세한 정보 확인하기 &rarr;</a>
           </div>
         </div>
@@ -135,13 +148,13 @@ e<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
       <div class="card-body">
         <div class="row">
           <div class="col-lg-6">
-            <h2 class="card-title"><label>제목 : </label>${list2.tals_Title}</h2>
+            <h2 class="card-title"><label>재능제목 : </label>${list2.tals_Title}</h2>
             <p class="card-text"><label>판매자 : </label>${list2.tals_Id}</p>
-            <p class="card-text"><label>1차분류 : </label>${list2.tals_Kinds}</p>
-            <p class="card-text"><label>2차분류 : </label>${list2.tals_Kinds_2}</p>
+            <p class="card-text"><label>재능 1차분류 : </label>${list2.tals_Kinds}</p>
+            <p class="card-text"><label>재능 2차분류 : </label>${list2.tals_Kinds_2}</p>
             <p class="card-text"><label>가격 : </label>${list2.tals_Price}</p>
-            <p class="card-text"><label>기간 : </label>${list2.tals_Term}</p>
-            <a id="wantbuy_btn" href="/talent/talent_S_view?n=${list2.tals_Code}" class="btn btn-primary">상세한 정보 확인하기 &rarr;</a>
+            <p class="card-text"><label>제작기간 : </label>${list2.tals_Term}</p>
+            <a id="wantbuy_talentbtn" href="/talent/talent_S_view?n=${list2.tals_Code}" class="btn btn-primary">상세한 정보 확인하기 &rarr;</a>
           </div>
         </div>
       </div>

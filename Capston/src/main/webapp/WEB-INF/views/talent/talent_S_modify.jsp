@@ -11,7 +11,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Modern Business - Start Bootstrap Template</title>
+  <title>재능장터 수정</title>
 
   <!-- Bootstrap core CSS -->
   <link href="${pageContext.request.contextPath}/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
@@ -149,14 +149,14 @@ function categoryChange(e) {
 		<div id="wrapper"> 
 <div id="content">
 		
-			    <h1 class="mt-4 mb-3">재능판매 수정
+			    <h1 class="mt-4 mb-3">재능장터 수정
       <small></small>
     </h1>
 			    <ol class="breadcrumb">
       <li class="breadcrumb-item">
-        <a href="/talent/talent_S_list">재능판매</a>
+        <a href="/talent/talent_S_list">재능장터</a>
       </li>
-      <li class="breadcrumb-item active">재능판매 수정</li>
+      <li class="breadcrumb-item active">재능장터 수정</li>
     </ol>
 			
 <form role="form" method="post" autocomplete="off" enctype="multipart/form-data">
@@ -166,7 +166,7 @@ function categoryChange(e) {
 
 <div class="inputArea">
  <label for="tals_Title">제목</label>
- <input type="text" id="tals_Title" name="tals_Title" value="${talent.tals_Title}"/>
+ <input type="text" id="tals_Title" name="tals_Title" value="${talent.tals_Title}" required="required" />
 </div>
 <div class="inputArea">
 	<label for="tals_Kinds">재능분류</label>
@@ -185,15 +185,15 @@ function categoryChange(e) {
 </div>
 <div class="inputArea">
  <label for="tals_Content">내용</label>
- <textarea rows="5" cols="50" id="tals_Content" name="tals_Content">${talent.tals_Content}</textarea>
+ <textarea rows="5" cols="50" id="tals_Content" name="tals_Content" required="required">${talent.tals_Content}</textarea>
 </div>
 <div class="inputArea">
  <label for="tals_Price">가격</label>
- <input type="text" id="tals_Price" name="tals_Price" value="${talent.tals_Price}"/>
+ <input type="number" id="tals_Price" name="tals_Price" value="${talent.tals_Price}" required="required"/>
 </div>
 <div class="inputArea">
  <label for="tals_Term">작업 기간</label>
- <input type="text" id="tals_Term" name="tals_Term" value="${talent.tals_Term}"/>
+ <input type="number" id="tals_Term" name="tals_Term" value="${talent.tals_Term}" required="required"/>
 </div>
 
 <div class="inputArea">
